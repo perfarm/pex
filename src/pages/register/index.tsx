@@ -1,11 +1,14 @@
-import useDidMount from "beautiful-react-hooks/useDidMount";
-import { fetchCurrentUser } from "~/commons/api/fetchCurrentUser";
+import { useRouter } from "next/router";
 
 export default function Register() {
-  useDidMount(async () => {
-    const resp = await fetchCurrentUser();
-    console.log("MOUNT", resp);
-  });
+  const { push } = useRouter();
 
-  return <div>Register Screen</div>;
+  const onClick = () => push("/install");
+
+  return (
+    <div>
+      Register Screen
+      <button onClick={onClick}>Ir tela instalção</button>
+    </div>
+  );
 }

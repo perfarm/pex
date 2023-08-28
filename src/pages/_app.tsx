@@ -1,13 +1,21 @@
 import type { AppProps } from "next/app";
 
 import useDidMount from "beautiful-react-hooks/useDidMount";
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import { setAuthorizationToken } from "~/commons/api";
 import { Loader } from "~/components/Loader";
 import { AuthProvider } from "~/context/auth";
 import "~/styles/globals.css";
 
-export default function App({ Component, pageProps }: AppProps) {
+if (typeof window !== "undefined") {
+  // window.addEventListener("load", () => console.log("LOADED"));
+  document.addEventListener("DOMContentLoaded", () =>
+    console.log("DOMContentLoaded")
+  );
+}
+
+function App({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(true);
 
   useDidMount(() => {
@@ -32,3 +40,5 @@ export default function App({ Component, pageProps }: AppProps) {
     </AuthProvider>
   );
 }
+
+export default dynamic(() => Promise.resolve(App), { ssr: false });
