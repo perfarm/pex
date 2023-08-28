@@ -1,29 +1,27 @@
 import type { AppProps } from "next/app";
+import { IoProvider } from "socket.io-react-hook";
 
 import useDidMount from "beautiful-react-hooks/useDidMount";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import { setAuthorizationToken } from "~/commons/api";
+import { startSocket } from "~/commons/api/startSocket";
 import { Loader } from "~/components/Loader";
 import { AuthProvider } from "~/context/auth";
 import "~/styles/globals.css";
+import { globalStyles } from "~/theme/globalStyles";
 
-if (typeof window !== "undefined") {
-  // window.addEventListener("load", () => console.log("LOADED"));
-  document.addEventListener("DOMContentLoaded", () =>
-    console.log("DOMContentLoaded")
-  );
-}
+globalStyles();
 
 function App({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(true);
 
-  useDidMount(() => {
+  useDidMount(async () => {
     setAuthorizationToken();
 
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
+    await startSocket();
+
+    setTimeout(() => setLoading(false), 500);
   });
 
   if (loading) {
@@ -36,7 +34,9 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <AuthProvider>
-      <Component {...pageProps} />
+      <IoProvider>
+        <Component {...pageProps} />
+      </IoProvider>
     </AuthProvider>
   );
 }

@@ -1,0 +1,7 @@
+export enum Release {
+  REGISTER = 0,
+  SELECT_PRODUCTION = 1,
+  SELECT_PRODUCTION_INPUT = 2,
+  SELCET_MACHINE = 3,
+  FINISH = 4,
+}

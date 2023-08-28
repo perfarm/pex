@@ -18,8 +18,6 @@ export default function Install() {
   return (
     <div>
       <Script
-        id="stripe-js"
-        src="https://js.stripe.com/v3/"
         onLoad={() => {
           console.log("OLAAAA");
           const onRemoveListenner = startListenner();
