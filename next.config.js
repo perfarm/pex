@@ -6,6 +6,7 @@ const withPWA = nextPWA({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  distDir: 'build',
   compiler: {
     removeConsole: false,
   },

@@ -1,8 +1,6 @@
 runtime: nodejs
 
-env: flex
-
-entrypoint: yarn start:prod
+env: standard
 
 service: perfarm-experience
 

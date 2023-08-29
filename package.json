@@ -4,6 +4,10 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "deploy": "yarn build && yarn gcp-predeploy && gcloud app deploy",
+    "gcp-predeploy": "find ./build -name '\\[...*' -exec bash -c 'mv \"$1\" \"${1/.../@@@}\"' -- {} \\;",
+    "gcp-build": "find ./build -name '\\[@@@*' -exec bash -c 'mv \"$1\" \"${1/@@@/...}\"' -- {} \\;",
+    "start": "next start -p 8080",
     "start:dev": "next dev",
     "start:prod": "next start",
     "lint": "next lint"
