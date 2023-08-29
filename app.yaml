@@ -1,10 +1,13 @@
-runtime: nodejs16
+runtime: nodejs
 
 env: flex
 
 entrypoint: yarn start:prod
 
 service: perfarm-experience
+
+runtime_config:
+  runtime_version: 16.20.0
 
 manual_scaling:
   instances: 1
