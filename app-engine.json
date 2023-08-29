@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "atomic-agro",
+  "private_key_id": "4a54fec5402cde2ceb252e42f3b4ca1bc6f72210",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDAytPJKlETQHN0\nSkBq5s6naOL05WVdy3DNAdjpUeLe6GQiRYWenfWyumkWquCgeobbwbzQtZRQRVRl\nPCgMvuIpHIwMzOQ9afEPsJKloa53nFkDWfWpQfnnzzXAJOuDqe7u+h/Ibl4MOlQV\n+KtxIlQLZITl0BGXgrOil30Zv9mul8pWkS9XYJqQl+05oXk5hnZtPDKZK6bNDSn0\n9fjXMJt89ei5GibgS3AoAInm63zArWuyxBrfGsuKpqevRMK6S+H0jJPxUAYC3qQV\n+bd8GZ7wHgupsEV3vJcLtZ7zhVBBcjELk3ct5+Iow1HXJXCNJvlIVGQ9TSkzCNdA\nu56r1DvlAgMBAAECggEAC2x5UX7hFaOeCRKqmoBZV8Yj8fWdz178rMkiketjkWhy\ndoK+wNVZ97XgAD3ZLZPVEInRpwmmDijthUoj6A1vgpbJyFW5Ddfh4YIe+RLe2auO\nrV9+lQGZzfM98MgUmdVPQ83XuvKp6U4+KUcg3C/34ZeaiwY3OfkUAoW4yKEmREK+\nnEyTkgDr8N2wQT2F16uOcy2nb8GCHHWixQ7Pt88qKVQX8qJ7CTCqjz8lYk5GTg45\nareFtSOu/aObGyGS5oBS0lzly8z+OX06T667BiZIWU3G8j8LgzpbZzgvk8z4lrSB\nS8mr1X2h2KGFF5QSKp4hUuXbwnHF8MRzqMptyGIniQKBgQDmOSSD3ZCSqaoNZy3n\nFvtvbmDL86xHM92PFbHfk0NZIX3N2IgtgUJJIIf/wJi+2K5gA1GDL/YrO6gPTL1Z\nt9CuXGGVUMWO5Q/lFwQKYEJms1rLumZtrZFpvnNRQx1900ZOEVRqOkg2gIsqN4X2\nnoKyyCW4IDZzsA9LSuRWrEZonwKBgQDWYM6jvyGD2dAim0RMfF6WZR5LQvJZ+aAp\n93cdnojLfPDsVOrnVIH7vuMpPEao4Ii6JI1qxOTN7YV30Hy6h3oD/zOkWtSa0JUO\nCxCR7zwXsuNQzzTlOE/rlS+SpSmb9KAsnavCmiLExz6taxJf3ol4fYLsFSoyYKtK\nTqew8AtY+wKBgGGFWRtmkmQd7IPK7h3SlWVpWyVprdNne/WtWfB73+50imbUzzJ/\na4WwewtyGQHWpV7UaQXqHhvIJHN+rULA42vIhCmM0nKqQyZmrnZ6ugXo+ZANAHB7\nMnqZix2kEW0IPuK44oow7//uSYTzihKiqHh04c1yD77HmGLrcXfpd9W/AoGBAKpt\nebm56CYPEiWA9FIuCXBc4TGJ/mtDRW43ms3ETBIhuNLZS4oup8uAXM1aav40yt3Y\n00hPUWrY6mNvLsmHjJwC1YZS43RUYDsy1rB91XMttwN2RyH3m6m5B4H4pdSjLHdr\nvbHOodd4Yr6xQYFPxFAyz9NpnAtCyMohL7U9kHfjAoGADM6kHg3BhuIIIFduPQqc\nqsuf3kAtc2ZSy6oeVhYnNsSON6FWlqf6PWqYmhT6OcTP04BfddynyfENsTnQOjJh\n+1TklGf1nQvT5+GCS/5RFE1uWGt4gRIFAmOpnokrKXAQu3qrWQlWMSFt6ZWovoim\nTG0mH/HvppNL0wKaSdhSmP0=\n-----END PRIVATE KEY-----\n",
+  "client_email": "perfarm-experience@atomic-agro.iam.gserviceaccount.com",
+  "client_id": "118378040649839627585",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/perfarm-experience%40atomic-agro.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

@@ -1,0 +1,25 @@
+runtime: nodejs16
+
+env: flex
+
+entrypoint: yarn start:prod
+
+service: perfarm-experience
+
+manual_scaling:
+  instances: 1
+
+resources:
+  cpu: 1
+  memory_gb: 1
+  disk_size_gb: 10
+
+env_variables:
+  FIREBASE_APP_KEY: AIzaSyCr1V2KwIlYmteUOOtG4FvdjqXVjirGKiM
+  FIREBASE_AUTH_DOMAIN: perfarm-experience.firebaseapp.com
+  FIREBASE_PROJECT_ID: perfarm-experience
+  FIREBASE_STORAGE_BUCCKET: perfarm-experience.appspot.com
+  FIREBASE_MESSAGING_SENDER_ID: 264367941327
+  FIREBASE_APP_ID: 1:264367941327:web:9a1bc3de749d800d63f9ba
+  FIREBASE_DATABASE_URL: https://perfarm-experience-default-rtdb.firebaseio.com
+  JWT_SECRET: pex-abcd
