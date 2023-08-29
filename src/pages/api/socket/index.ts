@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { Socket } from 'net';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { Server } from 'Socket.IO';
+import { Server } from 'socket.io';
 
 type Data = {
   name: string
