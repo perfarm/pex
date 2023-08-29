@@ -1,0 +1,25 @@
+import { VariantTags } from './type';
+
+export const variantTags: VariantTags = {
+  $body1: 'p',
+  $body2: 'p',
+  $body3: 'p',
+  $body4: 'p',
+  $body5: 'p',
+  $body6: 'p',
+  $body7: 'p',
+  $description1: 'p',
+  $description2: 'p',
+  $description3: 'p',
+  $description4: 'p',
+  $display1: 'h1',
+  $display2: 'h1',
+  $display3: 'h1',
+  $display4: 'h1',
+  $headline1: 'h1',
+  $headline2: 'h2',
+  $headline3: 'h3',
+  $headline4: 'h4',
+  $headline5: 'h5',
+  $headline6: 'h6',
+};
