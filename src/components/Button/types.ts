@@ -13,5 +13,7 @@ export interface Props extends PropsWithChildren {
   id?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   size?: ButtonSize;
+  type?: HTMLButtonElement['type'];
   variant?: ButtonVariant;
+  showLoader?: boolean;
 }

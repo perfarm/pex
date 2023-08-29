@@ -1,22 +1,43 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { SocketEvent } from '~/commons/socket/events';
+import type { NextApiRequest } from 'next';
 
-type Data = {
-  name: string
+import { getAdminUserByRequest } from '~/commons/backend/getUserByRequest';
+import { release } from '~/commons/firebase/steps';
+import { SocketEvent } from '~/commons/socket/events';
+import { Release } from '~/commons/storage/release/types';
+
+import { ADMIN_USER_NAME } from '~/pages/api/admin/login';
+import { ResponseWithSocket } from '~/pages/api/socket';
+
+type Response = {
+  message: string
 }
 
-export default function handler(
+type Body = {
+  feature: keyof typeof Release;
+}
+
+export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: ResponseWithSocket<Response>
 ) {
   if (req.method !== 'POST') {
     res.status(405).json({ message: 'Only POST requests allowed' });
     return;
   }
 
+  const { username } = getAdminUserByRequest(req);
+
+  if (username !== ADMIN_USER_NAME) {
+    res.status(401).json({ message: 'Unauthorized' });
+    return;
+  }
+
   if (res.socket.server.io) {
-    const { feature } = req.body;
+    const { feature } = req.body as Body;
+
+    await release(feature);
+
     res.socket.server.io.emit(SocketEvent.RELEASE_FEARURE, { feature });
   }
 

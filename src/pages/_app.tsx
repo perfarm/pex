@@ -4,11 +4,13 @@ import { IoProvider } from "socket.io-react-hook";
 import useDidMount from "beautiful-react-hooks/useDidMount";
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import { setAuthorizationToken } from "~/commons/api";
+import {
+  setAdminAuthorizationToken,
+  setAuthorizationToken,
+} from "~/commons/api";
 import { startSocket } from "~/commons/api/startSocket";
 import { Loader } from "~/components/Loader";
 import { AuthProvider } from "~/context/auth";
-import "~/styles/globals.css";
 import { globalStyles } from "~/theme/globalStyles";
 
 globalStyles();
@@ -18,6 +20,7 @@ function App({ Component, pageProps }: AppProps) {
 
   useDidMount(async () => {
     setAuthorizationToken();
+    setAdminAuthorizationToken();
 
     await startSocket();
 

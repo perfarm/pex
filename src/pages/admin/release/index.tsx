@@ -1,26 +1,13 @@
-import { Button } from "~/components/Button";
-import { useReleaseSocketWithStorage } from "~/hooks/useReleaseSocketWithStorage";
+import { useState } from "react";
+
+import { getAccessToken } from "~/commons/storage/adminAccessToken";
+import { Login } from "~/components/pages/admin/release/Login";
+import { Manage } from "~/components/pages/admin/release/Manage";
 
 export default function Release() {
-  const { sendMessage } = useReleaseSocketWithStorage();
+  const [token, setToken] = useState(getAccessToken());
 
-  return (
-    <div>
-      Admin
-      <br />
-      <Button
-        color="primary"
-        onClick={() => sendMessage({ feature: "SELCET_MACHINE" })}
-      >
-        Enable Máquinas
-      </Button>
-      <br />
-      <Button
-        color="error"
-        onClick={() => sendMessage({ feature: "SELECT_PRODUCTION_INPUT" })}
-      >
-        Enable Insumos
-      </Button>
-    </div>
-  );
+  const onSuccess = (token: string) => setToken(token);
+
+  return token ? <Manage /> : <Login onSuccess={onSuccess} />;
 }

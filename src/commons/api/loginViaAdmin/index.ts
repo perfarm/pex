@@ -3,12 +3,11 @@ import { AxiosError } from 'axios';
 import { adminApi } from '~/commons/api';
 import { RequestError } from '~/commons/api/RequestError';
 
-import { Release } from '~/commons/storage/release/types';
-import { SocketResponse } from './types';
+import { Response } from './types';
 
-export const releaseFeature = async (feature: keyof typeof Release) => {
+export const loginViaAdmin = async (username: string, password: string) => {
   try {
-    const { data } = await adminApi.post<SocketResponse>('/api/socket/release', { feature });
+    const { data } = await adminApi.post<Response>('/api/admin/login', { password, username });
     return data;
   } catch (e) {
     if (e instanceof AxiosError && e.response) {

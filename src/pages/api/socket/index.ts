@@ -1,4 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { Socket } from 'net';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { Server } from 'Socket.IO';
 
@@ -6,15 +7,27 @@ type Data = {
   name: string
 }
 
+interface CustomServer {
+  io: Server;
+}
+
+interface CustomSocket extends Socket {
+  server: CustomServer;
+}
+
+export interface ResponseWithSocket<T> extends NextApiResponse<T> {
+  socket: CustomSocket
+}
+
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: ResponseWithSocket<Data>
 ) {
   if (res.socket.server.io) {
     console.log('Socket is already running')
   } else {
     console.log('Socket is initializing')
-    const io = new Server(res.socket.server)
+    const io = new Server(res.socket.server as any)
     res.socket.server.io = io
 
     io.on('connection', socket => {

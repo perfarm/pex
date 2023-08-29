@@ -1,7 +1,8 @@
-import React, { FC } from 'react';
+import { FC } from "react";
 
-import { Button as ButtonStyled } from './style';
-import { Props } from './types';
+import { Spinner } from "../Spinner";
+import { Button as ButtonStyled } from "./style";
+import { Props } from "./types";
 
 export const Button: FC<Props> = ({
   children,
@@ -12,7 +13,9 @@ export const Button: FC<Props> = ({
   id,
   onClick,
   size,
+  type,
   variant,
+  showLoader = false,
 }) => {
   return (
     <ButtonStyled
@@ -24,8 +27,9 @@ export const Button: FC<Props> = ({
       onClick={onClick}
       size={size}
       variant={variant}
+      type={type}
     >
-      {children}
+      {showLoader ? <Spinner /> : children}
     </ButtonStyled>
   );
 };
