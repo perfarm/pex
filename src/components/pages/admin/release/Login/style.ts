@@ -1,6 +1,6 @@
 import { styled } from '~/theme';
 
-export const Smooth = styled('div', {
+export const Form = styled('form', {
   bottom: 0,
   display: 'flex',
   height: 75,
