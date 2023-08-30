@@ -1,6 +1,7 @@
 import { firestore } from '~/commons/firebase';
 import { ProductionInput } from '~/commons/firebase/production-inputs/types';
 import { Machine } from '../machines/types';
+import { Production } from '../productions/types';
 import { User, UserData } from './types';
 
 const collection = firestore.collection('users');
@@ -32,5 +33,10 @@ export const saveProductionInput = async (userId: string, productionInput: Produ
 
 export const saveMachine = async (userId: string, machine: Machine) => {
   await collection.doc(userId).update({ machine });
+  return findById(userId);
+};
+
+export const saveProduction = async (userId: string, production: Production) => {
+  await collection.doc(userId).update({ production });
   return findById(userId);
 };
