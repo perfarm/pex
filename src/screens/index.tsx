@@ -1,16 +1,16 @@
-import { EnvelopeSimple } from "~/components/Icons/EnvelopeSimple";
-import { IdentificationCard } from "~/components/Icons/IdentificationCard";
-import { Phone } from "~/components/Icons/Phone";
-import { ImgPerfarmExperience } from "~/components/ImgPerfarmExperience";
-import { StepFlow } from "~/components/StepFlow";
-import { Typography } from "~/components/Typography";
-import { ButtonNext, Container, IconRight, Input, Root, Title } from "./style";
+import { EnvelopeSimple } from '~/components/Icons/EnvelopeSimple';
+import { IdentificationCard } from '~/components/Icons/IdentificationCard';
+import { Phone } from '~/components/Icons/Phone';
+import { ImgPerfarmExperience } from '~/components/ImgPerfarmExperience';
+import { StepFlow } from '~/components/StepFlow';
+import { Typography } from '~/components/Typography';
+import { ButtonNext, CardContainer, IconRight, Input, Root, Title } from './style';
 
 export const ScreenRegister = () => {
   return (
     <Root>
       <ImgPerfarmExperience />
-      <Container>
+      <CardContainer>
         <StepFlow step={1} />
         <Title color="$pastureGreen" variant="$headline6">
           CREDENCIAMENTO
@@ -57,14 +57,10 @@ export const ScreenRegister = () => {
           size="small"
           value=""
         />
-        <ButtonNext
-          color="primary"
-          onClick={() => console.log("clicked")}
-          disabled
-        >
+        <ButtonNext color="primary" onClick={() => console.log('clicked')} disabled>
           AVANÇAR <IconRight color="white" />
         </ButtonNext>
-      </Container>
+      </CardContainer>
     </Root>
   );
 };
