@@ -2,6 +2,7 @@ import { EnvelopeSimple } from "~/components/Icons/EnvelopeSimple";
 import { IdentificationCard } from "~/components/Icons/IdentificationCard";
 import { Phone } from "~/components/Icons/Phone";
 import { ImgPerfarmExperience } from "~/components/ImgPerfarmExperience";
+import { StepFlow } from "~/components/StepFlow";
 import { Typography } from "~/components/Typography";
 import { ButtonNext, Container, IconRight, Input, Root, Title } from "./style";
 
@@ -10,6 +11,7 @@ export const ScreenRegister = () => {
     <Root>
       <ImgPerfarmExperience />
       <Container>
+        <StepFlow step={1} />
         <Title color="$pastureGreen" variant="$headline6">
           CREDENCIAMENTO
         </Title>

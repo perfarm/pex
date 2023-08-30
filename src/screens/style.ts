@@ -40,6 +40,7 @@ export const Input = styled(TextField, {
 
 export const Title = styled(Typography, {
   whiteSpace: "nowrap",
+  marginTop: "20px",
 });
 
 export const ButtonNext = styled(Button, {
