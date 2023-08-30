@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AngleDown should match snapshot 1`] = `
+<div>
+  <svg
+    class="PJLV"
+    fill="none"
+    height="18"
+    viewBox="0 0 24 24"
+    width="18"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      class="PJLV"
+      d="M19.5 9L12 16.5L4.5 9"
+      stroke="#898989"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="1.5"
+    />
+  </svg>
+</div>
+`;

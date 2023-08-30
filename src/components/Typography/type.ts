@@ -1,7 +1,11 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren } from "react";
 
-import { Colors } from '~/commons/types';
-import { FontSizes, FontWeight, HtmlTextTags } from '~/commons/types/typography';
+import { Colors } from "~/commons/types";
+import {
+  FontSizes,
+  FontWeight,
+  HtmlTextTags,
+} from "~/commons/types/typography";
 
 export type VariantTags = {
   [key in FontSizes]: keyof JSX.IntrinsicElements;

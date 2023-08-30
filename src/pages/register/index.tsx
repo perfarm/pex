@@ -1,18 +1,17 @@
-import usePreviousValue from "beautiful-react-hooks/usePreviousValue";
-import { useRouter } from "next/router";
-import { Fragment, useEffect } from "react";
-import { translate } from "~/commons/storage/release/types";
-import { Toast, toast } from "~/components/Toaster";
-import { useReleaseSocketWithStorage } from "~/hooks/useReleaseSocketWithStorage";
+import usePreviousValue from 'beautiful-react-hooks/usePreviousValue';
+import { useRouter } from 'next/router';
+import { Fragment, useEffect } from 'react';
+import { translate } from '~/commons/storage/release/types';
+import { Toast, toast } from '~/components/Toaster';
+import { useReleaseSocketWithStorage } from '~/hooks/useReleaseSocketWithStorage';
 
 export default function Register() {
   const { push } = useRouter();
-  const { currentFeatureIndex, feature, releasedFeature, message } =
-    useReleaseSocketWithStorage();
+  const { currentFeatureIndex, feature, releasedFeature, message } = useReleaseSocketWithStorage();
   const oldReleasedFeature = usePreviousValue(releasedFeature);
 
-  const goToInstallPage = () => push("/install");
-  const goToSchedulePage = () => push("/schedule");
+  const goToInstallPage = () => push('/install');
+  const goToSchedulePage = () => push('/schedule');
 
   useEffect(() => {
     if (oldReleasedFeature !== releasedFeature) {
