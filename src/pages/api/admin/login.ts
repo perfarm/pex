@@ -1,4 +1,4 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { HttpStatusCode } from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { generateAdmin } from '~/commons/jwt';
@@ -19,16 +19,16 @@ export default async function handler(
   res: NextApiResponse<Response>,
 ) {
   if (req.method !== 'POST') {
-    res.status(405).json({ message: 'Only POST requests allowed' });
+    res.status(HttpStatusCode.MethodNotAllowed).json({ message: 'Método não disponível' });
     return;
   }
 
   const { password, username }: Body = req.body;
   if (password !== PASSWORD || username !== ADMIN_USER_NAME) {
-    res.status(400).json({ message: 'invalid username or password' });
+    res.status(HttpStatusCode.BadRequest).json({ message: 'Usuário ou senha inválido' });
     return;
   }
 
   const token = generateAdmin(username);
-  res.status(200).json({ token });
+  res.status(HttpStatusCode.Ok).json({ token });
 }

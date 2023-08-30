@@ -26,6 +26,11 @@ export const findByEmail = async (email: string) => {
   return data.docs.map((doc) => ({ id: doc.id, ...doc.data() }))[0] as User;
 };
 
+export const findByCPF = async (cpf: string) => {
+  const data = await collection.where('cpf', '==', cpf).get()
+  return data.docs.map((doc) => ({ id: doc.id, ...doc.data() }))[0] as User;
+};
+
 export const saveProductionInput = async (userId: string, productionInput: ProductionInput) => {
   await collection.doc(userId).update({ productionInput });
   return findById(userId);

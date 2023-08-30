@@ -6,7 +6,6 @@ export interface RequestWithUser extends NextRequest {
   user: User
 }
 
-// This function can be marked `async` if using `await` inside
 export async function middleware(request: RequestWithUser) {
   const authorization = request.headers.get('Authorization');
 
@@ -17,5 +16,5 @@ export async function middleware(request: RequestWithUser) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: '/api/user/me',
+  matcher: ['/api/user/me', '/api/user/machine', '/api/user/production', '/api/user/production-input'],
 }

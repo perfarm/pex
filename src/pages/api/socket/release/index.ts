@@ -1,4 +1,4 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { HttpStatusCode } from 'axios';
 import type { NextApiRequest } from 'next';
 
 import { getAdminUserByRequest } from '~/commons/backend/getUserByRequest';
@@ -22,14 +22,14 @@ export default async function handler(
   res: ResponseWithSocket<Response>
 ) {
   if (req.method !== 'POST') {
-    res.status(405).json({ message: 'Only POST requests allowed' });
+    res.status(HttpStatusCode.MethodNotAllowed).json({ message: 'Método não disponível' });
     return;
   }
 
   const { username } = getAdminUserByRequest(req);
 
   if (username !== ADMIN_USER_NAME) {
-    res.status(401).json({ message: 'Unauthorized' });
+    res.status(HttpStatusCode.Unauthorized).json({ message: 'Unauthorized' });
     return;
   }
 
