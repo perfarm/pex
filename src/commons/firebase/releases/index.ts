@@ -1,13 +1,13 @@
 import { firestore } from '~/commons/firebase';
 import { Step } from './types';
 
-const collection = firestore.collection('steps');
+const collection = firestore.collection('releases');
 
 const ID = 'fqcnFrbME85V3QQqgNjZ';
 
 export const find = async () => {
   const data = await collection.doc(ID).get();
-  return { ...data.data() } as Step;
+  return { id: data.id, ...data.data() } as any as Step;
 };
 
 export const release = async (key: keyof Step) => {

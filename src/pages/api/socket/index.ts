@@ -15,7 +15,7 @@ interface CustomSocket extends Socket {
   server: CustomServer;
 }
 
-export interface ResponseWithSocket<T> extends NextApiResponse<T> {
+export interface ResponseWithSocket<T = any> extends NextApiResponse<T> {
   socket: CustomSocket
 }
 

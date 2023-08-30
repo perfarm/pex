@@ -10,10 +10,7 @@ type Body = {
   phone: string;
 }
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse,
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     res.status(HttpStatusCode.MethodNotAllowed).json({ message: 'Método não disponível' });
     return;
