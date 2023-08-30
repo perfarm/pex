@@ -8,7 +8,7 @@ import { SocketResponse } from './types';
 
 export const releaseFeature = async (feature: keyof typeof Release) => {
   try {
-    const { data } = await adminApi.post<SocketResponse>('/api/socket/release', { feature });
+    const { data } = await adminApi.post<SocketResponse>('/api/feature/release', { feature });
     return data;
   } catch (e) {
     if (e instanceof AxiosError && e.response) {

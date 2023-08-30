@@ -3,6 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { getUserByRequest } from '~/commons/backend/getUserByRequest';
 import { showReqErrorLog } from '~/commons/backend/showReqErrorLog';
+import { find } from '~/commons/firebase/features';
 import { findById } from '~/commons/firebase/machines';
 import { saveMachine } from '~/commons/firebase/users';
 
@@ -10,6 +11,12 @@ const save = async (req: NextApiRequest, res: NextApiResponse) => {
   const { machineId } = req.body;
 
   try {
+    const feature = await find();
+    if (!feature.SELCET_MACHINE) {
+      res.status(HttpStatusCode.BadRequest).json({ message: 'A funcionalidade de selecionar máquina ainda não foi liberada' });
+      return;
+    }
+
     const user = await getUserByRequest(req);
     const machine = await findById(machineId);
 

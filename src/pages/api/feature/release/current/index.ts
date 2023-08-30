@@ -9,7 +9,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return;
   }
 
-  const step = await find();
+  const feature = await find();
+  delete (feature as any).id;
 
-  res.status(HttpStatusCode.Ok).json(step);
+  res.status(HttpStatusCode.Ok).json(feature);
 }

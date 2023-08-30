@@ -8,7 +8,9 @@ import { getReleaseValue, setReleaseValue } from "~/commons/storage/release";
 import { Release } from "~/commons/storage/release/types";
 
 export interface Message {
-  feature: keyof typeof Release,
+  feature: Features;
+  message?: string;
+  releasedFeature: keyof typeof Release,
 }
 
 export interface SendData {
@@ -19,26 +21,27 @@ export type Features = {
   [K in keyof typeof Release]: boolean;
 }
 
-type Response = {
-  features?: Features;
+export interface Response extends Message {
   currentFeatureIndex?: number;
   sendMessage: (message: SendData) => Promise<SocketResponse>;
 }
 
-const getCurrentIndex = () => {
+export type Current = { key: keyof typeof Release } & { index: number }
+
+const getCurrentIndex = (): Current => {
   const finishInStorage = getReleaseValue('FINISH');
-  if (finishInStorage) return Release.FINISH;
+  if (finishInStorage) return { index: Release.FINISH, key: 'FINISH' };
 
   const selectMachineInStorage = getReleaseValue('SELCET_MACHINE');
-  if (selectMachineInStorage) return Release.SELCET_MACHINE;
+  if (selectMachineInStorage) return { index: Release.SELCET_MACHINE, key: 'SELCET_MACHINE' };
 
   const selectProductionInStorage = getReleaseValue('SELECT_PRODUCTION');
-  if (selectProductionInStorage) return Release.SELECT_PRODUCTION;
+  if (selectProductionInStorage) return { index: Release.SELECT_PRODUCTION, key: 'SELECT_PRODUCTION' };
 
   const selectProductionInputInStorage = getReleaseValue('SELECT_PRODUCTION_INPUT');
-  if (selectProductionInputInStorage) return Release.SELECT_PRODUCTION_INPUT;
+  if (selectProductionInputInStorage) return { index: Release.SELECT_PRODUCTION_INPUT, key: 'SELECT_PRODUCTION_INPUT' };
 
-  return Release.REGISTER;
+  return { index: Release.REGISTER, key: 'REGISTER' };
 }
 
 export const useReleaseSocketWithStorage = () => {
@@ -48,13 +51,14 @@ export const useReleaseSocketWithStorage = () => {
 
   const [response, setResponse] = useState<Response>({
     currentFeatureIndex: Release.REGISTER,
-    features: {
+    feature: {
       FINISH: false,
       REGISTER: false,
       SELCET_MACHINE: false,
       SELECT_PRODUCTION: false,
       SELECT_PRODUCTION_INPUT: false,
     },
+    releasedFeature: 'REGISTER',
     sendMessage,
   });
 
@@ -65,33 +69,40 @@ export const useReleaseSocketWithStorage = () => {
     const selectProductionInStorage = getReleaseValue('SELECT_PRODUCTION');
     const selectProductionInputInStorage = getReleaseValue('SELECT_PRODUCTION_INPUT');
 
-    setResponse((prev) => ({
-      ...prev,
-      currentFeatureIndex: getCurrentIndex(),
-      features: {
-        FINISH: finishInStorage,
-        REGISTER: registerInInStorage,
-        SELCET_MACHINE: selectMachineInStorage,
-        SELECT_PRODUCTION: selectProductionInStorage,
-        SELECT_PRODUCTION_INPUT: selectProductionInputInStorage,
-      },
-    }));
+    setResponse((prev) => {
+      const current = getCurrentIndex();
+
+      return {
+        ...prev,
+        currentFeatureIndex: current.index,
+        releasedFeature: current.key,
+        feature: {
+          FINISH: finishInStorage,
+          REGISTER: registerInInStorage,
+          SELCET_MACHINE: selectMachineInStorage,
+          SELECT_PRODUCTION: selectProductionInStorage,
+          SELECT_PRODUCTION_INPUT: selectProductionInputInStorage,
+        },
+      }
+    });
   });
 
   useEffect(() => {
-    if (lastMessage?.feature) {
-      setReleaseValue(lastMessage.feature);
+    if (lastMessage?.releasedFeature) {
+      setReleaseValue(lastMessage.releasedFeature);
 
-      setResponse((prev) => ({
-        ...prev,
-        currentFeatureIndex: getCurrentIndex(),
-        features: {
-          ...prev.features,
-          [lastMessage.feature]: true,
-        },
-      }));
+      setResponse((prev) => {
+        const current = getCurrentIndex();
+
+        return {
+          ...prev,
+          ...lastMessage,
+          currentFeatureIndex: current.index,
+          releasedFeature: current.key,
+        };
+      });
     }
-  }, [lastMessage.feature]);
+  }, [lastMessage]);
 
   return response;
 }

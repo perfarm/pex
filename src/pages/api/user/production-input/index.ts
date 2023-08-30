@@ -3,6 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { getUserByRequest } from '~/commons/backend/getUserByRequest';
 import { showReqErrorLog } from '~/commons/backend/showReqErrorLog';
+import { find } from '~/commons/firebase/features';
 import { findById } from '~/commons/firebase/production-inputs';
 import { saveProductionInput } from '~/commons/firebase/users';
 
@@ -10,6 +11,12 @@ const save = async (req: NextApiRequest, res: NextApiResponse) => {
   const { productionInputId } = req.body;
 
   try {
+    const feature = await find();
+    if (!feature.SELECT_PRODUCTION_INPUT) {
+      res.status(HttpStatusCode.BadRequest).json({ message: 'A funcionalidade de selecionar insumo ainda não foi liberada' });
+      return;
+    }
+
     const user = await getUserByRequest(req);
     const productionInput = await findById(productionInputId);
 

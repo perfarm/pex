@@ -7,7 +7,9 @@ import { User, UserData } from './types';
 const collection = firestore.collection('users');
 
 export const create = async (data: UserData) => {
-  const user = await collection.add(data);
+  const feature = { 'REGISTER': true };
+  const user = await collection.add({ ...data, feature });
+
   return findById(user.id);
 };
 
@@ -32,16 +34,28 @@ export const findByCPF = async (cpf: string) => {
 };
 
 export const saveProductionInput = async (userId: string, productionInput: ProductionInput) => {
-  await collection.doc(userId).update({ productionInput });
+  const user = await findById(userId);
+  const feature = { ...user.feature, 'SELECT_PRODUCTION_INPUT': true };
+
+  await collection.doc(userId).update({ productionInput, feature });
+
   return findById(userId);
 };
 
 export const saveMachine = async (userId: string, machine: Machine) => {
-  await collection.doc(userId).update({ machine });
+  const user = await findById(userId);
+  const feature = { ...user.feature, 'SELCET_MACHINE': true };
+
+  await collection.doc(userId).update({ machine, feature });
+
   return findById(userId);
 };
 
 export const saveProduction = async (userId: string, production: Production) => {
-  await collection.doc(userId).update({ production });
+  const user = await findById(userId);
+  const feature = { ...user.feature, 'SELECT_PRODUCTION': true };
+
+  await collection.doc(userId).update({ production, feature });
+
   return findById(userId);
 };

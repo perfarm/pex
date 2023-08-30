@@ -31,14 +31,16 @@ const release = async (req: NextApiRequest, res: ResponseWithSocket) => {
   }
 
   try {
-    const { feature } = req.body as Body;
-    const response: any = { feature, socketEnabled: !!res.socket.server.io };
+    const { feature: releasedFeature } = req.body as Body;
+    const response: any = { releasedFeature, socketEnabled: !!res.socket.server.io };
 
-    await releaseFeature(feature);
-
-    if (res.socket.server.io) res.socket.server.io.emit(SocketEvent.RELEASE_FEARURE, { feature });
+    const feature = await releaseFeature(releasedFeature);
+    delete (feature as any).id;
 
     response.message = 'Funcionalidade liberada';
+    response.feature = feature;
+
+    if (res.socket.server.io) res.socket.server.io.emit(SocketEvent.RELEASE_FEARURE, response);
 
     res.status(HttpStatusCode.Ok).json(response);
   } catch (e) {
