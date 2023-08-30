@@ -1,13 +1,17 @@
 import usePreviousValue from "beautiful-react-hooks/usePreviousValue";
 import { useCallback, useEffect, useState } from "react";
 import { useSocketEvent } from "socket.io-react-hook";
+import { disableFeature as apiDisableFeature } from "~/commons/api/disableFeature";
 import { releaseFeature } from "~/commons/api/releaseFeature";
 import { SocketResponse } from "~/commons/api/releaseFeature/types";
 import { SocketEvent } from "~/commons/socket/events";
 import { getReleaseValue, setReleaseValue } from "~/commons/storage/release";
 import { Release } from "~/commons/storage/release/types";
 
+export type Action = 'ENABLED' | 'DISABLED';
+
 export interface Message {
+  action: Action;
   feature: Features;
   message?: string;
   releasedFeature: keyof typeof Release,
@@ -22,8 +26,10 @@ export type Features = {
 }
 
 export interface Response extends Message {
+  action: Action;
   currentFeatureIndex?: number;
-  sendMessage: (message: SendData) => Promise<SocketResponse>;
+  disableFeature: (message: SendData) => Promise<SocketResponse>;
+  enableFeature: (message: SendData) => Promise<SocketResponse>;
 }
 
 export type Current = { key: keyof typeof Release } & { index: number }
@@ -44,7 +50,7 @@ const getCurrentIndex = (): Current => {
   return { index: Release.REGISTER, key: 'REGISTER' };
 }
 
-const getInitialState = (): Omit<Response, 'sendMessage'> => {
+const getInitialState = (): Omit<Response, 'action' | 'disableFeature' | 'enableFeature'> => {
   const finishInStorage = getReleaseValue('FINISH');
   const registerInInStorage = getReleaseValue('REGISTER');
   const selectMachineInStorage = getReleaseValue('SELCET_MACHINE');
@@ -66,15 +72,17 @@ const getInitialState = (): Omit<Response, 'sendMessage'> => {
 }
 
 export const useReleaseSocketWithStorage = () => {
-  const { lastMessage = {} as Message } = useSocketEvent<Message>(SocketEvent.RELEASE_FEARURE);
+  const { lastMessage = {} as Message, } = useSocketEvent<Message>(SocketEvent.RELEASE_FEARURE);
   const oldReleasedFeature = usePreviousValue(lastMessage.releasedFeature);
 
-  const sendMessage = useCallback((release: SendData) => releaseFeature(release.feature), []);
+  const enableFeature = useCallback((release: SendData) => releaseFeature(release.feature), []);
 
-  const [response, setResponse] = useState<Response>({ ...getInitialState(), sendMessage });
+  const disableFeature = useCallback((release: SendData) => apiDisableFeature(release.feature), []);
+
+  const [response, setResponse] = useState<Response>({ action: undefined, ...getInitialState(), disableFeature, enableFeature });
 
   useEffect(() => {
-    if (oldReleasedFeature !== lastMessage?.releasedFeature) {
+    if (lastMessage.action && oldReleasedFeature !== lastMessage?.releasedFeature) {
       setReleaseValue(lastMessage.releasedFeature);
 
       setResponse((prev) => ({
