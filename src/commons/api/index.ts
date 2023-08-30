@@ -11,6 +11,8 @@ export const adminApi = axios.create({ baseURL: API_URL });
 export const setAuthorizationToken = () => {
   const token = getAccessToken();
 
+  if (!token) return;
+
   Object.keys(api.defaults.headers).forEach((method) => {
     (api.defaults.headers[method] as any)['Authorization'] = `Bearer ${token}`;
   });
@@ -18,6 +20,8 @@ export const setAuthorizationToken = () => {
 
 export const setAdminAuthorizationToken = () => {
   const token = getAdminAccessToken();
+
+  if (!token) return;
 
   Object.keys(adminApi.defaults.headers).forEach((method) => {
     (adminApi.defaults.headers[method] as any)['Authorization'] = `Bearer ${token}`;

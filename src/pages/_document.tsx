@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-title-in-document-head */
-import React from "react";
 
 import { Head, Html, Main, NextScript } from "next/document";
 

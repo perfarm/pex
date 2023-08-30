@@ -11,7 +11,8 @@ export default function Register() {
     useReleaseSocketWithStorage();
   const oldReleasedFeature = usePreviousValue(releasedFeature);
 
-  const onClick = () => push("/install");
+  const goToInstallPage = () => push("/install");
+  const goToSchedulePage = () => push("/schedule");
 
   useEffect(() => {
     if (oldReleasedFeature !== releasedFeature) {
@@ -49,7 +50,8 @@ export default function Register() {
           <br />
         </Fragment>
       ))}
-      <button onClick={onClick}>Ir tela instalção</button>
+      <button onClick={goToInstallPage}>Ir tela instalção</button>
+      <button onClick={goToSchedulePage}>Ir tela Cronograma</button>
     </div>
   );
 }

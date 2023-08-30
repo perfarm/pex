@@ -7,6 +7,8 @@ import { User } from "~/commons/api/fetchCurrentUser/types";
 import { getAccessToken } from "~/commons/storage/accessToken";
 
 import { useRouter } from "next/router";
+import { RequestError } from "~/commons/api/RequestError";
+import { toast } from "~/components/Toaster";
 import { AuthProps, Props } from "./types";
 
 export const AuthContext = createContext({} as AuthProps);
@@ -32,6 +34,7 @@ export const AuthProvider: FC<Props> = ({ children }) => {
       const userData = await fetchCurrentUserInBackend();
       setUser(userData);
     } catch (e) {
+      toast.error((e as RequestError).data.message);
       push("/register");
     } finally {
       setLoading(false);
