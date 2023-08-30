@@ -4,7 +4,9 @@ import { useReleaseSocketWithStorage } from "~/hooks/useReleaseSocketWithStorage
 
 export default function Register() {
   const { push } = useRouter();
-  const { currentFeatureIndex, features } = useReleaseSocketWithStorage();
+  const { currentFeatureIndex, feature, releasedFeature, message } =
+    useReleaseSocketWithStorage();
+  console.log({ currentFeatureIndex, feature, releasedFeature, message });
 
   const onClick = () => push("/install");
 
@@ -12,7 +14,17 @@ export default function Register() {
     <div>
       Register Screen - {currentFeatureIndex}
       <br />
-      {Object.entries(features).map(([key, value], index) => (
+      <br />
+      Message - {message}
+      <br />
+      <br />
+      Liberado - {releasedFeature}
+      <br />
+      <br />
+      ---- FEATURES ----
+      <br />
+      <br />
+      {Object.entries(feature).map(([key, value], index) => (
         <Fragment key={`${key}-${index}`}>
           <div>
             {key} - {String(value)}
