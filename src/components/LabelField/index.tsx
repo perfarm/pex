@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { Info } from '~/components/Icons';
 import { Tooltip } from '~/components/Tooltip';

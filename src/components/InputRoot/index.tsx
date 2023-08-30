@@ -1,15 +1,15 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import { LabelField } from "~/components/LabelField";
+import { LabelField } from '~/components/LabelField';
 
-import { Content, Error, Icon, InputContent, Root } from "./style";
-import { Props } from "./type";
+import { Content, Error, Icon, InputContent, Root } from './style';
+import { Props } from './type';
 
 export const InputRoot: FC<Props> = ({
   children,
   className,
   disabled,
-  elementId = "input",
+  elementId = 'input',
   errorDescription,
   hasError = false,
   icon,
@@ -20,12 +20,7 @@ export const InputRoot: FC<Props> = ({
 }) => (
   <Root className={className} size={size}>
     {label && (
-      <LabelField
-        elementId={elementId}
-        required={required}
-        size={size}
-        tooltipDescription={infoDescription}
-      >
+      <LabelField elementId={elementId} required={required} size="small" tooltipDescription={infoDescription}>
         {label}
       </LabelField>
     )}

@@ -3,7 +3,7 @@ import { styled } from '~/theme';
 
 export const Root = styled('label', variantFontSize, {
   alignItems: 'center',
-  color: '$gray700',
+  color: '$gray',
   display: 'flex',
   marginBottom: '$1',
 

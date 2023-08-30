@@ -1,45 +1,25 @@
 import { styled } from '~/theme';
 
-export const Form = styled('form', {
-  bottom: 0,
-  display: 'flex',
-  height: 75,
-  position: 'absolute',
-  width: '100%',
-});
-
-export const TabRoot = styled('div', {
-  background: '#FFF',
-  bottom: 0,
-  display: 'flex',
-  height: 75,
-  position: 'fixed',
-  width: '100%',
-});
-
-export const Tab = styled('div', {
+export const Page = styled('div', {
   alignItems: 'center',
   display: 'flex',
-  flex: 1,
-  flexDirection: 'column',
-  height: 75,
-
-  a: {
-    alignItems: 'center',
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'column',
-    height: '100%',
-    justifyContent: 'flex-start',
-    paddingTop: 10,
-    width: '100%',
-    textDecoration: 'none',
-  }
-});
-
-export const IconContainer = styled('div', {
-  alignItems: 'center',
-  display: 'flex',
+  height: '100vh',
+  padding: '0 20px',
   justifyContent: 'center',
-  width: '100%',
+});
+
+export const Form = styled('form', {
+  padding: 30,
+});
+
+export const TitleContainer = styled('div', {
+  textAlign: 'center',
+});
+
+export const InputContainer = styled('div', {
+  marginTop: 30,
+});
+
+export const ButtonContainer = styled('div', {
+  marginTop: 60,
 });
