@@ -17,7 +17,7 @@ export const globalStyles = globalCss({
     margin: 0,
     maxWidth: '100%',
     minHeight: '100%',
-    minWidth: '360px',
+    minWidth: '$minScreenWidth',
     wordBreak: 'normal',
     wordWrap: 'break-word',
   },
