@@ -3,7 +3,7 @@ import type { NextApiRequest } from 'next';
 
 import { getAdminUserByRequest } from '~/commons/backend/getUserByRequest';
 import { showReqErrorLog } from '~/commons/backend/showReqErrorLog';
-import { release as releaseFeature } from '~/commons/firebase/releases';
+import { release as releaseFeature } from '~/commons/firebase/features';
 import { SocketEvent } from '~/commons/socket/events';
 import { Release } from '~/commons/storage/release/types';
 

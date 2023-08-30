@@ -1,7 +1,7 @@
 import { firestore } from '~/commons/firebase';
 import { Step } from './types';
 
-const collection = firestore.collection('releases');
+const collection = firestore.collection('features');
 
 const ID = 'fqcnFrbME85V3QQqgNjZ';
 
