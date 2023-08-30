@@ -1,3 +1,4 @@
+import { Machine } from "../machines/types";
 import { ProductionInput } from "../production-inputs/types";
 
 export interface UserData {
@@ -10,4 +11,5 @@ export interface UserData {
 export interface User extends UserData {
   id: string;
   productionInput?: ProductionInput;
+  machine?: Machine;
 }
