@@ -1,14 +1,31 @@
+import usePreviousValue from "beautiful-react-hooks/usePreviousValue";
 import { useRouter } from "next/router";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
+import { translate } from "~/commons/storage/release/types";
+import { Toast, toast } from "~/components/Toaster";
 import { useReleaseSocketWithStorage } from "~/hooks/useReleaseSocketWithStorage";
 
 export default function Register() {
   const { push } = useRouter();
   const { currentFeatureIndex, feature, releasedFeature, message } =
     useReleaseSocketWithStorage();
-  console.log({ currentFeatureIndex, feature, releasedFeature, message });
+  const oldReleasedFeature = usePreviousValue(releasedFeature);
 
   const onClick = () => push("/install");
+
+  useEffect(() => {
+    if (oldReleasedFeature !== releasedFeature) {
+      const name = translate(releasedFeature);
+      toast.custom((t) => {
+        t.message = (
+          <p>
+            Nova funcionalidade liberada: <b>{name}</b>
+          </p>
+        );
+        return <Toast toast={t} />;
+      });
+    }
+  }, [oldReleasedFeature, releasedFeature]);
 
   return (
     <div>

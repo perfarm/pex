@@ -1,4 +1,4 @@
-import useDidMount from "beautiful-react-hooks/useDidMount";
+import usePreviousValue from "beautiful-react-hooks/usePreviousValue";
 import { useCallback, useEffect, useState } from "react";
 import { useSocketEvent } from "socket.io-react-hook";
 import { releaseFeature } from "~/commons/api/releaseFeature";
@@ -44,65 +44,46 @@ const getCurrentIndex = (): Current => {
   return { index: Release.REGISTER, key: 'REGISTER' };
 }
 
+const getInitialState = (): Omit<Response, 'sendMessage'> => {
+  const finishInStorage = getReleaseValue('FINISH');
+  const registerInInStorage = getReleaseValue('REGISTER');
+  const selectMachineInStorage = getReleaseValue('SELCET_MACHINE');
+  const selectProductionInStorage = getReleaseValue('SELECT_PRODUCTION');
+  const selectProductionInputInStorage = getReleaseValue('SELECT_PRODUCTION_INPUT');
+  const current = getCurrentIndex();
+
+  return {
+    currentFeatureIndex: current.index,
+    releasedFeature: current.key,
+    feature: {
+      FINISH: finishInStorage,
+      REGISTER: registerInInStorage,
+      SELCET_MACHINE: selectMachineInStorage,
+      SELECT_PRODUCTION: selectProductionInStorage,
+      SELECT_PRODUCTION_INPUT: selectProductionInputInStorage,
+    },
+  }
+}
+
 export const useReleaseSocketWithStorage = () => {
   const { lastMessage = {} as Message } = useSocketEvent<Message>(SocketEvent.RELEASE_FEARURE);
+  const oldReleasedFeature = usePreviousValue(lastMessage.releasedFeature);
 
   const sendMessage = useCallback((release: SendData) => releaseFeature(release.feature), []);
 
-  const [response, setResponse] = useState<Response>({
-    currentFeatureIndex: Release.REGISTER,
-    feature: {
-      FINISH: false,
-      REGISTER: false,
-      SELCET_MACHINE: false,
-      SELECT_PRODUCTION: false,
-      SELECT_PRODUCTION_INPUT: false,
-    },
-    releasedFeature: 'REGISTER',
-    sendMessage,
-  });
-
-  useDidMount(() => {
-    const finishInStorage = getReleaseValue('FINISH');
-    const registerInInStorage = getReleaseValue('REGISTER');
-    const selectMachineInStorage = getReleaseValue('SELCET_MACHINE');
-    const selectProductionInStorage = getReleaseValue('SELECT_PRODUCTION');
-    const selectProductionInputInStorage = getReleaseValue('SELECT_PRODUCTION_INPUT');
-
-    setResponse((prev) => {
-      const current = getCurrentIndex();
-
-      return {
-        ...prev,
-        currentFeatureIndex: current.index,
-        releasedFeature: current.key,
-        feature: {
-          FINISH: finishInStorage,
-          REGISTER: registerInInStorage,
-          SELCET_MACHINE: selectMachineInStorage,
-          SELECT_PRODUCTION: selectProductionInStorage,
-          SELECT_PRODUCTION_INPUT: selectProductionInputInStorage,
-        },
-      }
-    });
-  });
+  const [response, setResponse] = useState<Response>({ ...getInitialState(), sendMessage });
 
   useEffect(() => {
-    if (lastMessage?.releasedFeature) {
+    if (oldReleasedFeature !== lastMessage?.releasedFeature) {
       setReleaseValue(lastMessage.releasedFeature);
 
-      setResponse((prev) => {
-        const current = getCurrentIndex();
-
-        return {
-          ...prev,
-          ...lastMessage,
-          currentFeatureIndex: current.index,
-          releasedFeature: current.key,
-        };
-      });
+      setResponse((prev) => ({
+        ...prev,
+        ...lastMessage,
+        currentFeatureIndex: Release[lastMessage.releasedFeature],
+      }));
     }
-  }, [lastMessage]);
+  }, [oldReleasedFeature, lastMessage]);
 
   return response;
 }

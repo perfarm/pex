@@ -4,12 +4,14 @@ import { IoProvider } from "socket.io-react-hook";
 import useDidMount from "beautiful-react-hooks/useDidMount";
 import dynamic from "next/dynamic";
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import {
   setAdminAuthorizationToken,
   setAuthorizationToken,
 } from "~/commons/api";
 import { startSocket } from "~/commons/api/startSocket";
 import { Loader } from "~/components/Loader";
+import { Toaster } from "~/components/Toaster";
 import { AuthProvider } from "~/context/auth";
 import { globalStyles } from "~/theme/globalStyles";
 
@@ -39,6 +41,7 @@ function App({ Component, pageProps }: AppProps) {
     <AuthProvider>
       <IoProvider>
         <Component {...pageProps} />
+        {createPortal(<Toaster />, document.body)}
       </IoProvider>
     </AuthProvider>
   );
