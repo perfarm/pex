@@ -1,54 +1,52 @@
-import { Button } from "~/components/Button";
-import { CaretRight } from "~/components/Icons";
-import { TextField } from "~/components/TextField";
-import { Typography } from "~/components/Typography";
-import { styled } from "~/theme";
+import { Button } from '~/components/Button';
+import { Card } from '~/components/Card';
+import { CaretRight } from '~/components/Icons';
+import { TextField } from '~/components/TextField';
+import { Typography } from '~/components/Typography';
+import { styled } from '~/theme';
 
-export const Root = styled("div", {
-  backgroundColor: "$lighterGray",
-  padding: "30px",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
+export const Root = styled('div', {
+  backgroundColor: '$lighterGray',
+  padding: '30px',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
 });
 
-export const Container = styled("div", {
-  marginTop: "30px",
-  justifyContent: "center",
-  backgroundColor: "$white",
-  padding: "30px",
-  display: "flex",
-  flexDirection: "column",
-  boxShadow:
-    "0px 2px 8px 2px rgba(73, 73, 73, 0.06), 0px 14px 28px -9px rgba(0, 0, 0, 0.12)",
+export const CardContainer = styled(Card, {
+  marginTop: '30px',
+  justifyContent: 'center',
+  backgroundColor: '$white',
+  padding: '30px',
+  display: 'flex',
+  flexDirection: 'column',
 
-  borderRadius: "20px",
-  width: "100%",
-  maxWidth: "$minScreenWidth",
+  maxWidth: '$minScreenWidth',
 });
 
-export const Line = styled("div", {
-  backgroundColor: "Green",
-  height: "30px",
-  display: "flex",
+export const Line = styled('div', {
+  backgroundColor: 'Green',
+  height: '30px',
+  display: 'flex',
 });
 
 export const Input = styled(TextField, {
-  marginTop: "30px",
+  marginTop: '30px',
 });
 
 export const Title = styled(Typography, {
-  whiteSpace: "nowrap",
+  whiteSpace: 'nowrap',
+  marginTop: '20px',
 });
 
 export const ButtonNext = styled(Button, {
-  marginTop: "30px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
+  marginTop: '30px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 });
 
 export const IconRight = styled(CaretRight, {
-  marginLeft: "10px",
+  marginLeft: '10px',
 });
