@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { Label, Root, SwitchRoot, SwitchThumb } from './style';
 import { Props } from './types';
@@ -9,7 +9,7 @@ export const Switch: FC<Props> = ({ checked, className, disabled, id, label, onC
       <SwitchRoot checked={checked} disabled={disabled} id={id} onCheckedChange={onChange}>
         <SwitchThumb />
       </SwitchRoot>
-      <Label htmlFor={id} title={label}>
+      <Label htmlFor={id} title={typeof label === 'string' ? label : ''}>
         {label}
       </Label>
     </Root>

@@ -10,7 +10,8 @@
     "start": "next start -p 8080",
     "start:dev": "next dev",
     "start:prod": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "type:check": "tsc --noEmit --skipLibCheck"
   },
   "engines": {
     "node": ">=16.14.0 <=18.16.0"
