@@ -1,4 +1,5 @@
 import { Button } from "~/components/Button";
+import { CaretRight } from "~/components/Icons";
 import { TextField } from "~/components/TextField";
 import { Typography } from "~/components/Typography";
 import { styled } from "~/theme";
@@ -43,4 +44,11 @@ export const Title = styled(Typography, {
 
 export const ButtonNext = styled(Button, {
   marginTop: "30px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+});
+
+export const IconRight = styled(CaretRight, {
+  marginLeft: "10px",
 });

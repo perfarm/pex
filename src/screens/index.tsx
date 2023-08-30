@@ -1,10 +1,9 @@
-import { AngleDown } from "~/components/Icons";
 import { EnvelopeSimple } from "~/components/Icons/EnvelopeSimple";
 import { IdentificationCard } from "~/components/Icons/IdentificationCard";
 import { Phone } from "~/components/Icons/Phone";
 import { ImgPerfarmExperience } from "~/components/ImgPerfarmExperience";
 import { Typography } from "~/components/Typography";
-import { ButtonNext, Container, Input, Root, Title } from "./style";
+import { ButtonNext, Container, IconRight, Input, Root, Title } from "./style";
 
 export const ScreenRegister = () => {
   return (
@@ -61,7 +60,7 @@ export const ScreenRegister = () => {
           onClick={() => console.log("clicked")}
           disabled
         >
-          AVANÇAR <AngleDown color="white" />
+          AVANÇAR <IconRight color="white" />
         </ButtonNext>
       </Container>
     </Root>
