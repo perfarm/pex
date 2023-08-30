@@ -1,4 +1,5 @@
 import { firestore } from '~/commons/firebase';
+import { ProductionInput } from '~/commons/firebase/production-inputs/types';
 import { User, UserData } from './types';
 
 const collection = firestore.collection('users');
@@ -21,4 +22,9 @@ export const findByEmailAndCPF = async (email: string, cpf: string) => {
 export const findByEmail = async (email: string) => {
   const data = await collection.where('email', '==', email).get()
   return data.docs.map((doc) => ({ id: doc.id, ...doc.data() }))[0] as User;
+};
+
+export const saveProductionInput = async (userId: string, productionInput: ProductionInput) => {
+  await collection.doc(userId).update({ productionInput });
+  return findById(userId);
 };

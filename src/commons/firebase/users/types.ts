@@ -1,3 +1,5 @@
+import { ProductionInput } from "../production-inputs/types";
+
 export interface UserData {
   email: string;
   name: string;
@@ -7,4 +9,5 @@ export interface UserData {
 
 export interface User extends UserData {
   id: string;
+  productionInput?: ProductionInput;
 }
