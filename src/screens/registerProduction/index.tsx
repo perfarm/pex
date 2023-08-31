@@ -1,9 +1,7 @@
-import { ButtonBack, ButtonContent, ButtonNext, CardContainer, IconRight, Title } from '~/commons/variants/components';
-import { CaretLeft } from '~/components/Icons/CaretLeft';
-import { ImgPerfarmExperience } from '~/components/ImgPerfarmExperience';
-import { StepFlow } from '~/components/StepFlow';
-import { Typography } from '~/components/Typography';
-import { Description, Img, ImgContent, List, ListItem, Root } from './style';
+import { useState } from 'react';
+import { IconRight } from '~/commons/variants/components';
+import { TemplateFlowStep } from '~/components/TemplateFlowStep';
+import { Description, Img, ImgContent, List, ListItem } from './style';
 
 const listProductions = [
   {
@@ -29,41 +27,41 @@ const listProductions = [
 ];
 
 export const ScreenRegisterProduction = () => {
+  const [btnDisabled, setBtnDisabled] = useState(true);
+  const [selected, setSelected] = useState('');
+
+  const handleSelectProduct = (value: string) => {
+    console.log('item:', value);
+    setSelected(value);
+    setBtnDisabled(false);
+  };
+
   return (
-    <Root>
-      <ImgPerfarmExperience />
-      <CardContainer>
-        <StepFlow step={2} />
-        <Title color="$pastureGreen" variant="$headline6">
-          CREDENCIAMENTO
-        </Title>
-        <Typography color="$gray" variant="$body4">
-          Escolha a sua produção:
-        </Typography>
-
-        <List>
-          {listProductions.map(({ img, id, label }, index) => (
-            <ListItem key={`list-item-${index}`}>
-              <ImgContent>
-                <Img src={img} alt={label} width={35} height={35} />
-              </ImgContent>
-              <Description variant="$body3" weight="$bold">
-                {label}
-              </Description>
-            </ListItem>
-          ))}
-        </List>
-
-        <ButtonContent>
-          <ButtonBack color="primary" variant="outlined" onClick={() => console.log('clicked')}>
-            <CaretLeft color="pastureGreen" size={24} />
-          </ButtonBack>
-
-          <ButtonNext color="primary" onClick={() => console.log('clicked')} disabled>
-            AVANÇAR <IconRight color="white" />
-          </ButtonNext>
-        </ButtonContent>
-      </CardContainer>
-    </Root>
+    <TemplateFlowStep
+      title="CREDENCIAMENTO"
+      subtitle="Escolha a sua produção:"
+      step={2}
+      handleNext={() => console.log('go next')}
+      handleBack={() => console.log('go back')}
+      isBtnNextDisabled={btnDisabled}
+      btnNextDescription={
+        <>
+          AVANÇAR <IconRight color="white" size={24} />
+        </>
+      }
+    >
+      <List>
+        {listProductions.map(({ img, id, label }, index) => (
+          <ListItem key={`list-item-${index}`} onClick={() => handleSelectProduct(id)} isActive={selected === id}>
+            <ImgContent>
+              <Img src={img} alt={label} width={35} height={35} />
+            </ImgContent>
+            <Description variant="$body3" weight="$bold">
+              {label}
+            </Description>
+          </ListItem>
+        ))}
+      </List>
+    </TemplateFlowStep>
   );
 };
