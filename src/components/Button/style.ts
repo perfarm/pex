@@ -24,7 +24,7 @@ export const Button = styled('button', {
 
   defaultVariants: {
     color: 'primary',
-    size: 'xsm',
+    size: 'md',
     variant: 'contained',
   },
   variants: {

@@ -1,18 +1,8 @@
 import { Button } from '~/components/Button';
 import { Card } from '~/components/Card';
 import { CaretRight } from '~/components/Icons';
-import { TextField } from '~/components/TextField';
 import { Typography } from '~/components/Typography';
 import { styled } from '~/theme';
-
-export const Root = styled('div', {
-  backgroundColor: '$lighterGray',
-  padding: '30px',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-});
 
 export const CardContainer = styled(Card, {
   marginTop: '30px',
@@ -25,25 +15,30 @@ export const CardContainer = styled(Card, {
   maxWidth: '$minScreenWidth',
 });
 
-export const Line = styled('div', {
-  backgroundColor: 'Green',
-  height: '30px',
-  display: 'flex',
-});
-
-export const Input = styled(TextField, {
-  marginTop: '30px',
-});
-
 export const Title = styled(Typography, {
   whiteSpace: 'nowrap',
   marginTop: '20px',
 });
 
-export const ButtonNext = styled(Button, {
+export const ButtonContent = styled('div', {
   marginTop: '30px',
   display: 'flex',
+});
+
+export const ButtonBack = styled(Button, {
+  backgroundColor: 'orange',
+  width: '48px',
+  display: 'flex',
   alignItems: 'center',
+  justifyContent: 'center',
+  marginRight: '30px',
+  padding: 'unset !important',
+});
+
+export const ButtonNext = styled(Button, {
+  display: 'flex',
+  alignItems: 'center',
+  flex: 1,
   justifyContent: 'center',
 });
 

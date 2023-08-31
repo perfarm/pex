@@ -12,7 +12,7 @@ export const globalStyles = globalCss({
   },
 
   body: {
-    background: '#F9F9F9',
+    background: '$lighterGray',
     fontFamily: '$montserrat',
     margin: 0,
     maxWidth: '100%',

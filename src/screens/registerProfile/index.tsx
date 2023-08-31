@@ -1,12 +1,13 @@
+import { ButtonNext, CardContainer, IconRight, Title } from '~/commons/variants/components';
 import { EnvelopeSimple } from '~/components/Icons/EnvelopeSimple';
 import { IdentificationCard } from '~/components/Icons/IdentificationCard';
 import { Phone } from '~/components/Icons/Phone';
 import { ImgPerfarmExperience } from '~/components/ImgPerfarmExperience';
 import { StepFlow } from '~/components/StepFlow';
 import { Typography } from '~/components/Typography';
-import { ButtonNext, CardContainer, IconRight, Input, Root, Title } from './style';
+import { Input, Root } from './style';
 
-export const ScreenRegister = () => {
+export const ScreenRegisterProfile = () => {
   return (
     <Root>
       <ImgPerfarmExperience />
