@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useCallback, useState } from 'react';
 import { IconRight } from '~/commons/variants/components';
 import { TemplateFlowStep } from '~/components/TemplateFlowStep';
 import { Description, Img, ImgContent, List, ListItem } from './style';
@@ -30,19 +31,29 @@ export const ScreenRegisterProduction = () => {
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [selected, setSelected] = useState('');
 
-  const handleSelectProduct = (value: string) => {
+  const { push } = useRouter();
+
+  const handleSelectProduct = useCallback((value: string) => {
     console.log('item:', value);
     setSelected(value);
     setBtnDisabled(false);
-  };
+  }, []);
+
+  const handleNext = useCallback(() => {
+    push('/register/completed');
+  }, [push]);
+
+  const handleBack = useCallback(() => {
+    push('/register/profile');
+  }, [push]);
 
   return (
     <TemplateFlowStep
       title="CREDENCIAMENTO"
       subtitle="Escolha a sua produção:"
       step={2}
-      handleNext={() => console.log('go next')}
-      handleBack={() => console.log('go back')}
+      handleNext={handleNext}
+      handleBack={handleBack}
       isBtnNextDisabled={btnDisabled}
       btnNextDescription={
         <>

@@ -1,5 +1,5 @@
 import { ScreenRegisterProduction } from '~/screens/registerProduction';
 
-export default function Register() {
+export default function RegisterProduction() {
   return <ScreenRegisterProduction />;
 }

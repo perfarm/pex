@@ -1,5 +1,5 @@
 import { ScreenRegisterProfile } from '~/screens/registerProfile';
 
-export default function Register() {
+export default function RegisterProfile() {
   return <ScreenRegisterProfile />;
 }

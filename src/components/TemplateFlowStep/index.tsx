@@ -13,8 +13,8 @@ export const TemplateFlowStep: FC<Props> = ({
   subtitle,
   children,
   className,
-  handleBack,
   handleNext,
+  handleBack,
   isBtnNextDisabled,
   btnNextDescription,
 }) => {
@@ -23,22 +23,23 @@ export const TemplateFlowStep: FC<Props> = ({
       <ImgPerfarmExperience />
       <CardContainer>
         <StepFlow step={step} />
-        <Title color="$pastureGreen" variant="$headline6">
-          {title}
-        </Title>
-        <Typography color="$gray" variant="$body4">
-          {subtitle}
-        </Typography>
-
+        {title && (
+          <Title color="$pastureGreen" variant="$headline6">
+            {title}
+          </Title>
+        )}
+        {subtitle && (
+          <Typography color="$gray" variant="$body4">
+            {subtitle}
+          </Typography>
+        )}
         {children}
-
         <ButtonContent>
           {step > 1 && (
             <ButtonBack color="primary" variant="outlined" onClick={handleBack}>
               <CaretLeft color="pastureGreen" size={24} />
             </ButtonBack>
           )}
-
           <ButtonNext color="primary" onClick={handleNext} disabled={isBtnNextDisabled}>
             {btnNextDescription}
           </ButtonNext>

@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router';
+import { useCallback } from 'react';
 import { IconRight } from '~/commons/variants/components';
 import { EnvelopeSimple } from '~/components/Icons/EnvelopeSimple';
 import { IdentificationCard } from '~/components/Icons/IdentificationCard';
@@ -6,13 +8,18 @@ import { TemplateFlowStep } from '~/components/TemplateFlowStep';
 import { Input } from './style';
 
 export const ScreenRegisterProfile = () => {
+  const { push } = useRouter();
+
+  const handleNext = useCallback(() => {
+    push('/register/production');
+  }, [push]);
+
   return (
     <TemplateFlowStep
       title="CREDENCIAMENTO"
       subtitle="Preencha os campos abaixo:"
       step={1}
-      handleNext={() => console.log('go next')}
-      handleBack={() => console.log('go back')}
+      handleNext={handleNext}
       btnNextDescription={
         <>
           AVANÇAR <IconRight color="white" size={24} />
