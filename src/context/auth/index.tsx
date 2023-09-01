@@ -1,21 +1,22 @@
-import { createContext, FC, useCallback, useState } from "react";
+import { createContext, FC, useCallback, useState } from 'react';
 
-import useDidMount from "beautiful-react-hooks/useDidMount";
+import useDidMount from 'beautiful-react-hooks/useDidMount';
 
-import { fetchCurrentUser as fetchCurrentUserInBackend } from "~/commons/api/fetchCurrentUser";
-import { User } from "~/commons/api/fetchCurrentUser/types";
-import { getAccessToken } from "~/commons/storage/accessToken";
+import { fetchCurrentUser as fetchCurrentUserInBackend } from '~/commons/api/fetchCurrentUser';
+import { getAccessToken } from '~/commons/storage/accessToken';
 
-import { useRouter } from "next/router";
-import { RequestError } from "~/commons/api/RequestError";
-import { toast } from "~/components/Toaster";
-import { AuthProps, Props } from "./types";
+import { useRouter } from 'next/router';
+import { RequestError } from '~/commons/api/RequestError';
+import { User } from '~/commons/firebase/users/types';
+import { toast } from '~/components/Toaster';
+import { AuthProps, Props } from './types';
 
 export const AuthContext = createContext({} as AuthProps);
 
 export const AuthProvider: FC<Props> = ({ children }) => {
   const [user, setUser] = useState<User>();
   const [loading, setLoading] = useState(false);
+  const [userFetched, setUserFetched] = useState(false);
 
   const token = getAccessToken();
 
@@ -35,14 +36,15 @@ export const AuthProvider: FC<Props> = ({ children }) => {
       setUser(userData);
     } catch (e) {
       toast.error((e as RequestError).data.message);
-      push("/register");
+      push('/register');
     } finally {
       setLoading(false);
+      setUserFetched(true);
     }
   }, [loading, push]);
 
   return (
-    <AuthContext.Provider value={{ fetchCurrentUser, loading, token, user }}>
+    <AuthContext.Provider value={{ fetchCurrentUser, loading, token, user, userFetched }}>
       {children}
     </AuthContext.Provider>
   );

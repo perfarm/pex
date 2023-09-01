@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 
-import { User } from '~/commons/api/fetchCurrentUser/types';
+import { User } from '~/commons/firebase/users/types';
 
 export interface Props extends PropsWithChildren { }
 
@@ -11,4 +11,5 @@ export interface AuthProps {
   loading?: boolean;
   token?: string;
   user?: User;
+  userFetched?: boolean;
 }
