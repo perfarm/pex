@@ -39,7 +39,7 @@ const updateStatus = async (req: NextApiRequest, res: ResponseWithSocket) => {
     const before = await findById(id);
     const schedule = await firebaseUpdateStatus(id, status);
     const all = await find();
-    const nextIndex = all.findIndex((s) => s.id === id) + 1;
+    const nextIndex = all.findIndex((s) => s.id === id) + (status === 'IN_PROGRESS' ? 0 : 1);
 
     const response: ScheduleMessage = {
       action: 'STATUS_CHANGED',

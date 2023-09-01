@@ -1,9 +1,10 @@
+import Image from 'next/image';
 import { FC } from 'react';
 
-import Image from 'next/image';
 import { Card } from '~/components/Card';
 import { Typography } from '~/components/Typography';
 import { Row } from '~/components/pages/admin/release/Manage/style';
+
 import { CenterCol, DirCol, ImageCol } from './style';
 
 export const Quotation: FC = () => (
