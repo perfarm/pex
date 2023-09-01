@@ -1,4 +1,4 @@
-import { FormProfileValues } from './type';
+import { ProfileValues } from '~/commons/api/postRegisterProfile/types';
 
 export const isValidName = (value: string) => new RegExp(/(\w.+\s).+/i).test(value);
 
@@ -14,6 +14,14 @@ export const isValidCpf = (cpf: string) => {
   const rest = (count: number) =>
     ((cpfSplit.slice(0, count - 12).reduce((soma, el, index) => soma + el * (count - index), 0) * 10) % 11) % 10;
   return rest(10) === cpfSplit[9] && rest(11) === cpfSplit[10];
+};
+
+export const checkErrorWhenFilledWithMask = (value: string, validation: (value: string) => boolean) => {
+  if (value === '') {
+    return false;
+  }
+
+  return !validation(value);
 };
 
 export const maskPhone = (telefone: string | number): string => {
@@ -33,5 +41,5 @@ export const maskCpf = (cpf: string | number): string => {
   return v;
 };
 
-export const isFormFieldsValid = (values: FormProfileValues): boolean =>
+export const isProfileFieldsValid = (values: ProfileValues): boolean =>
   isValidName(values.name) && isValidPhone(values.phone) && isValidEmail(values.email) && isValidCpf(values.cpf);

@@ -1,24 +1,21 @@
-import { FC, memo } from "react";
-import { Check } from "../Icons/Check";
-import { Item, List, MarkFlow, Root } from "./style";
-import { Props } from "./types";
+import { FC, memo } from 'react';
+import { Check } from '../Icons/Check';
+import { Item, List, MarkFlow, Root } from './style';
+import { Props } from './types';
 
 const listStepsOfOrder = [
   {
-    label: "1",
-    route: "/register/perfil",
-    active: true,
+    label: '1',
+    active: false,
     stepIndex: 1,
   },
   {
-    label: "2",
-    route: "/register/production",
+    label: '2',
     active: false,
     stepIndex: 2,
   },
   {
     label: <Check color="white" size={18} />,
-    route: "/register/complete",
     active: true,
     stepIndex: 3,
   },

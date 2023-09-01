@@ -4,11 +4,11 @@ import { create, findByCPF } from '~/commons/firebase/users';
 import { generate } from '~/commons/jwt';
 
 type Body = {
-  name: string,
+  name: string;
   email: string;
   cpf: string;
   phone: string;
-}
+};
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
