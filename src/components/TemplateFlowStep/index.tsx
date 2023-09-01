@@ -17,6 +17,7 @@ export const TemplateFlowStep: FC<Props> = ({
   handleBack,
   isBtnNextDisabled,
   btnNextDescription,
+  isBtnNextLoading,
 }) => {
   return (
     <Root className={className}>
@@ -40,7 +41,7 @@ export const TemplateFlowStep: FC<Props> = ({
               <CaretLeft color="pastureGreen" size={24} />
             </ButtonBack>
           )}
-          <ButtonNext color="primary" onClick={handleNext} disabled={isBtnNextDisabled}>
+          <ButtonNext color="primary" onClick={handleNext} showLoader={isBtnNextLoading} disabled={isBtnNextDisabled}>
             {btnNextDescription}
           </ButtonNext>
         </ButtonContent>

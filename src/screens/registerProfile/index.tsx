@@ -1,28 +1,37 @@
 import { useRouter } from 'next/router';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
+import { setAuthorizationToken } from '~/commons/api';
+import { RequestError } from '~/commons/api/RequestError';
+import { fetchRegisterProfile } from '~/commons/api/postRegisterProfile';
+import { ProfileValues } from '~/commons/api/postRegisterProfile/types';
 import { IconRight } from '~/commons/variants/components';
 import { EnvelopeSimple } from '~/components/Icons/EnvelopeSimple';
 import { IdentificationCard } from '~/components/Icons/IdentificationCard';
 import { Phone } from '~/components/Icons/Phone';
 import { TemplateFlowStep } from '~/components/TemplateFlowStep';
+import { toast } from '~/components/Toaster';
+import { AuthContext } from '~/context/auth';
 import {
-  isFormFieldsValid,
+  checkErrorWhenFilledWithMask,
+  isProfileFieldsValid,
   isValidCpf,
   isValidEmail,
   isValidName,
   isValidPhone,
   maskCpf,
   maskPhone,
-} from '~/utils/masks';
-import { FormProfileValues } from '~/utils/masks/type';
+} from '~/utils/form';
 import { Input } from './style';
 
 export const ScreenRegisterProfile = () => {
+  const { fetchCurrentUser } = useContext(AuthContext);
+
   const [btnDisabled, setBtnDisabled] = useState(true);
+  const [btnLoading, setBtnLoading] = useState(false);
 
   const { push } = useRouter();
 
-  const [inputValues, setInputValues] = useState<FormProfileValues>({
+  const [inputValues, setInputValues] = useState<ProfileValues>({
     cpf: '',
     email: '',
     name: '',
@@ -41,18 +50,30 @@ export const ScreenRegisterProfile = () => {
         ...inputValues,
         [event.target.name]: event.target.value,
       });
-
-      console.log('aaa', inputValues);
     },
     [inputValues]
   );
 
-  const handleNext = useCallback(() => {
-    push('/register/production');
-  }, [push]);
+  const handleSubmit = useCallback(async () => {
+    setBtnLoading(true);
+
+    try {
+      await fetchRegisterProfile(inputValues);
+
+      setAuthorizationToken();
+      fetchCurrentUser();
+
+      push('/register/production');
+      // Dúvida: se usuário já existir o cpf cadastrado, vai pra onde ?
+    } catch (e) {
+      toast.error((e as RequestError).data.message);
+    } finally {
+      setBtnLoading(false);
+    }
+  }, [fetchCurrentUser, inputValues, push]);
 
   useEffect(() => {
-    if (isFormFieldsValid(inputValues)) {
+    if (isProfileFieldsValid(inputValues)) {
       return setBtnDisabled(false);
     }
     setBtnDisabled(true);
@@ -63,8 +84,9 @@ export const ScreenRegisterProfile = () => {
       title="CREDENCIAMENTO"
       subtitle="Preencha os campos abaixo:"
       step={1}
-      handleNext={handleNext}
+      handleNext={handleSubmit}
       isBtnNextDisabled={btnDisabled}
+      isBtnNextLoading={btnLoading}
       btnNextDescription={
         <>
           AVANÇAR <IconRight color="white" size={24} />
@@ -72,7 +94,7 @@ export const ScreenRegisterProfile = () => {
       }
     >
       <Input
-        hasError={!isValidName(inputValues.name)}
+        hasError={checkErrorWhenFilledWithMask(inputValues.name, isValidName)}
         label="Nome*"
         name="name"
         onChange={handleChangeInput}
@@ -84,8 +106,10 @@ export const ScreenRegisterProfile = () => {
         errorDescription="Por favor, informe nome e sobrenome"
       />
       <Input
-        hasError={!isValidPhone(inputValues.phone)}
-        icon={<Phone color={!isValidPhone(inputValues.phone) ? 'warningRedAlert' : 'gray'} />}
+        hasError={checkErrorWhenFilledWithMask(inputValues.phone, isValidPhone)}
+        icon={
+          <Phone color={checkErrorWhenFilledWithMask(inputValues.phone, isValidPhone) ? 'warningRedAlert' : 'gray'} />
+        }
         label="Telefone*"
         name="phone"
         type="tel"
@@ -98,8 +122,12 @@ export const ScreenRegisterProfile = () => {
         errorDescription="Por favor, digite um telefone válido"
       />
       <Input
-        hasError={!isValidEmail(inputValues.email)}
-        icon={<EnvelopeSimple color={!isValidEmail(inputValues.email) ? 'warningRedAlert' : 'gray'} />}
+        hasError={checkErrorWhenFilledWithMask(inputValues.email, isValidEmail)}
+        icon={
+          <EnvelopeSimple
+            color={checkErrorWhenFilledWithMask(inputValues.email, isValidEmail) ? 'warningRedAlert' : 'gray'}
+          />
+        }
         label="E-mail*"
         name="email"
         type="email"
@@ -111,8 +139,12 @@ export const ScreenRegisterProfile = () => {
         errorDescription="Por favor, digite um e-mail válido"
       />
       <Input
-        hasError={!isValidCpf(inputValues.cpf)}
-        icon={<IdentificationCard color={!isValidCpf(inputValues.cpf) ? 'warningRedAlert' : 'gray'} />}
+        hasError={checkErrorWhenFilledWithMask(inputValues.cpf, isValidCpf)}
+        icon={
+          <IdentificationCard
+            color={checkErrorWhenFilledWithMask(inputValues.cpf, isValidCpf) ? 'warningRedAlert' : 'gray'}
+          />
+        }
         label="CPF*"
         name="cpf"
         type="tel"

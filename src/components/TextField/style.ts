@@ -6,4 +6,5 @@ export const Input = styled('input', variantFontSize, variantPadding, {
   border: 'none',
   flex: 1,
   outline: 'none',
+  minHeight: '40px',
 });
