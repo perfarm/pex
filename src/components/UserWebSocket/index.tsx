@@ -26,8 +26,9 @@ export const UserWebSocket: FC<Props> = ({ children }) => {
       toast.custom((t) => {
         t.message = (
           <Typography color="$white" variant="$body5">
-            Nova funcionalidade liberada:{' '}
-            <Typography tag="span" weight="$bold">
+            Nova funcionalidade liberada:
+            <br />
+            <Typography color="$white" tag="span" weight="$bold">
               {name}
             </Typography>
           </Typography>
