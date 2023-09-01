@@ -32,7 +32,7 @@ const Register: FC = () => {
         return;
       }
 
-      push('schedule');
+      push('/schedule');
     }
   }, [oldUserFetched, userFetched, user, push]);
 

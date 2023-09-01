@@ -21,6 +21,11 @@ import { TextField } from '~/components/TextField';
 import { Col, Row } from '../../style';
 import { Header, IconLoading, RefreshButton, TitleContainer } from './style';
 
+import CollaspedOutlineIcon from '@rsuite/icons/CollaspedOutline';
+import ExpandOutlineIcon from '@rsuite/icons/ExpandOutline';
+import { translate } from '~/commons/storage/release/types';
+import { Button } from '~/components/Button';
+
 const { Column, HeaderCell, Cell } = Table;
 
 const compactStyle: CSSProperties = {
@@ -40,6 +45,53 @@ const fields: Option<keyof User>[] = [
 ];
 
 const slugfyConfig = { remove: /\s/gi, lower: true };
+const rowKey = 'id';
+
+const renderRowExpanded = (rowData: any) => (
+  <div style={{ padding: '0 30px' }}>
+    <Typography color="$gray" variant="$body6">
+      <Typography tag="span" weight="$bold">
+        {translate('REGISTER')}:&nbsp;
+      </Typography>
+      {(rowData?.feature['REGISTER'] as boolean) ? 'true' : 'false'}
+    </Typography>
+    <Typography color="$gray" variant="$body6">
+      <Typography tag="span" weight="$bold">
+        {translate('SELECT_PRODUCTION')}:&nbsp;
+      </Typography>
+      {(rowData?.feature['SELECT_PRODUCTION'] as boolean) ? 'true' : 'false'}
+    </Typography>
+    <Typography color="$gray" variant="$body6">
+      <Typography tag="span" weight="$bold">
+        {translate('SELECT_PRODUCTION_INPUT')}:&nbsp;
+      </Typography>
+      {(rowData?.feature['SELECT_PRODUCTION_INPUT'] as boolean) ? 'true' : 'false'}
+    </Typography>
+    <Typography color="$gray" variant="$body6">
+      <Typography tag="span" weight="$bold">
+        {translate('SELCET_MACHINE')}:&nbsp;
+      </Typography>
+      {(rowData?.feature['SELCET_MACHINE'] as boolean) ? 'true' : 'false'}
+    </Typography>
+    <Typography color="$gray" variant="$body6">
+      <Typography tag="span" weight="$bold">
+        {translate('FINISH')}:&nbsp;
+      </Typography>
+      {(rowData?.feature['FINISH'] as boolean) ? 'true' : 'false'}
+    </Typography>
+  </div>
+);
+
+const ExpandCell: FC<any> = ({ rowData, dataKey, expandedRowKeys, onChange, ...props }) => (
+  <Cell {...props} style={{ ...compactStyle, padding: 5 }}>
+    <Button color="white" onClick={() => onChange(rowData)}>
+      {expandedRowKeys.some((key: any) => key === rowData[rowKey]) ? <CollaspedOutlineIcon /> : <ExpandOutlineIcon />}
+    </Button>
+    <Typography color="$gray" variant="$body6">
+      {rowData.name}
+    </Typography>
+  </Cell>
+);
 
 export const Users: FC = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -49,10 +101,26 @@ export const Users: FC = () => {
   const [tableData, setTableData] = useState<User[]>([]);
   const [fieldFilter, setFieldFilter] = useState<(typeof fields)[0]>(fields[0]);
   const [filterValue, setFilterValue] = useState('');
+  const [expandedRowKeys, setExpandedRowKeys] = useState([]);
 
   const handleChangeLimit = (dataKey: any) => {
     setPage(1);
     setLimit(dataKey);
+  };
+
+  const handleExpanded = (rowData: any, dataKey: any) => {
+    let open = false;
+    const nextExpandedRowKeys = [];
+
+    expandedRowKeys.forEach((key) => {
+      if (key === rowData[rowKey]) open = true;
+      else nextExpandedRowKeys.push(key);
+    });
+
+    if (!open) nextExpandedRowKeys.push(rowData[rowKey]);
+    console.log('AQUI', nextExpandedRowKeys);
+
+    setExpandedRowKeys(nextExpandedRowKeys);
   };
 
   const onFilter = (value: string) => {
@@ -77,6 +145,7 @@ export const Users: FC = () => {
     setLoading(true);
     setPage(1);
     setFilterValue('');
+    setExpandedRowKeys([]);
 
     try {
       const data = await fetchUsers();
@@ -145,20 +214,31 @@ export const Users: FC = () => {
         </Col>
       </Row>
 
-      <Table data={tableData} loading={loading} height={300} style={{ marginTop: 20 }} headerHeight={30} rowHeight={30}>
-        <Column fixed>
+      <Table
+        data={tableData}
+        expandedRowKeys={expandedRowKeys}
+        renderRowExpanded={renderRowExpanded}
+        loading={loading}
+        height={300}
+        style={{ marginTop: 20, width: '100%' }}
+        headerHeight={30}
+        rowHeight={30}
+        rowKey={rowKey}
+      >
+        <Column fixed width={200}>
           <HeaderCell style={compactStyle}>
             <Typography color="$gray" variant="$body6" weight="$bold">
               Nome
             </Typography>
           </HeaderCell>
-          <Cell style={compactStyle}>
+          <ExpandCell expandedRowKeys={expandedRowKeys} onChange={handleExpanded} />
+          {/* <Cell style={compactStyle}>
             {(rowData, rowIndex) => (
               <Typography color="$gray" variant="$body6">
                 {rowData.name}
               </Typography>
             )}
-          </Cell>
+          </Cell> */}
         </Column>
 
         <Column>
