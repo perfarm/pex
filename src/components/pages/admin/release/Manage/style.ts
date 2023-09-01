@@ -6,7 +6,7 @@ export const Page = styled('div', {
   flexDirection: 'column',
   height: '100vh',
   padding: '20px',
-  justifyContent: 'center',
+  overflow: 'auto',
 });
 
 export const Row = styled('div', {

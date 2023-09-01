@@ -1,82 +1,68 @@
 import { FC, useMemo, useState } from 'react';
-import { Release, translate } from '~/commons/storage/release/types';
+import { Table as OriginalTable } from 'rsuite';
 
-import { useReleaseSocketWithStorage } from '~/hooks/useReleaseSocketWithStorage';
-
+import { CSSProperties } from '@stitches/react';
 import useDidMount from 'beautiful-react-hooks/useDidMount';
 import { RequestError } from '~/commons/api/RequestError';
-import { fetchFeature } from '~/commons/api/fetchFeature';
-import { Feature as FeatureDef } from '~/commons/firebase/features/types';
+import { fetchSchedule } from '~/commons/api/fetchSchedule';
+import { updateScheduleStatus } from '~/commons/api/updateScheduleStatus';
+import { Schedule as ScheduleDefinition, Status, translate } from '~/commons/firebase/schedules/types';
 import { Card } from '~/components/Card';
-import { Spinner } from '~/components/Spinner';
-import { Switch } from '~/components/Switch';
 import { toast } from '~/components/Toaster';
 import { Typography } from '~/components/Typography';
-import { LabelContainer, SwitchContainer, TitleContainer } from '~/components/pages/admin/release/Manage/style';
+import { SwitchContainer, TitleContainer } from '~/components/pages/admin/release/Manage/style';
+import { Table } from './style';
+
+import * as ToggleGroup from '@radix-ui/react-toggle-group';
+
+const { Column, HeaderCell, Cell } = OriginalTable;
+
+const compactStyle: CSSProperties = {
+  alignItems: 'center',
+  display: 'flex',
+  padding: '10px 20px',
+};
+
+const activeStatus: CSSProperties = {
+  background: '#4BB066',
+  color: '#FFF',
+};
+
+const rowKey = 'id';
 
 export const Schedule: FC = () => {
   const [loading, setLoading] = useState(false);
   const [firstLoading, setFirstLoading] = useState(false);
-  const [itemClicked, setItemClicked] = useState<keyof FeatureDef>();
-  const { disableFeature, enableFeature } = useReleaseSocketWithStorage();
-  const [feature, setFeature] = useState<FeatureDef>({
-    FINISH: false,
-    REGISTER: false,
-    SELCET_MACHINE: false,
-    SELECT_PRODUCTION: false,
-    SELECT_PRODUCTION_INPUT: false,
-  });
+  const [itemClicked, setItemClicked] = useState<string>();
+  const [schedules, setSchedules] = useState<ScheduleDefinition[]>([]);
   const disableSwitch = useMemo(() => loading || firstLoading, [firstLoading, loading]);
 
-  useDidMount(async () => {
+  const fetchData = async () => {
     setFirstLoading(true);
 
     try {
-      const resp = await fetchFeature();
-      setFeature(resp);
+      const resp = await fetchSchedule();
+      setSchedules([...resp]);
     } catch (e) {
       toast.error((e as RequestError).data.data);
     } finally {
       setFirstLoading(false);
     }
-  });
-
-  const enable = async (feature: keyof typeof Release) => {
-    const state = confirm(`Deseja realmente ativar a funcionalidade ${translate(feature)}`);
-    if (!state) return;
-
-    setLoading(true);
-    setItemClicked(feature);
-
-    try {
-      await enableFeature({ feature });
-      setFeature((prev) => ({
-        ...prev,
-        [feature]: true,
-      }));
-      toast.success(`Funcionalidade ${translate(feature)} ativada`);
-    } catch (e) {
-      toast.error((e as RequestError).data.data);
-    } finally {
-      setLoading(false);
-      setItemClicked(undefined);
-    }
   };
 
-  const disable = async (feature: keyof typeof Release) => {
-    const state = confirm(`Deseja realmente desativar a funcionalidade ${translate(feature)}`);
-    if (!state) return;
+  useDidMount(async () => {
+    setFirstLoading(true);
+    await fetchData();
+  });
 
+  const onChangeStatus = async (id: string, status: Status) => {
     setLoading(true);
-    setItemClicked(feature);
+    setItemClicked(id);
 
     try {
-      await disableFeature({ feature });
-      setFeature((prev) => ({
-        ...prev,
-        [feature]: false,
-      }));
-      toast.success(`Funcionalidade ${translate(feature)} desativada`);
+      await updateScheduleStatus(id, status);
+      await fetchData();
+      toast.success('Cronograma atualizado');
     } catch (e) {
       toast.error((e as RequestError).data.data);
     } finally {
@@ -92,92 +78,120 @@ export const Schedule: FC = () => {
       </TitleContainer>
 
       <SwitchContainer>
-        <Switch
-          checked={feature.REGISTER}
-          disabled={disableSwitch}
-          id="register-swith"
-          label={
-            <LabelContainer>
-              <span>Liberar página de registro</span>
-              {(itemClicked === 'REGISTER' || firstLoading) && <Spinner color="pastureGreen" />}
-            </LabelContainer>
-          }
-          onChange={() => {
-            if (feature.REGISTER) disable('REGISTER');
-            else enable('REGISTER');
-          }}
-        />
-      </SwitchContainer>
-      <SwitchContainer>
-        <Switch
-          checked={feature.SELECT_PRODUCTION}
-          disabled={disableSwitch}
-          id="production-swith"
-          label={
-            <LabelContainer>
-              <span>Liberar página de produções</span>
-              {(itemClicked === 'SELECT_PRODUCTION' || firstLoading) && <Spinner color="pastureGreen" />}
-            </LabelContainer>
-          }
-          onChange={() => {
-            if (feature.SELECT_PRODUCTION) disable('SELECT_PRODUCTION');
-            else enable('SELECT_PRODUCTION');
-          }}
-        />
-      </SwitchContainer>
+        <Table<ScheduleDefinition, any>
+          data={schedules}
+          loading={loading}
+          height={300}
+          style={{ marginTop: 20, width: '100%' }}
+          headerHeight={30}
+          rowHeight={60}
+          rowKey={rowKey}
+          rowClassName={(schedule: ScheduleDefinition) => {
+            if (!schedule) return '';
+            if (schedule.status === 'FINALIZED') return 'finalizaed-row';
+            if (schedule.status === 'PENDING') return 'pending-row';
 
-      <SwitchContainer>
-        <Switch
-          checked={feature.SELECT_PRODUCTION_INPUT}
-          disabled={disableSwitch}
-          id="production-input-swith"
-          label={
-            <LabelContainer>
-              <span>Liberar página de insumos</span>
-              {(itemClicked === 'SELECT_PRODUCTION_INPUT' || firstLoading) && <Spinner color="pastureGreen" />}
-            </LabelContainer>
-          }
-          onChange={() => {
-            if (feature.SELECT_PRODUCTION_INPUT) disable('SELECT_PRODUCTION_INPUT');
-            else enable('SELECT_PRODUCTION_INPUT');
+            return 'in-progress-row';
           }}
-        />
-      </SwitchContainer>
+        >
+          <Column fixed width={90}>
+            <HeaderCell style={compactStyle}>
+              <Typography color="$gray" variant="$body6" weight="$bold">
+                Horário
+              </Typography>
+            </HeaderCell>
+            <Cell style={compactStyle}>
+              {(rowData, rowIndex) => (
+                <Typography color="$gray" variant="$body6">
+                  {rowData.time}
+                </Typography>
+              )}
+            </Cell>
+          </Column>
 
-      <SwitchContainer>
-        <Switch
-          checked={feature.SELCET_MACHINE}
-          disabled={disableSwitch}
-          id="machine-swith"
-          label={
-            <LabelContainer>
-              <span>Liberar página de máquinas</span>
-              {(itemClicked === 'SELCET_MACHINE' || firstLoading) && <Spinner color="pastureGreen" />}
-            </LabelContainer>
-          }
-          onChange={() => {
-            if (feature.SELCET_MACHINE) disable('SELCET_MACHINE');
-            else enable('SELCET_MACHINE');
-          }}
-        />
-      </SwitchContainer>
+          <Column width={200}>
+            <HeaderCell style={compactStyle}>
+              <Typography color="$gray" variant="$body6" weight="$bold">
+                Title
+              </Typography>
+            </HeaderCell>
+            <Cell style={compactStyle}>
+              {(rowData, rowIndex) => (
+                <Typography color="$gray" variant="$body6">
+                  {rowData.title}
+                </Typography>
+              )}
+            </Cell>
+          </Column>
 
-      <SwitchContainer>
-        <Switch
-          checked={feature.FINISH}
-          disabled={disableSwitch}
-          id="finish-swith"
-          label={
-            <LabelContainer>
-              <span>Liberar página de finalizar</span>
-              {(itemClicked === 'FINISH' || firstLoading) && <Spinner color="pastureGreen" />}
-            </LabelContainer>
-          }
-          onChange={() => {
-            if (feature.FINISH) disable('FINISH');
-            else enable('FINISH');
-          }}
-        />
+          <Column width={300}>
+            <HeaderCell style={compactStyle}>
+              <Typography color="$gray" variant="$body6" weight="$bold">
+                Status
+              </Typography>
+            </HeaderCell>
+            <Cell style={compactStyle}>
+              {(rowData, rowIndex) => (
+                <ToggleGroup.Root type="single" defaultValue={rowData.status}>
+                  <ToggleGroup.Item
+                    style={rowData.status === 'FINALIZED' && activeStatus}
+                    onClick={() => onChangeStatus(rowData.id, 'FINALIZED')}
+                    value="left"
+                  >
+                    {translate('FINALIZED')}
+                  </ToggleGroup.Item>
+                  <ToggleGroup.Item
+                    style={rowData.status === 'IN_PROGRESS' && activeStatus}
+                    onClick={() => onChangeStatus(rowData.id, 'IN_PROGRESS')}
+                    value="center"
+                  >
+                    {translate('IN_PROGRESS')}
+                  </ToggleGroup.Item>
+                  <ToggleGroup.Item
+                    style={rowData.status === 'PENDING' && activeStatus}
+                    onClick={() => onChangeStatus(rowData.id, 'PENDING')}
+                    value="right"
+                  >
+                    {translate('PENDING')}
+                  </ToggleGroup.Item>
+                </ToggleGroup.Root>
+                // <Typography color="$gray" variant="$body6">
+                //   {rowData.status}
+                // </Typography>
+              )}
+            </Cell>
+          </Column>
+
+          <Column width={200}>
+            <HeaderCell style={compactStyle}>
+              <Typography color="$gray" variant="$body6" weight="$bold">
+                Palestrante
+              </Typography>
+            </HeaderCell>
+            <Cell style={compactStyle}>
+              {(rowData, rowIndex) => (
+                <Typography color="$gray" variant="$body6">
+                  {rowData.speaker}
+                </Typography>
+              )}
+            </Cell>
+          </Column>
+
+          <Column width={300}>
+            <HeaderCell style={compactStyle}>
+              <Typography color="$gray" variant="$body6" weight="$bold">
+                Descrição
+              </Typography>
+            </HeaderCell>
+            <Cell style={compactStyle}>
+              {(rowData, rowIndex) => (
+                <Typography color="$gray" variant="$body6">
+                  {rowData.description}
+                </Typography>
+              )}
+            </Cell>
+          </Column>
+        </Table>
       </SwitchContainer>
     </Card>
   );

@@ -15,11 +15,11 @@ export const Manage: FC = () => {
 
       <Row style={{ flexDirection: 'column' }}>
         <Row>
-          <Col>
+          <Col style={{ maxWidth: 400 }}>
             <Feature />
           </Col>
 
-          <Col>
+          <Col style={{ width: 600 }}>
             <Schedule />
           </Col>
         </Row>

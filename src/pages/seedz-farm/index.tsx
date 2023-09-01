@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
-import { Layout } from '~/components/Layout';
 import PrivateRoute from '~/components/PrivateRoute';
+import { TabLayout } from '~/components/TabLayout';
 
 import { useAuth } from '~/context/auth/useAuth';
 import { NextPageWithLayout } from '../_app';
@@ -20,6 +20,6 @@ const SeedzFarm: NextPageWithLayout = () => {
   );
 };
 
-SeedzFarm.getLayout = (page) => <Layout>{page}</Layout>;
+SeedzFarm.getLayout = (page) => <TabLayout>{page}</TabLayout>;
 
 export default SeedzFarm;

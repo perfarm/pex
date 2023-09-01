@@ -1,16 +1,16 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import { Layout } from "~/components/Layout";
-import PrivateRoute from "~/components/PrivateRoute";
+import PrivateRoute from '~/components/PrivateRoute';
+import { TabLayout } from '~/components/TabLayout';
 
-import { useAuth } from "~/context/auth/useAuth";
-import { NextPageWithLayout } from "../_app";
+import { useAuth } from '~/context/auth/useAuth';
+import { NextPageWithLayout } from '../_app';
 
 const Schedule: NextPageWithLayout = () => {
   const { user } = useAuth();
 
   useEffect(() => {
-    console.log("MOUNT USER", user);
+    console.log('MOUNT USER', user);
   }, [user]);
 
   return (
@@ -20,6 +20,6 @@ const Schedule: NextPageWithLayout = () => {
   );
 };
 
-Schedule.getLayout = (page) => <Layout>{page}</Layout>;
+Schedule.getLayout = (page) => <TabLayout>{page}</TabLayout>;
 
 export default Schedule;

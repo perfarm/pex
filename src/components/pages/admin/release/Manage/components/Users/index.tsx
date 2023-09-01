@@ -232,13 +232,6 @@ export const Users: FC = () => {
             </Typography>
           </HeaderCell>
           <ExpandCell expandedRowKeys={expandedRowKeys} onChange={handleExpanded} />
-          {/* <Cell style={compactStyle}>
-            {(rowData, rowIndex) => (
-              <Typography color="$gray" variant="$body6">
-                {rowData.name}
-              </Typography>
-            )}
-          </Cell> */}
         </Column>
 
         <Column>
