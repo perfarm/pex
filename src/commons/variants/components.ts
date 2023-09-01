@@ -21,7 +21,7 @@ export const Title = styled(Typography, {
 });
 
 export const ButtonContent = styled('div', {
-  marginTop: '30px',
+  marginTop: '50px',
   display: 'flex',
 });
 
