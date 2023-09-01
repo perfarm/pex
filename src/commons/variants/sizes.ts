@@ -32,7 +32,7 @@ export const variantPadding = css({
         padding: '$3',
       },
       small: {
-        padding: '$2',
+        padding: '$2 $3',
       },
     },
   },
