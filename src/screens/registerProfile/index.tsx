@@ -71,9 +71,6 @@ export const ScreenRegisterProfile = () => {
       setAuthorizationToken();
       await fetchCurrentUser();
 
-      toast.success(response.message);
-      console.log('tte--aaa');
-
       push('/register/production');
     } catch (e) {
       toast.error((e as RequestError).data.message);
