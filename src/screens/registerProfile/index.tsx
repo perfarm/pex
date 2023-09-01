@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { setAuthorizationToken } from '~/commons/api';
 import { RequestError } from '~/commons/api/RequestError';
-import { fetchRegisterProfile } from '~/commons/api/postRegisterProfile';
+import { postRegisterProfile } from '~/commons/api/postRegisterProfile';
 import { ProfileValues } from '~/commons/api/postRegisterProfile/types';
 import { setAccessToken } from '~/commons/storage/accessToken';
 import { IconRight } from '~/commons/variants/components';
@@ -65,7 +65,7 @@ export const ScreenRegisterProfile = () => {
     };
 
     try {
-      const response = await fetchRegisterProfile(postValues);
+      const response = await postRegisterProfile(postValues);
 
       setAccessToken(response.token);
       setAuthorizationToken();
