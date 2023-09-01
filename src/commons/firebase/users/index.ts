@@ -18,6 +18,11 @@ export const findById = async (id: string) => {
   return { id: data.id, ...data.data() } as User;
 };
 
+export const find = async () => {
+  const data = await collection.get()
+  return data.docs.map((doc) => ({ id: doc.id, ...doc.data() }) as User);
+};
+
 export const findByEmailAndCPF = async (email: string, cpf: string) => {
   const data = await collection.where('email', '==', email).where('cpf', '==', cpf).get()
   return data.docs.map((doc) => ({ id: doc.id, ...doc.data() }))[0] as User;
