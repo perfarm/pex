@@ -56,6 +56,7 @@ export const InputContent = styled('div', {
       true: {
         border: '1px solid $warningRedAlert',
         backgroundColor: '$warningRedWhitened',
+        marginBottom: '8px',
 
         [`${Icon}`]: {
           '&:before': {
@@ -73,19 +74,17 @@ const moveDown = keyframes({
 });
 
 export const Error = styled('label', {
+  color: '$warningRedAlert',
+  left: 0,
+  marginTop: '10px',
+  padding: '$2 0',
+  position: 'relative',
+  visibility: 'hidden',
+  opacity: 0,
+  width: '100%',
+  zIndex: 3,
   animation: `${moveDown} 200ms`,
   animationFillMode: 'forwards',
-  backgroundColor: '$warningRedLighter',
-  color: '$warningRedDark',
-  left: 0,
-  marginTop: 0,
-  opacity: 0,
-  padding: '$3',
-  position: 'absolute',
-  top: '0',
-  visibility: 'hidden',
-  width: '100%',
-  zIndex: -1,
 });
 
 export const Root = styled('div', variantFontSize, {

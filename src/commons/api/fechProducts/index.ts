@@ -3,11 +3,11 @@ import { AxiosError } from 'axios';
 import { api } from '~/commons/api';
 import { RequestError } from '~/commons/api/RequestError';
 
-import { ProfileValues, Response } from './types';
+import { ProductItem } from './types';
 
-export const postRegisterProfile = async (values: ProfileValues) => {
+export const fetchProducts = async () => {
   try {
-    const { data } = await api.post<Response>('/api/user/register', { ...values });
+    const { data } = await api.get<ProductItem[]>('/api/production');
 
     return data;
   } catch (e) {
