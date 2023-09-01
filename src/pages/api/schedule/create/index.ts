@@ -15,6 +15,7 @@ type Body = {
 const updateStatus = async (req: NextApiRequest, res: ResponseWithSocket) => {
   try {
     const before = await create({
+      // action: 'function',
       // description: 'No Farm Insights, você tem a oportunidade valiosa de compartilhar seus conhecimentos sobre o agro. Ao responder às perguntas, você será recompensado com moedas SDZ e terá acesso aos resultados agrupados das pesquisas. Sua participação não apenas traz recompensas, mas também contribui para o aprimoramento contínuo da comunidade.',
       order: 20,
       // hasAction: true,

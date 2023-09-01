@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 
 import PrivateRoute from '~/components/PrivateRoute';
 import { TabLayout } from '~/components/TabLayout';
+import { SeedzFarm as SeedzFarmComponent } from '~/components/pages/SeedzFarm';
 
 import { useAuth } from '~/context/auth/useAuth';
 import { NextPageWithLayout } from '../_app';
@@ -15,7 +16,7 @@ const SeedzFarm: NextPageWithLayout = () => {
 
   return (
     <PrivateRoute>
-      <div>Seedz Farm</div>
+      <SeedzFarmComponent />
     </PrivateRoute>
   );
 };

@@ -4,7 +4,7 @@ export const Smooth = styled('div', {
   bottom: 0,
   display: 'flex',
   height: 75,
-  position: 'absolute',
+  position: 'relative',
   width: '100%',
 });
 
