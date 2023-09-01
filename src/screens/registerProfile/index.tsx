@@ -4,6 +4,7 @@ import { setAuthorizationToken } from '~/commons/api';
 import { RequestError } from '~/commons/api/RequestError';
 import { fetchRegisterProfile } from '~/commons/api/postRegisterProfile';
 import { ProfileValues } from '~/commons/api/postRegisterProfile/types';
+import { setAccessToken } from '~/commons/storage/accessToken';
 import { IconRight } from '~/commons/variants/components';
 import { EnvelopeSimple } from '~/components/Icons/EnvelopeSimple';
 import { IdentificationCard } from '~/components/Icons/IdentificationCard';
@@ -57,14 +58,23 @@ export const ScreenRegisterProfile = () => {
   const handleSubmit = useCallback(async () => {
     setBtnLoading(true);
 
-    try {
-      await fetchRegisterProfile(inputValues);
+    const postValues: ProfileValues = {
+      ...inputValues,
+      cpf: inputValues.cpf.replace(/[^0-9]/g, ''),
+      phone: inputValues.phone.replace(/[^0-9]/g, ''),
+    };
 
+    try {
+      const response = await fetchRegisterProfile(postValues);
+
+      setAccessToken(response.token);
       setAuthorizationToken();
-      fetchCurrentUser();
+      await fetchCurrentUser();
+
+      toast.success(response.message);
+      console.log('tte--aaa');
 
       push('/register/production');
-      // Dúvida: se usuário já existir o cpf cadastrado, vai pra onde ?
     } catch (e) {
       toast.error((e as RequestError).data.message);
     } finally {

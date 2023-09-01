@@ -1,6 +1,6 @@
 import { ProfileValues } from '~/commons/api/postRegisterProfile/types';
 
-export const isValidName = (value: string) => new RegExp(/(\w.+\s).+/i).test(value);
+export const isValidName = (value: string) => value.length >= 3;
 
 export const isValidEmail = (value: string) => new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g).test(value);
 
@@ -16,8 +16,12 @@ export const isValidCpf = (cpf: string) => {
   return rest(10) === cpfSplit[9] && rest(11) === cpfSplit[10];
 };
 
-export const checkErrorWhenFilledWithMask = (value: string, validation: (value: string) => boolean) => {
-  if (value === '') {
+export const checkErrorWhenFilledWithMask = (
+  value: string,
+  validation: (value: string) => boolean,
+  readyToFormat?: boolean
+) => {
+  if (value === '' || !readyToFormat) {
     return false;
   }
 
@@ -25,11 +29,10 @@ export const checkErrorWhenFilledWithMask = (value: string, validation: (value: 
 };
 
 export const maskPhone = (telefone: string | number): string => {
-  let v = telefone.toString().replace(/\D/g, '');
-  v = v.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
-  v = v.replace(/(\d{5})(\d{0,4})$/, '$1-$2');
-
-  return v;
+  return telefone
+    .toString()
+    .replace(/\D/g, '')
+    .replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
 };
 
 export const maskCpf = (cpf: string | number): string => {
