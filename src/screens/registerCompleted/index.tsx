@@ -8,13 +8,9 @@ import { Br, Description, Title } from './style';
 export const ScreenRegisterCompleted = () => {
   const { push } = useRouter();
 
-  const handleNext = useCallback(() => {
-    console.log('starrrttt');
-  }, []);
+  const handleNext = useCallback(() => push('/schedule'), [push]);
 
-  const handleBack = useCallback(() => {
-    push('/register/production');
-  }, [push]);
+  const handleBack = useCallback(() => push('/register/production'), [push]);
 
   return (
     <TemplateFlowStep
