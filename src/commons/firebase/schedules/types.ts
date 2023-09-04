@@ -13,8 +13,8 @@ export type Schedule = {
 }
 
 export const translate = (status: Status) => {
-  if (status === 'PENDING') return 'Pendente';
+  if (status === 'PENDING') return 'Programação';
   if (status === 'FINALIZED') return 'Finalizado';
 
-  return 'Em progresso';
+  return 'Em andamento';
 }

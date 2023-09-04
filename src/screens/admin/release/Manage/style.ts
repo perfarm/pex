@@ -1,3 +1,4 @@
+import { Col as OriginalCol } from '~/components/Grid';
 import { styled } from '~/theme';
 
 export const Page = styled('div', {
@@ -9,15 +10,7 @@ export const Page = styled('div', {
   overflow: 'auto',
 });
 
-export const Row = styled('div', {
-  display: 'flex',
-  flex: 1,
-  flexDirection: 'row',
-});
-
-export const Col = styled('div', {
-  flex: 1,
-
+export const Col = styled(OriginalCol, {
   '&:nth-of-type(2)': {
     marginLeft: 30,
   }

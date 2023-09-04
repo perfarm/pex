@@ -1,10 +1,11 @@
 import { FC } from 'react';
 
+import { Row } from '~/components/Grid';
 import { Typography } from '~/components/Typography';
 import { Feature } from './components/Feature';
 import { Schedule } from './components/Schedule';
 import { Users } from './components/Users';
-import { Col, Page, Row, TitleContainer } from './style';
+import { Col, Page, TitleContainer } from './style';
 
 export const Manage: FC = () => {
   return (

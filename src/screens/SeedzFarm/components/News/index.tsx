@@ -4,9 +4,10 @@ import { FC } from 'react';
 import NewsMock from '~/commons/mock/news';
 
 import { Card } from '~/components/Card';
+import { Row } from '~/components/Grid';
 import { CaretRight } from '~/components/Icons';
 import { Typography } from '~/components/Typography';
-import { Col, Row } from '~/screens/admin/release/Manage/style';
+import { Col } from '~/screens/admin/release/Manage/style';
 import { DirCol, LeftCol, ReadMoreCol } from './style';
 
 export const News: FC = () => {

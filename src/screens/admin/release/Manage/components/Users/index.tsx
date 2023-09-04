@@ -18,13 +18,14 @@ import slugify from 'slugify';
 import { Select } from '~/components/Select';
 import { Option } from '~/components/Select/type';
 import { TextField } from '~/components/TextField';
-import { Col, Row } from '../../style';
+import { Col } from '../../style';
 import { Header, IconLoading, RefreshButton, TitleContainer } from './style';
 
 import CollaspedOutlineIcon from '@rsuite/icons/CollaspedOutline';
 import ExpandOutlineIcon from '@rsuite/icons/ExpandOutline';
 import { translate } from '~/commons/storage/release/types';
 import { Button } from '~/components/Button';
+import { Row } from '~/components/Grid';
 
 const { Column, HeaderCell, Cell } = Table;
 
