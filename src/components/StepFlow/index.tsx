@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { Check } from '../Icons/Check';
+import { Check } from '~/components/Icons/Check';
 import { Item, List, MarkFlow, Root } from './style';
 import { Props } from './types';
 

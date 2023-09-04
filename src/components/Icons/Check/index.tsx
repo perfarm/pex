@@ -1,14 +1,10 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import { Path, Root } from "~/commons/variants/svgIcon";
-import { PropsIcon } from "~/components/Icons/types";
-import { theme } from "~/theme";
+import { Path, Root } from '~/commons/variants/svgIcon';
+import { PropsIcon } from '~/components/Icons/types';
+import { theme } from '~/theme';
 
-export const Check: FC<PropsIcon> = ({
-  className,
-  color = "gray",
-  size = 18,
-}) => (
+export const Check: FC<PropsIcon> = ({ className, color = 'gray', size = 18 }) => (
   <Root
     className={className}
     fill="none"

@@ -15,6 +15,7 @@ export const TabRoot = styled('div', {
   height: 75,
   position: 'fixed',
   width: '100%',
+  zIndex: '$appBar',
 });
 
 export const Tab = styled('div', {
@@ -34,7 +35,7 @@ export const Tab = styled('div', {
     paddingTop: 10,
     width: '100%',
     textDecoration: 'none',
-  }
+  },
 });
 
 export const IconContainer = styled('div', {

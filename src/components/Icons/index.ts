@@ -6,6 +6,8 @@ export { ArrowSquareOut } from './ArrowSquareOut';
 export { ArrowUp } from './ArrowUp';
 export { CaretRight } from './CaretRight';
 export { Cattle } from './Cattle';
+export { ChatText } from './ChatText';
+export { Check } from './Check';
 export { Close } from './Close';
 export { HourglassMedium } from './HourglassMedium';
 export { Info } from './Info';
