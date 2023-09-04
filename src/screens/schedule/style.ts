@@ -1,4 +1,5 @@
 import { CardProduct } from '~/components/CardProduct';
+import { ScheduleCard as ScheduleItem } from '~/components/ScheduleCard';
 import { Typography } from '~/components/Typography';
 import { styled } from '~/theme';
 
@@ -11,7 +12,6 @@ export const Container = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   margin: 'auto',
-
   width: '100%',
   maxWidth: '$minScreenWidth',
   position: 'relative',
@@ -20,6 +20,8 @@ export const Container = styled('div', {
 export const Br = styled('br');
 
 export const Title = styled(Typography);
+
+export const Subtitle = styled(Typography);
 
 export const HeaderContent = styled('div', {
   backgroundColor: '$pastureGreen',
@@ -42,14 +44,15 @@ export const HeaderCardProduct = styled(CardProduct, {
 export const BodyContent = styled('div', {
   display: 'flex',
   flex: 1,
-  padding: `70px ${paddingX} 30px ${paddingX}`,
-  textAlign: 'center',
+  padding: `70px ${paddingX} 60px ${paddingX}`,
 });
 
-export const Subtitle = styled(Typography, {});
-
-export const Block = styled('div', {
+export const ScheduleList = styled('div', {
   marginTop: 15,
-  backgroundColor: 'violet',
-  minHeight: '60px',
+  display: 'flex',
+  flexDirection: 'column',
+});
+
+export const ScheduleCard = styled(ScheduleItem, {
+  margin: '15px 0',
 });

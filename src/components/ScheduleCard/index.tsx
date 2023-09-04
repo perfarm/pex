@@ -14,7 +14,7 @@ import { User } from '../Icons/User';
 import { ActionButton, SpeakerCol, SpeakerIconCol, StatusCol, TimeCol } from './style';
 import { Props } from './types';
 
-export const ScheduleCard: FC<Props> = ({ actionText, onAction, schedule }) => {
+export const ScheduleCard: FC<Props> = ({ className, actionText, onAction, schedule }) => {
   const titleColor = useMemo<Colors>(
     () => (schedule.status === 'FINALIZED' ? '$mediumGray' : '$gray'),
     [schedule.status]
@@ -42,7 +42,7 @@ export const ScheduleCard: FC<Props> = ({ actionText, onAction, schedule }) => {
   }, [schedule.time]);
 
   return (
-    <Card style={{ padding: 15 }}>
+    <Card style={{ padding: 15 }} className={className}>
       <Row>
         <TimeCol>
           <Typography color={timeColor} variant="$body4" weight="$bold">

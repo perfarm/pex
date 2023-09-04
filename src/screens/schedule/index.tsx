@@ -1,9 +1,19 @@
 import { FC, useMemo } from 'react';
-import { BottomTab } from '~/components/BottomTab';
-import { BodyContent, Container, HeaderCardProduct, HeaderContent, Root, Subtitle, Title } from './style';
+
+import {
+  BodyContent,
+  Container,
+  HeaderCardProduct,
+  HeaderContent,
+  Root,
+  ScheduleCard,
+  ScheduleList,
+  Subtitle,
+  Title,
+} from './style';
 import { Props } from './types';
 
-export const ScreenSchedule: FC<Props> = ({ user }) => {
+export const ScreenSchedule: FC<Props> = ({ user, sheduleList }) => {
   const userFirstName = useMemo(() => {
     if (!user?.name) {
       return '';
@@ -31,14 +41,14 @@ export const ScreenSchedule: FC<Props> = ({ user }) => {
           <Subtitle variant="$body5" weight="$medium">
             Fique atento aos horários para aproveitar ao máximo cada experiência do evento.
           </Subtitle>
+
+          <ScheduleList>
+            {sheduleList?.map((item, index) => (
+              <ScheduleCard schedule={item} key={`shedule-item-${index}`} />
+            ))}
+          </ScheduleList>
         </Container>
-
-        {/* Timeline... */}
-        {/* Timeline... */}
-        {/* Timeline... */}
       </BodyContent>
-
-      <BottomTab />
     </Root>
   );
 };
