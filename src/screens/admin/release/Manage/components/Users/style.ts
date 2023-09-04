@@ -3,7 +3,7 @@ import { styled } from '~/theme';
 
 import { keyframes } from '@stitches/react';
 import { ArrowClockwise } from '~/components/Icons';
-import { TitleContainer as OriginalTitleContainer } from '~/components/pages/admin/release/Manage/style';
+import { TitleContainer as OriginalTitleContainer } from '~/screens/admin/release/Manage/style';
 
 export const Header = styled('div', {
   display: 'flex',

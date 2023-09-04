@@ -5,7 +5,8 @@ import { Download } from '~/components/Icons/Download';
 import { SeedzFarmLogo } from '~/components/Icons/SeedzFarmLogo';
 import { Typography } from '~/components/Typography';
 
-import { Button, TwoColorsContainer } from './style';
+import { TwoColorsContainer } from '~/components/TwoColorsContainer';
+import { Button } from './style';
 
 export const Intro: FC = () => (
   <TwoColorsContainer>

@@ -10,7 +10,7 @@ import { Schedule as ScheduleDefinition, Status, translate } from '~/commons/fir
 import { Card } from '~/components/Card';
 import { toast } from '~/components/Toaster';
 import { Typography } from '~/components/Typography';
-import { SwitchContainer, TitleContainer } from '~/components/pages/admin/release/Manage/style';
+import { SwitchContainer, TitleContainer } from '~/screens/admin/release/Manage/style';
 import { Table } from './style';
 
 import * as ToggleGroup from '@radix-ui/react-toggle-group';

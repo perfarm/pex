@@ -1,7 +1,7 @@
 import { Button as OriginalButton } from '~/components/Button';
 import { styled } from '~/theme';
 
-import { Col as OriginalCol } from '~/components/pages/admin/release/Manage/style';
+import { Col as OriginalCol } from '~/screens/admin/release/Manage/style';
 
 export const Button = styled(OriginalButton, {
   alignItems: 'center',

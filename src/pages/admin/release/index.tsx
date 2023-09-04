@@ -1,8 +1,8 @@
 import { FC, useState } from 'react';
 
 import { getAccessToken } from '~/commons/storage/adminAccessToken';
-import { Login } from '~/components/pages/admin/release/Login';
-import { Manage } from '~/components/pages/admin/release/Manage';
+import { Login } from '~/screens/admin/release/Login';
+import { Manage } from '~/screens/admin/release/Manage';
 
 const Release: FC = () => {
   const [token, setToken] = useState(getAccessToken());

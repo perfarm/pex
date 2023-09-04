@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 import { Card } from '~/components/Card';
 import { Typography } from '~/components/Typography';
-import { Row } from '~/components/pages/admin/release/Manage/style';
+import { Row } from '~/screens/admin/release/Manage/style';
 
 import { CenterCol, DirCol, ImageCol } from './style';
 

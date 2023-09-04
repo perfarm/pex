@@ -12,7 +12,7 @@ import { Spinner } from '~/components/Spinner';
 import { Switch } from '~/components/Switch';
 import { toast } from '~/components/Toaster';
 import { Typography } from '~/components/Typography';
-import { LabelContainer, SwitchContainer, TitleContainer } from '~/components/pages/admin/release/Manage/style';
+import { LabelContainer, SwitchContainer, TitleContainer } from '~/screens/admin/release/Manage/style';
 
 export const Feature: FC = () => {
   const [loading, setLoading] = useState(false);
