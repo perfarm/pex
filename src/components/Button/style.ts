@@ -183,6 +183,7 @@ export const Button = styled('button', {
       color: 'secondary',
       css: {
         textColor: '$resourceYellow',
+        outlineColor: '$resourceYellow',
       },
       variant: 'outlined',
     },

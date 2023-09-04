@@ -8,11 +8,13 @@ import { Typography } from '~/components/Typography';
 import { translate } from '~/commons/firebase/schedules/types';
 
 import { Colors } from '~/commons/types';
+import { ButtonColor } from '../Button/types';
+import { CaretRight } from '../Icons';
 import { User } from '../Icons/User';
-import { SpeakerCol, SpeakerIconCol, StatusCol, TimeCol } from './style';
+import { ActionButton, SpeakerCol, SpeakerIconCol, StatusCol, TimeCol } from './style';
 import { Props } from './types';
 
-export const ScheduleCard: FC<Props> = ({ actionComponent, schedule }) => {
+export const ScheduleCard: FC<Props> = ({ actionText, onAction, schedule }) => {
   const titleColor = useMemo<Colors>(
     () => (schedule.status === 'FINALIZED' ? '$mediumGray' : '$gray'),
     [schedule.status]
@@ -23,6 +25,13 @@ export const ScheduleCard: FC<Props> = ({ actionComponent, schedule }) => {
     if (schedule.status === 'IN_PROGRESS') return '$pastureGreen';
 
     return '$resourceYellow';
+  }, [schedule.status]);
+
+  const buttonColor = useMemo<ButtonColor>(() => {
+    if (schedule.status === 'FINALIZED') return 'gray';
+    if (schedule.status === 'IN_PROGRESS') return 'primary';
+
+    return 'secondary';
   }, [schedule.status]);
 
   const time = useMemo(() => {
@@ -61,7 +70,14 @@ export const ScheduleCard: FC<Props> = ({ actionComponent, schedule }) => {
         </div>
       )}
 
-      {schedule.hasAction && <div style={{ marginTop: 5 }}>{actionComponent}</div>}
+      {schedule.hasAction && (
+        <div style={{ marginTop: 5 }}>
+          <ActionButton onClick={onAction} color={buttonColor} variant="outlined" size="sm">
+            <span style={{ marginRight: 5 }}>{actionText}</span>
+            <CaretRight color={timeColor.replace('$', '') as any} />
+          </ActionButton>
+        </div>
+      )}
 
       {schedule.speaker && (
         <Row style={{ marginTop: 5 }}>

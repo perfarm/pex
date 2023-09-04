@@ -1,4 +1,5 @@
 import { styled } from "~/theme";
+import { Button } from "../Button";
 import { Col } from "../Grid";
 
 export const TimeCol = styled(Col, {
@@ -20,4 +21,14 @@ export const SpeakerCol = styled(Col, {
   display: 'flex',
   flex: 1,
   paddingLeft: 10,
+});
+
+export const ActionButton = styled(Button, {
+  alignItems: 'center',
+  display: 'flex',
+  justifyContent: 'center',
+  overflow: 'hidden',
+  width: '100%',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
 });
