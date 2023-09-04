@@ -5,9 +5,7 @@ export const Title = styled(Typography, {
   textAlign: 'center',
 });
 
-export const Br = styled('br', {
-  textAlign: 'center',
-});
+export const Br = styled('br');
 
 export const Description = styled(Typography, {
   textAlign: 'center',

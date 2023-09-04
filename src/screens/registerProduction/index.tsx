@@ -6,32 +6,10 @@ import { fetchProducts } from '~/commons/api/fechProducts';
 import { ProductItem } from '~/commons/api/fechProducts/types';
 import { postRegisterProduct } from '~/commons/api/postRegisterProduct';
 import { IconRight } from '~/commons/variants/components';
+import { CardProduct } from '~/components/CardProduct';
 import { TemplateFlowStep } from '~/components/TemplateFlowStep';
 import { toast } from '~/components/Toaster';
-import { Description, Img, ImgContent, List, ListItem } from './style';
-
-const listProductions = [
-  {
-    img: '/imgs/icons/soja.png',
-    label: 'SOJA',
-    id: 'soja',
-  },
-  {
-    img: '/imgs/icons/cafe.png',
-    label: 'CAFÉ',
-    id: 'cafe',
-  },
-  {
-    img: '/imgs/icons/cana.png',
-    label: 'CANA',
-    id: 'cana',
-  },
-  {
-    img: '/imgs/icons/gado.png',
-    label: 'GADO',
-    id: 'gado',
-  },
-];
+import { List } from './style';
 
 export const ScreenRegisterProduction = () => {
   const [list, setList] = useState<ProductItem[]>([]);
@@ -47,9 +25,7 @@ export const ScreenRegisterProduction = () => {
     setBtnDisabled(false);
   }, []);
 
-  const handleBack = useCallback(() => {
-    push('/register/profile');
-  }, [push]);
+  const handleBack = useCallback(() => push('/register/profile'), [push]);
 
   const handleSubmit = useCallback(async () => {
     setBtnLoading(true);
@@ -87,14 +63,13 @@ export const ScreenRegisterProduction = () => {
     >
       <List>
         {list?.map(({ image, id, name }, index) => (
-          <ListItem key={`list-item-${index}`} onClick={() => handleSelectProduct(id)} isActive={selected === id}>
-            <ImgContent>
-              <Img src={image} alt={name} width={35} height={35} />
-            </ImgContent>
-            <Description variant="$body3" weight="$bold">
-              {name}
-            </Description>
-          </ListItem>
+          <CardProduct
+            key={`list-item-${index}`}
+            onClick={() => handleSelectProduct(id)}
+            isActive={selected === id}
+            image={image}
+            name={name}
+          />
         ))}
       </List>
     </TemplateFlowStep>
