@@ -35,11 +35,11 @@ export const TemplateFlowStep: FC<Props> = ({
       {children}
       <ButtonContent>
         {step > 1 && (
-          <ButtonBack color="primary" variant="outlined" onClick={handleBack}>
+          <ButtonBack color="primary" variant="outlined" onClick={handleBack} disabled={isBtnNextLoading}>
             <CaretLeft color="pastureGreen" size={24} />
           </ButtonBack>
         )}
-        <ButtonNext color="primary" onClick={handleNext} showLoader={isBtnNextLoading}>
+        <ButtonNext color="primary" onClick={handleNext} showLoader={isBtnNextLoading} disabled={isBtnNextLoading}>
           {btnNextDescription}
         </ButtonNext>
       </ButtonContent>

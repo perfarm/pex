@@ -14,7 +14,7 @@ import { User } from '../Icons/User';
 import { ActionButton, SpeakerCol, SpeakerIconCol, StatusCol, TimeCol } from './style';
 import { Props } from './types';
 
-export const ScheduleCard: FC<Props> = ({ actionText, onAction, schedule }) => {
+export const ScheduleCard: FC<Props> = ({ actionText, onAction, schedule, disableAction }) => {
   const titleColor = useMemo<Colors>(
     () => (schedule.status === 'FINALIZED' ? '$mediumGray' : '$gray'),
     [schedule.status]
@@ -42,7 +42,7 @@ export const ScheduleCard: FC<Props> = ({ actionText, onAction, schedule }) => {
   }, [schedule.time]);
 
   return (
-    <Card style={{ padding: 15 }}>
+    <Card style={{ padding: 15 }} id={`schedule-${schedule.id}`}>
       <Row>
         <TimeCol>
           <Typography color={timeColor} variant="$body4" weight="$bold">
@@ -72,7 +72,7 @@ export const ScheduleCard: FC<Props> = ({ actionText, onAction, schedule }) => {
 
       {schedule.hasAction && (
         <div style={{ marginTop: 5 }}>
-          <ActionButton onClick={onAction} color={buttonColor} variant="outlined" size="sm">
+          <ActionButton onClick={onAction} color={buttonColor} variant="outlined" size="sm" disabled={disableAction}>
             <span style={{ marginRight: 5 }}>{actionText}</span>
             <CaretRight color={timeColor.replace('$', '') as any} />
           </ActionButton>

@@ -33,49 +33,51 @@ export default function Document() {
         <meta content="https://www.perfarm.com/static/favicon/favicon-256.png" property="og:image" />
 
         <link color="#43b874" href="/static/favicon/favicon-mask.svg" rel="mask-icon" />
-        <link href="/static/favicon/favicon.svg" rel="icon" />
-        <link href="/static/favicon/favicon-16.png" rel="icon" type="image/png" />
-        <link href="/static/favicon/favicon-32.png" rel="icon" sizes="32x32" type="image/png" />
-        <link href="/static/favicon/favicon-48.png" rel="icon" sizes="48x48" type="image/png" />
-        <link href="/static/favicon/favicon-62.png" rel="icon" sizes="62x62" type="image/png" />
-        <link href="/static/favicon/favicon-192.png" rel="icon" sizes="192x192" type="image/png" />
-        <link href="/static/favicon/favicon-200.png" rel="icon" sizes="200x200" type="image/png" />
-        <link href="/static/favicon/favicon-256.png" rel="icon" sizes="256x256" type="image/png" />
-        <link href="/static/favicon/favicon-192.png" rel="apple-touch-icon" />
+        <link href="/static/favicon/72xx72.png" rel="icon" sizes="72x72" type="image/png" />
+        <link href="/static/favicon/96x96.png" rel="icon" sizes="96x96" type="image/png" />
+        <link href="/static/favicon/120x120.png" rel="icon" sizes="120x120" type="image/png" />
+        <link href="/static/favicon/128x128.png" rel="icon" sizes="128x128" type="image/png" />
+        <link href="/static/favicon/144x144.png" rel="icon" sizes="144x144" type="image/png" />
+        <link href="/static/favicon/152x152.png" rel="icon" sizes="152x152" type="image/png" />
+        <link href="/static/favicon/180x180.png" rel="icon" sizes="180x180" type="image/png" />
+        <link href="/static/favicon/192x192.png" rel="icon" sizes="192x192" type="image/png" />
+        <link href="/static/favicon/384x384.png" rel="icon" sizes="384x384" type="image/png" />
+        <link href="/static/favicon/512x512.png" rel="icon" sizes="512x512" type="image/png" />
+        <link href="/static/favicon/512x512.png" rel="apple-touch-icon" />
 
         <link
           rel="apple-touch-startup-image"
-          href="images/splash/launch-640x1136.png"
+          href="/static/splash/splash-640x1136.png"
           media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
         />
         <link
           rel="apple-touch-startup-image"
-          href="images/splash/launch-750x1294.png"
+          href="/static/splash/splash-750x1294.png"
           media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
         />
         <link
           rel="apple-touch-startup-image"
-          href="images/splash/launch-1242x2148.png"
+          href="/static/splash/splash-1242x2148.png"
           media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"
         />
         <link
           rel="apple-touch-startup-image"
-          href="images/splash/launch-1125x2436.png"
+          href="/static/splash/splash-1125x2436.png"
           media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"
         />
         <link
           rel="apple-touch-startup-image"
-          href="images/splash/launch-1536x2048.png"
+          href="/static/splash/splash-1536x2048.png"
           media="(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)"
         />
         <link
           rel="apple-touch-startup-image"
-          href="images/splash/launch-1668x2224.png"
+          href="/static/splash/splash-1668x2224.png"
           media="(min-device-width: 834px) and (max-device-width: 834px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)"
         />
         <link
           rel="apple-touch-startup-image"
-          href="images/splash/launch-2048x2732.png"
+          href="/static/splash/splash-2048x2732.png"
           media="(min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)"
         />
 

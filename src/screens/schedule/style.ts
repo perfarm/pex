@@ -3,6 +3,11 @@ import { CardProduct } from '~/components/CardProduct';
 import { Typography } from '~/components/Typography';
 import { styled } from '~/theme';
 
+import { Row as OriginalRow } from '~/components/Grid';
+import { TwoColorsContainer as OriginalTwoColorsContainer } from '~/components/TwoColorsContainer';
+
+import { RefreshButton as OriginalRefreshButton } from '../admin/release/Manage/components/Users/style';
+
 const paddingX = '30px';
 
 const Content = styled('div', {
@@ -10,9 +15,11 @@ const Content = styled('div', {
   flex: 1,
 });
 
-const zIndexGreaterThanTimeline = styled('div', {
-  zIndex: 99,
-  position: 'relative',
+const zIndexGreaterThanTimeline = styled('div');
+
+export const TwoColorsContainer = styled(OriginalTwoColorsContainer, {
+  background: 'linear-gradient(var(--colors-pastureGreen) 140px, var(--colors-lighterGray) 20px)',
+  padding: '30px 0',
 });
 
 export const Root = styled('div');
@@ -21,36 +28,27 @@ export const Container = styled('div', {
   justifyContent: 'center',
   display: 'flex',
   flexDirection: 'column',
-  margin: 'auto',
   width: '100%',
-  maxWidth: '$minScreenWidth',
   position: 'relative',
 });
 
 export const Br = styled('br');
 
-export const Title = styled(Typography, zIndexGreaterThanTimeline);
-
-export const Subtitle = styled(Typography, zIndexGreaterThanTimeline);
-
-export const HeaderCardProduct = styled(CardProduct, {
-  position: 'absolute',
-  left: 0,
-  bottom: '-37.5px',
+export const Title = styled(Typography, zIndexGreaterThanTimeline, {
 });
 
-export const HeaderContent = styled(Content, zIndexGreaterThanTimeline, {
-  backgroundColor: '$pastureGreen',
-  flexDirection: 'column',
-  padding: `30px ${paddingX} 0 ${paddingX}`,
+export const Subtitle = styled(Typography, zIndexGreaterThanTimeline, {
+  marginTop: 5,
+});
 
-  [`& ${Container}`]: {
-    paddingBottom: '50px',
-  },
+export const HeaderCardProduct = styled(CardProduct);
+
+export const HeaderContent = styled('div', {
+  padding: `0 30px`,
 });
 
 export const BodyContent = styled(Content, {
-  padding: `70px ${paddingX} 60px ${paddingX}`,
+  padding: `30px ${paddingX} 0 ${paddingX}`,
 });
 
 export const ScheduleList = styled('div', {
@@ -59,4 +57,13 @@ export const ScheduleList = styled('div', {
   marginTop: 15,
   display: 'flex',
   flexDirection: 'column',
+});
+
+export const Row = styled(OriginalRow, {
+  padding: '0 30px',
+});
+
+export const RefreshButton = styled(OriginalRefreshButton, {
+  backgroundColor: 'transparent !important',
+  border: 'none',
 });

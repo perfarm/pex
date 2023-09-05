@@ -1,9 +1,9 @@
 import { FC, memo, useMemo } from 'react';
 import { ChatText, Check, HourglassMedium } from '~/components/Icons';
-import { IconContent, IconSpace, Root } from './style';
+import { IconContent, IconSpace, LineDown, LineUp, Root } from './style';
 import { Props } from './types';
 
-const RootScheduleTimeline: FC<Props> = ({ status, children, zIndex }) => {
+const RootScheduleTimeline: FC<Props> = ({ status, children, zIndex, position, total }) => {
   const iconType = useMemo(() => {
     if (status === 'FINALIZED') {
       return <Check color="white" />;
@@ -19,9 +19,11 @@ const RootScheduleTimeline: FC<Props> = ({ status, children, zIndex }) => {
   return (
     <Root status={status} css={{ zIndex }}>
       <IconSpace>
+        {position !== 0 && <LineUp status={status} />}
         <IconContent>{iconType}</IconContent>
+        {position !== total - 1 && <LineDown status={status} />}
       </IconSpace>
-      {children}
+      <div style={{ paddingTop: 15, flex: 1 }}>{children}</div>
     </Root>
   );
 };

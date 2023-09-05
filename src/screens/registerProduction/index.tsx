@@ -73,7 +73,7 @@ export const ScreenRegisterProduction = () => {
     >
       {fetchLoading ? (
         <div style={{ marginTop: 30 }}>
-          <Loader position="static" />
+          <Loader position="static">Buscando produções...</Loader>
         </div>
       ) : (
         <>

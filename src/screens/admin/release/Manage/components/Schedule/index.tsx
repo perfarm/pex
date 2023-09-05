@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from 'react';
+import { FC, useState } from 'react';
 import { Table as OriginalTable } from 'rsuite';
 
 import { CSSProperties } from '@stitches/react';
@@ -32,32 +32,26 @@ const rowKey = 'id';
 
 export const Schedule: FC = () => {
   const [loading, setLoading] = useState(false);
-  const [firstLoading, setFirstLoading] = useState(false);
-  const [itemClicked, setItemClicked] = useState<string>();
   const [schedules, setSchedules] = useState<ScheduleDefinition[]>([]);
-  const disableSwitch = useMemo(() => loading || firstLoading, [firstLoading, loading]);
 
   const fetchData = async () => {
-    setFirstLoading(true);
-
     try {
       const resp = await fetchSchedule();
       setSchedules([...resp]);
     } catch (e) {
       toast.error((e as RequestError).data.data);
     } finally {
-      setFirstLoading(false);
+      setLoading(false);
     }
   };
 
   useDidMount(async () => {
-    setFirstLoading(true);
+    setLoading(true);
     await fetchData();
   });
 
   const onChangeStatus = async (id: string, status: Status) => {
     setLoading(true);
-    setItemClicked(id);
 
     try {
       await updateScheduleStatus(id, status);
@@ -67,7 +61,6 @@ export const Schedule: FC = () => {
       toast.error((e as RequestError).data.data);
     } finally {
       setLoading(false);
-      setItemClicked(undefined);
     }
   };
 
@@ -155,9 +148,6 @@ export const Schedule: FC = () => {
                     {translate('PENDING')}
                   </ToggleGroup.Item>
                 </ToggleGroup.Root>
-                // <Typography color="$gray" variant="$body6">
-                //   {rowData.status}
-                // </Typography>
               )}
             </Cell>
           </Column>

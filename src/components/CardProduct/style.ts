@@ -25,7 +25,7 @@ export const Root = styled('div', {
   borderRadius: '$5',
   width: '100%',
   boxShadow: '0px 1px 11px -1px rgba(73, 73, 73, 0.06), 0px 4px 24px -3px rgba(0, 0, 0, 0.12)',
-  marginTop: '20px',
+  marginTop: '10px',
   minHeight: '60px',
   padding: '10px',
   display: 'flex',

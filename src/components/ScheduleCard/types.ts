@@ -4,4 +4,5 @@ export interface Props {
   schedule: Schedule;
   onAction?: () => void;
   actionText?: string;
+  disableAction?: boolean;
 }
