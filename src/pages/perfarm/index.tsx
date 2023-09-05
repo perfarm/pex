@@ -1,21 +1,22 @@
-import { useEffect } from 'react';
-
 import PrivateRoute from '~/components/PrivateRoute';
 import { TabLayout } from '~/components/TabLayout';
 
-import { useAuth } from '~/context/auth/useAuth';
+import { ScreenPerfarm } from '~/screens/perfarm';
 import { NextPageWithLayout } from '../_app';
 
 const Perfarm: NextPageWithLayout = () => {
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
-  useEffect(() => {
-    console.log('Perfarm MOUNT USER', user);
-  }, [user]);
+  // const [sheduleList, setSheduleList] = useState<Simulator[]>();
+
+  // useDidMount(async () => {
+  //   const list = await fetchSchedule();
+  //   setSheduleList(list);
+  // });
 
   return (
     <PrivateRoute>
-      <div>Perfarm</div>
+      <ScreenPerfarm />
     </PrivateRoute>
   );
 };
