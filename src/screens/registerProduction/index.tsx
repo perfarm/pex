@@ -7,6 +7,8 @@ import { ProductItem } from '~/commons/api/fechProducts/types';
 import { postRegisterProduct } from '~/commons/api/postRegisterProduct';
 import { IconRight } from '~/commons/variants/components';
 import { CardProduct } from '~/components/CardProduct';
+import { Error } from '~/components/InputRoot/style';
+import { Loader } from '~/components/Loader';
 import { TemplateFlowStep } from '~/components/TemplateFlowStep';
 import { toast } from '~/components/Toaster';
 import { List } from './style';
@@ -14,20 +16,23 @@ import { List } from './style';
 export const ScreenRegisterProduction = () => {
   const [list, setList] = useState<ProductItem[]>([]);
   const [selected, setSelected] = useState('');
-
-  const [btnDisabled, setBtnDisabled] = useState(true);
   const [btnLoading, setBtnLoading] = useState(false);
+  const [fetchLoading, setFetchLoading] = useState(true);
+  const [formIsSubmitted, setFormIsSubmitted] = useState(false);
 
   const { push } = useRouter();
 
   const handleSelectProduct = useCallback((value: string) => {
     setSelected(value);
-    setBtnDisabled(false);
   }, []);
 
   const handleBack = useCallback(() => push('/register/profile'), [push]);
 
   const handleSubmit = useCallback(async () => {
+    setFormIsSubmitted(true);
+
+    if (!selected) return;
+
     setBtnLoading(true);
 
     try {
@@ -42,8 +47,14 @@ export const ScreenRegisterProduction = () => {
   }, [push, selected]);
 
   useDidMount(async () => {
-    const response = await fetchProducts();
-    setList(response);
+    try {
+      const response = await fetchProducts();
+      setList(response);
+    } catch (e) {
+      toast.error((e as RequestError).data.message);
+    } finally {
+      setFetchLoading(false);
+    }
   });
 
   return (
@@ -53,7 +64,6 @@ export const ScreenRegisterProduction = () => {
       step={2}
       handleNext={handleSubmit}
       handleBack={handleBack}
-      isBtnNextDisabled={btnDisabled}
       isBtnNextLoading={btnLoading}
       btnNextDescription={
         <>
@@ -61,17 +71,29 @@ export const ScreenRegisterProduction = () => {
         </>
       }
     >
-      <List>
-        {list?.map(({ image, id, name }, index) => (
-          <CardProduct
-            key={`list-item-${index}`}
-            onClick={() => handleSelectProduct(id)}
-            isActive={selected === id}
-            image={image}
-            name={name}
-          />
-        ))}
-      </List>
+      {fetchLoading ? (
+        <div style={{ marginTop: 30 }}>
+          <Loader position="static" />
+        </div>
+      ) : (
+        <>
+          <List>
+            {list.map(({ image, id, name }, index) => (
+              <CardProduct
+                key={`list-item-${index}`}
+                onClick={() => handleSelectProduct(id)}
+                hasError={formIsSubmitted && !selected}
+                isActive={selected === id}
+                image={image}
+                name={name}
+              />
+            ))}
+          </List>
+          {formIsSubmitted && !selected && (
+            <Error style={{ fontSize: 14, textAlign: 'center' }}>Selecione uma produção</Error>
+          )}
+        </>
+      )}
     </TemplateFlowStep>
   );
 };

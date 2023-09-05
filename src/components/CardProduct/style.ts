@@ -69,5 +69,16 @@ export const Root = styled('div', {
         },
       },
     },
+    hasError: {
+      true: {
+        boxShadow: '0px 1px 11px -1px rgba(243, 78, 78, 0.6), 0px 4px 24px -3px rgba(0, 0, 0, 0.12)',
+        [`${ImgContent}`]: {
+          backgroundColor: '$warningRedAlert',
+        },
+        [`${Description}`]: {
+          color: '$warningRedAlert',
+        },
+      }
+    }
   },
 });

@@ -6,13 +6,7 @@ import { BodyContent, Container, HeaderCardProduct, HeaderContent, Root, Schedul
 import { Props } from './types';
 
 export const ScreenSchedule: FC<Props> = ({ user, sheduleList }) => {
-  const userFirstName = useMemo(() => {
-    if (!user?.name) {
-      return '';
-    }
-
-    return user?.name?.split(' ')[0];
-  }, [user]);
+  const userFirstName = useMemo(() => (user?.name ? user?.name?.split(' ')[0] : ''), [user]);
 
   return (
     <Root>

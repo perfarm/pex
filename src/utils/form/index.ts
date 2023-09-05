@@ -16,8 +16,8 @@ export const isValidCpf = (cpf: string) => {
   return rest(10) === cpfSplit[9] && rest(11) === cpfSplit[10];
 };
 
-export const checkErrorWhenFilledWithMask = (value: string, validation: (value: string) => boolean) => {
-  if (value === '') {
+export const checkErrorWhenFilledWithMask = (value: string, formIsSubmitted: boolean, validation: (value: string) => boolean) => {
+  if (!formIsSubmitted) {
     return false;
   }
 

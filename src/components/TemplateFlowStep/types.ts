@@ -7,7 +7,6 @@ export interface Props extends PropsWithChildren {
   step: number;
   handleBack?: () => void;
   handleNext: () => void;
-  isBtnNextDisabled?: boolean;
   isBtnNextLoading?: boolean;
   btnNextDescription: string | JSX.Element;
 }

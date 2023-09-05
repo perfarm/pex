@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import { setAuthorizationToken } from '~/commons/api';
 import { RequestError } from '~/commons/api/RequestError';
 import { postRegisterProfile } from '~/commons/api/postRegisterProfile';
@@ -27,7 +27,7 @@ import { Input } from './style';
 export const ScreenRegisterProfile = () => {
   const { fetchCurrentUser } = useContext(AuthContext);
 
-  const [btnDisabled, setBtnDisabled] = useState(true);
+  const [formIsSubmitted, setFormIsSubmitted] = useState(false);
   const [btnLoading, setBtnLoading] = useState(false);
 
   const { push } = useRouter();
@@ -56,6 +56,12 @@ export const ScreenRegisterProfile = () => {
   );
 
   const handleSubmit = useCallback(async () => {
+    setFormIsSubmitted(true);
+
+    if (!isProfileFieldsValid(inputValues)) {
+      return false;
+    }
+
     setBtnLoading(true);
 
     const postValues: ProfileValues = {
@@ -79,20 +85,12 @@ export const ScreenRegisterProfile = () => {
     }
   }, [fetchCurrentUser, inputValues, push]);
 
-  useEffect(() => {
-    if (isProfileFieldsValid(inputValues)) {
-      return setBtnDisabled(false);
-    }
-    setBtnDisabled(true);
-  }, [inputValues]);
-
   return (
     <TemplateFlowStep
       title="CREDENCIAMENTO"
       subtitle="Preencha os campos abaixo:"
       step={1}
       handleNext={handleSubmit}
-      isBtnNextDisabled={btnDisabled}
       isBtnNextLoading={btnLoading}
       btnNextDescription={
         <>
@@ -101,7 +99,7 @@ export const ScreenRegisterProfile = () => {
       }
     >
       <Input
-        hasError={checkErrorWhenFilledWithMask(inputValues.name, isValidName)}
+        hasError={checkErrorWhenFilledWithMask(inputValues.name, formIsSubmitted, isValidName)}
         label="Nome*"
         name="name"
         onChange={handleChangeInput}
@@ -113,9 +111,15 @@ export const ScreenRegisterProfile = () => {
         errorDescription="Por favor, informe nome e sobrenome"
       />
       <Input
-        hasError={checkErrorWhenFilledWithMask(inputValues.phone, isValidPhone)}
+        hasError={checkErrorWhenFilledWithMask(inputValues.phone, formIsSubmitted, isValidPhone)}
         icon={
-          <Phone color={checkErrorWhenFilledWithMask(inputValues.phone, isValidPhone) ? 'warningRedAlert' : 'gray'} />
+          <Phone
+            color={
+              checkErrorWhenFilledWithMask(inputValues.phone, formIsSubmitted, isValidPhone)
+                ? 'warningRedAlert'
+                : 'gray'
+            }
+          />
         }
         label="Telefone*"
         name="phone"
@@ -129,10 +133,14 @@ export const ScreenRegisterProfile = () => {
         errorDescription="Por favor, digite um telefone válido"
       />
       <Input
-        hasError={checkErrorWhenFilledWithMask(inputValues.email, isValidEmail)}
+        hasError={checkErrorWhenFilledWithMask(inputValues.email, formIsSubmitted, isValidEmail)}
         icon={
           <EnvelopeSimple
-            color={checkErrorWhenFilledWithMask(inputValues.email, isValidEmail) ? 'warningRedAlert' : 'gray'}
+            color={
+              checkErrorWhenFilledWithMask(inputValues.email, formIsSubmitted, isValidEmail)
+                ? 'warningRedAlert'
+                : 'gray'
+            }
           />
         }
         label="E-mail*"
@@ -146,10 +154,12 @@ export const ScreenRegisterProfile = () => {
         errorDescription="Por favor, digite um e-mail válido"
       />
       <Input
-        hasError={checkErrorWhenFilledWithMask(inputValues.cpf, isValidCpf)}
+        hasError={checkErrorWhenFilledWithMask(inputValues.cpf, formIsSubmitted, isValidCpf)}
         icon={
           <IdentificationCard
-            color={checkErrorWhenFilledWithMask(inputValues.cpf, isValidCpf) ? 'warningRedAlert' : 'gray'}
+            color={
+              checkErrorWhenFilledWithMask(inputValues.cpf, formIsSubmitted, isValidCpf) ? 'warningRedAlert' : 'gray'
+            }
           />
         }
         label="CPF*"

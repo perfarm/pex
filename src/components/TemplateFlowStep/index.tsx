@@ -15,37 +15,34 @@ export const TemplateFlowStep: FC<Props> = ({
   className,
   handleNext,
   handleBack,
-  isBtnNextDisabled,
   btnNextDescription,
   isBtnNextLoading,
-}) => {
-  return (
-    <Root className={className}>
-      <ImgPerfarmExperience />
-      <CardContainer>
-        <StepFlow step={step} />
-        {title && (
-          <Title color="$pastureGreen" variant="$headline6">
-            {title}
-          </Title>
+}) => (
+  <Root className={className}>
+    <ImgPerfarmExperience />
+    <CardContainer>
+      <StepFlow step={step} />
+      {title && (
+        <Title color="$pastureGreen" variant="$headline6">
+          {title}
+        </Title>
+      )}
+      {subtitle && (
+        <Typography color="$gray" variant="$body4">
+          {subtitle}
+        </Typography>
+      )}
+      {children}
+      <ButtonContent>
+        {step > 1 && (
+          <ButtonBack color="primary" variant="outlined" onClick={handleBack}>
+            <CaretLeft color="pastureGreen" size={24} />
+          </ButtonBack>
         )}
-        {subtitle && (
-          <Typography color="$gray" variant="$body4">
-            {subtitle}
-          </Typography>
-        )}
-        {children}
-        <ButtonContent>
-          {step > 1 && (
-            <ButtonBack color="primary" variant="outlined" onClick={handleBack}>
-              <CaretLeft color="pastureGreen" size={24} />
-            </ButtonBack>
-          )}
-          <ButtonNext color="primary" onClick={handleNext} showLoader={isBtnNextLoading} disabled={isBtnNextDisabled}>
-            {btnNextDescription}
-          </ButtonNext>
-        </ButtonContent>
-      </CardContainer>
-    </Root>
-  );
-};
+        <ButtonNext color="primary" onClick={handleNext} showLoader={isBtnNextLoading}>
+          {btnNextDescription}
+        </ButtonNext>
+      </ButtonContent>
+    </CardContainer>
+  </Root>
+);
