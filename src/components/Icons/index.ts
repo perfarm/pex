@@ -9,6 +9,7 @@ export { Cattle } from './Cattle';
 export { ChatText } from './ChatText';
 export { Check } from './Check';
 export { Close } from './Close';
+export { DownloadSimple } from './DownloadSimple';
 export { HourglassMedium } from './HourglassMedium';
 export { Info } from './Info';
 export { PdfFile } from './PdfFile';
