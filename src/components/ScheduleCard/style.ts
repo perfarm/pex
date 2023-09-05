@@ -4,6 +4,7 @@ import { Col } from "../Grid";
 
 export const TimeCol = styled(Col, {
   alignItems: 'flex-start',
+  flex: 0,
 });
 
 export const StatusCol = styled(Col, {
