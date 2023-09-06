@@ -1,6 +1,12 @@
 {
   "name": "Perfarm Experience",
   "short_name": "Pex",
+  "display": "standalone",
+  "theme_color": "#43b874",
+  "background_color": "#43b874",
+  "start_url": "/",
+  "orientation": "portrait",
+  "scope": "/",
   "icons": [
     {
       "src": "/static/favicon/72xx72.png",
@@ -62,11 +68,5 @@
       "type": "image/png",
       "purpose": "maskable"
     }
-  ],
-  "theme_color": "#43b874",
-  "background_color": "#43b874",
-  "start_url": "/",
-  "display": "standalone",
-  "orientation": "portrait",
-  "scope": "/"
+  ]
 }

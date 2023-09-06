@@ -15,9 +15,8 @@ import {
   Subtitle,
   Title,
 } from './style';
-import { Props } from './types';
 
-export const ScreenDownload: FC<Props> = ({ onClick }) => {
+export const ScreenDownload: FC = () => {
   return (
     <Root>
       <BodyContent>
@@ -36,7 +35,7 @@ export const ScreenDownload: FC<Props> = ({ onClick }) => {
           <Description variant="$body6" weight="$medium">
             Baixe este aplicativo exclusivo do evento, que oferece uma degustação da poderosa experiência Perfarm.
           </Description>
-          <ButtonDownload color="primary" onClick={onClick}>
+          <ButtonDownload id="pwaAppInstallBtn" color="primary">
             BAIXE AGORA O APP
             <IconDownload color="white" size={24} />
           </ButtonDownload>
