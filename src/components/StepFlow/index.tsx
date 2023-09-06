@@ -21,7 +21,7 @@ const listStepsOfOrder = [
   },
 ];
 
-const RootStepFlow: FC<Props> = ({ step, stepOk }) => {
+const RootStepFlow: FC<Props> = ({ step, stepOk = false }) => {
   const renderLabel = (stepIndex: number, label: any) => {
     const current = stepIndex === step - 1;
     const active = stepIndex <= step;

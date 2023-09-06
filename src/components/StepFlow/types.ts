@@ -1,4 +1,4 @@
 export type Props = {
   step?: number;
-  stepOk: boolean;
+  stepOk?: boolean;
 };
