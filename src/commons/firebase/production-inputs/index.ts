@@ -4,7 +4,7 @@ import { ProductionInput } from './types';
 const collection = firestore.collection('production_inputs');
 
 export const find = async () => {
-  const data = await collection.get();
+  const data = await collection.orderBy('order', 'asc').get();
   return data.docs.map((doc) => ({ id: doc.id, ...doc.data() } as ProductionInput));
 };
 

@@ -24,7 +24,7 @@ export const MarkFlow = styled("div", {
   alignItems: "center",
   color: "$white",
   zIndex: 9,
-  backgroundColor: "$pastureGreen",
+  backgroundColor: "$mediumGray",
   fontWeight: "500",
   fontX: "$body4",
 });
@@ -54,6 +54,9 @@ export const Item = styled("li", {
     active: {
       true: {
         "&:before": {
+          backgroundColor: "$pastureGreen",
+        },
+        [`${MarkFlow}`]: {
           backgroundColor: "$pastureGreen",
         },
       },

@@ -5,7 +5,6 @@ import { Typography } from '~/components/Typography';
 import { styled } from '~/theme';
 
 export const CardContainer = styled(Card, {
-  marginTop: '30px',
   justifyContent: 'center',
   backgroundColor: '$white',
   padding: '30px',

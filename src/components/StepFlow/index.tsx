@@ -16,25 +16,23 @@ const listStepsOfOrder = [
   },
   {
     label: <Check color="white" size={18} />,
-    active: true,
+    active: false,
     stepIndex: 3,
   },
 ];
 
-const RootStepFlow: FC<Props> = ({ step }) => {
-  return (
-    <Root>
-      <List>
-        {listStepsOfOrder.map(({ label, stepIndex }, index) => {
-          return (
-            <Item key={`step-flow-${index}`} active={stepIndex <= step}>
-              <MarkFlow>{label}</MarkFlow>
-            </Item>
-          );
-        })}
-      </List>
-    </Root>
-  );
-};
+const RootStepFlow: FC<Props> = ({ step }) => (
+  <Root>
+    <List>
+      {listStepsOfOrder.map(({ label, stepIndex }, index) => {
+        return (
+          <Item key={`step-flow-${index}`} active={stepIndex <= step}>
+            <MarkFlow>{label}</MarkFlow>
+          </Item>
+        );
+      })}
+    </List>
+  </Root>
+);
 
 export const StepFlow = memo(RootStepFlow);
