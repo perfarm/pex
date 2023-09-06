@@ -2,11 +2,15 @@ import { Typography } from '~/components/Typography';
 import { styled } from '~/theme';
 
 export const Description = styled(Typography, {
+  color: '$mediumGray !important',
   transition: '$easeInOut02',
+  textAlign: 'center',
 });
 
 export const Title = styled(Typography, {
+  color: '$gray !important',
   transition: '$easeInOut02',
+  textAlign: 'center',
 });
 
 export const Img = styled('img', {
@@ -35,14 +39,6 @@ export const Root = styled('div', {
   cursor: 'pointer',
   flexDirection: 'column',
 
-  '&:hover': {
-    [`${ImgContent}`]: {
-      backgroundColor: '$pastureGreen',
-    },
-    [`${Description}`]: {
-      color: '$pastureGreen',
-    },
-  },
   '&:active': {
     boxShadow: '0px 1px 11px -1px rgba(73, 73, 73, 0.1), 0px 4px 24px -3px rgba(0, 0, 0, 0.2)',
     transform: 'scale(0.98)',
@@ -58,8 +54,11 @@ export const Root = styled('div', {
         [`${Img}`]: {
           filter: 'grayscale(0)',
         },
+        [`${Title}`]: {
+          color: '$pastureGreen !important',
+        },
         [`${Description}`]: {
-          color: '$pastureGreen',
+          color: '$gray !important',
         },
 
         '&:active': {
@@ -72,11 +71,11 @@ export const Root = styled('div', {
     hasError: {
       true: {
         boxShadow: '0px 1px 11px -1px rgba(243, 78, 78, 0.6), 0px 4px 24px -3px rgba(0, 0, 0, 0.12)',
-        [`${ImgContent}`]: {
-          backgroundColor: '$warningRedAlert',
-        },
         [`${Description}`]: {
-          color: '$warningRedAlert',
+          color: '$warningRedAlert !important',
+        },
+        [`${Title}`]: {
+          color: '$warningRedAlert !important',
         },
       }
     }

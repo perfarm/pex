@@ -4,7 +4,7 @@ import { Machine } from './types';
 const collection = firestore.collection('machines');
 
 export const find = async () => {
-  const data = await collection.get();
+  const data = await collection.orderBy('order', 'asc').get();
   return data.docs.map((doc) => ({ id: doc.id, ...doc.data() } as Machine));
 };
 

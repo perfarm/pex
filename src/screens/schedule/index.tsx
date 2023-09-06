@@ -3,6 +3,7 @@ import { FC, useEffect, useMemo } from 'react';
 import { Url } from 'next/dist/shared/lib/router/router';
 import { useRouter } from 'next/router';
 import { Schedule } from '~/commons/firebase/schedules/types';
+import { User } from '~/commons/firebase/users/types';
 import { Col } from '~/components/Grid';
 import { Loader } from '~/components/Loader';
 import { ScheduleCard } from '~/components/ScheduleCard';
@@ -26,13 +27,13 @@ import { Props } from './types';
 interface Action {
   disable: (schedule: Schedule) => boolean;
   text: string;
-  action: () => void;
+  action: (user: User) => void;
 }
 
 const getAction = (id: string, push: (url: Url, as?: Url) => Promise<boolean>): Action => {
   if (id === 'nPy9j3JVRikJJoHJi9NL') {
     return {
-      action: () => push('/perfarm/production-input'),
+      action: (user: User) => push(!!user.productionInput ? '/perfarm' : '/perfarm/production-input'),
       disable: (schedule: Schedule) => schedule.status === 'PENDING',
       text: 'IR PARA EXPERIÊNCIA',
     };
@@ -40,7 +41,7 @@ const getAction = (id: string, push: (url: Url, as?: Url) => Promise<boolean>): 
 
   if (id === 'JaD4fMMdfkkt7DBiHs6h') {
     return {
-      action: () => push('/perfarm/machine'),
+      action: (user: User) => push(!!user.machine ? '/perfarm' : '/perfarm/machine'),
       disable: (schedule: Schedule) => schedule.status === 'PENDING',
       text: 'IR PARA EXPERIÊNCIA',
     };
@@ -128,7 +129,7 @@ export const ScreenSchedule: FC<Props> = ({ loading, user, sheduleList, refresh,
                         schedule={schedule}
                         actionText={action?.text}
                         disableAction={action?.disable(schedule)}
-                        onAction={action?.action}
+                        onAction={action?.action ? () => action.action(user) : undefined}
                       />
                     </ScheduleTimeline>
                   );

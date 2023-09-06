@@ -1,10 +1,10 @@
 import useDidMount from 'beautiful-react-hooks/useDidMount';
 import { useRouter } from 'next/router';
-import { useCallback, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { RequestError } from '~/commons/api/RequestError';
-import { fechProductInput } from '~/commons/api/fechProductInput';
-import { saveProductInput } from '~/commons/api/saveProductInput';
-import { ProductionInput } from '~/commons/firebase/production-inputs/types';
+import { fetchMachines } from '~/commons/api/fetchMachines';
+import { saveMachine } from '~/commons/api/saveMachine';
+import { Machine as MachineDef } from '~/commons/firebase/machines/types';
 import { Check } from '~/components/Icons';
 import { Error } from '~/components/InputRoot/style';
 import { Loader } from '~/components/Loader';
@@ -14,8 +14,8 @@ import { toast } from '~/components/Toaster';
 import { useAuth } from '~/context/auth/useAuth';
 import { Description, List, Title } from './style';
 
-export const ProductInput = () => {
-  const [list, setList] = useState<ProductionInput[]>([]);
+export const Machine: FC = () => {
+  const [list, setList] = useState<MachineDef[]>([]);
   const [selected, setSelected] = useState<string>();
   const [btnLoading, setBtnLoading] = useState(false);
   const [fetchLoading, setFetchLoading] = useState(true);
@@ -25,7 +25,7 @@ export const ProductInput = () => {
   const { user, fetchCurrentUser, loading: loadingUser } = useAuth();
 
   const handleNext = useCallback(async () => {
-    if (user?.productionInput) return;
+    if (user?.machine) return;
 
     setFormIsSubmitted(true);
 
@@ -34,10 +34,10 @@ export const ProductInput = () => {
     setBtnLoading(true);
 
     try {
-      await saveProductInput(selected);
+      await saveMachine(selected);
       await fetchCurrentUser();
 
-      push('/perfarm/product-input/finish');
+      push('/perfarm/machine/finish');
     } catch (e) {
       toast.error((e as RequestError).data.message);
     } finally {
@@ -46,8 +46,8 @@ export const ProductInput = () => {
   }, [push, fetchCurrentUser, selected, user]);
 
   useDidMount(async () => {
-    if (user?.productionInput) {
-      push('/perfarm/product-input/finish');
+    if (user?.machine) {
+      push('/perfarm/machine/finish');
       return;
     }
 
@@ -56,7 +56,7 @@ export const ProductInput = () => {
     }
 
     try {
-      const response = await fechProductInput();
+      const response = await fetchMachines();
       setList(response);
     } catch (e) {
       toast.error((e as RequestError).data.message);
@@ -66,14 +66,14 @@ export const ProductInput = () => {
   });
 
   useEffect(() => {
-    if (user?.productionInput) {
-      push('/perfarm/product-input/finish');
+    if (user?.machine) {
+      push('/perfarm/machine/finish');
     }
   }, [user, push]);
 
   return (
     <TemplatePerfarm
-      step={1}
+      step={2}
       handleNext={handleNext}
       hideBackBtn
       btnNextDescription={
@@ -85,22 +85,21 @@ export const ProductInput = () => {
       isBtnNextDisabled={btnLoading}
     >
       <Title color="$pastureGreen" variant="$headline6">
-        INSUMOS
+        MAQUINÁRIOS
       </Title>
       <Description color="$gray" variant="$body4">
-        Agora que você está no controle total da sua produção, é hora de escolher sabiamente. Selecione o kit de insumo
-        com as respectivas características da sua escolha:
+        Agora é a hora de decidir com que máquinas realizará suas operações:
       </Description>
-      {fetchLoading ? (
+      {fetchLoading || loadingUser ? (
         <div style={{ marginTop: 30 }}>
-          <Loader position="static">Buscando insumos...</Loader>
+          <Loader position="static">Buscando máquinas...</Loader>
         </div>
       ) : (
         <>
           <List>
             {list.map(({ image, id, description, name }, index) => (
               <ProductInputCard
-                key={`product-input-${index}`}
+                key={`machine-${index}`}
                 onClick={() => setSelected(id)}
                 hasError={formIsSubmitted && !selected}
                 isActive={selected === id}
@@ -111,7 +110,7 @@ export const ProductInput = () => {
             ))}
           </List>
           {formIsSubmitted && !selected && (
-            <Error style={{ fontSize: 14, textAlign: 'center' }}>Selecione um insumo</Error>
+            <Error style={{ fontSize: 14, textAlign: 'center' }}>Selecione uma maquinário</Error>
           )}
         </>
       )}
