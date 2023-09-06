@@ -37,6 +37,8 @@ export const ProductInput = () => {
       await saveProductInput(selected);
       await fetchCurrentUser();
 
+      toast.success('Insumo salvo com sucesso');
+
       push('/perfarm/product-input/finish');
     } catch (e) {
       toast.error((e as RequestError).data.message);

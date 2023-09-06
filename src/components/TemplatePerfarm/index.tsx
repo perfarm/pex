@@ -17,6 +17,7 @@ export const TemplatePerfarm: FC<Props> = ({
   isBtnNextDisabled,
   btnNextDescription,
   isBtnNextLoading,
+  hideNextBtn = false,
   hideBackBtn = false,
   stepOk = false,
 }) => (
@@ -41,9 +42,11 @@ export const TemplatePerfarm: FC<Props> = ({
               <CaretLeft color="pastureGreen" size={24} />
             </ButtonBack>
           )}
-          <ButtonNext color="primary" onClick={handleNext} showLoader={isBtnNextLoading} disabled={isBtnNextDisabled}>
-            {btnNextDescription}
-          </ButtonNext>
+          {!hideNextBtn && (
+            <ButtonNext color="primary" onClick={handleNext} showLoader={isBtnNextLoading} disabled={isBtnNextDisabled}>
+              {btnNextDescription}
+            </ButtonNext>
+          )}
         </ButtonContent>
       </CardContainer>
     </Root>

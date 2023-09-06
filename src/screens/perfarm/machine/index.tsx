@@ -37,6 +37,8 @@ export const Machine: FC = () => {
       await saveMachine(selected);
       await fetchCurrentUser();
 
+      toast.success('Maquinário salvo com sucesso');
+
       push('/perfarm/machine/finish');
     } catch (e) {
       toast.error((e as RequestError).data.message);

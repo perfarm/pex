@@ -108,7 +108,7 @@ export const ScreenSchedule: FC<Props> = ({ loading, user, sheduleList, refresh,
               Fique atento aos horários para aproveitar ao máximo cada experiência do evento.
             </Subtitle>
 
-            {loading ? (
+            {loading && !sheduleList.length ? (
               <div style={{ marginTop: 30 }}>
                 <Loader position="static">Carregando programação...</Loader>
               </div>

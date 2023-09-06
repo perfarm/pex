@@ -9,6 +9,7 @@ import { Feature } from '~/commons/firebase/features/types';
 import { SocketEvent } from '~/commons/socket/events';
 import { IconRight } from '~/commons/variants/components';
 import { ImgPerfarmRafiki } from '~/components/ImgPerfarmExperience copy';
+import { Loader } from '~/components/Loader';
 import { Spinner } from '~/components/Spinner';
 import { TemplatePerfarm } from '~/components/TemplatePerfarm';
 import { toast } from '~/components/Toaster';
@@ -41,14 +42,19 @@ export const ScreenPerfarm = () => {
     }
   }, [feature, user, push]);
 
-  const handleNext = useCallback(() => {
-    if (feature.SELECT_PRODUCTION_INPUT && !user.productionInput) {
-      push('/perfarm/product-input');
-      return;
-    }
+  const handleNext = useCallback(
+    (feature: Feature) => {
+      if (!user) return;
 
-    next();
-  }, [feature, push, user, next]);
+      if (feature.SELECT_PRODUCTION_INPUT && !user.productionInput) {
+        push('/perfarm/product-input');
+        return;
+      }
+
+      next();
+    },
+    [push, user, next]
+  );
 
   useEffect(next, [feature, push, user, next]);
 
@@ -98,6 +104,7 @@ export const ScreenPerfarm = () => {
     try {
       const resp = await fetchFeature();
 
+      handleNext(resp);
       setFeature(resp);
     } catch (e) {
       toast.error((e as RequestError).message);
@@ -109,9 +116,13 @@ export const ScreenPerfarm = () => {
 
   const nextBtnText = useMemo(() => (user?.productionInput ? 'CONTINUAR' : 'COMEÇAR'), [user]);
 
+  if (!featureFectched || !user) {
+    return <Loader position="fixed">Buscando dados...</Loader>;
+  }
+
   return (
     <TemplatePerfarm
-      handleNext={handleNext}
+      handleNext={() => handleNext(feature)}
       isBtnNextDisabled={disableBtnNext || loading}
       isBtnNextLoading={loading}
       btnNextDescription={
