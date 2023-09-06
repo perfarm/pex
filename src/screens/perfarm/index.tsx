@@ -1,26 +1,127 @@
+import useDidMount from 'beautiful-react-hooks/useDidMount';
+import usePreviousValue from 'beautiful-react-hooks/usePreviousValue';
 import { useRouter } from 'next/router';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useSocketEvent } from 'socket.io-react-hook';
+import { RequestError } from '~/commons/api/RequestError';
+import { fetchFeature } from '~/commons/api/fetchFeature';
+import { Feature } from '~/commons/firebase/features/types';
+import { SocketEvent } from '~/commons/socket/events';
 import { IconRight } from '~/commons/variants/components';
 import { ImgPerfarmRafiki } from '~/components/ImgPerfarmExperience copy';
+import { Spinner } from '~/components/Spinner';
 import { TemplatePerfarm } from '~/components/TemplatePerfarm';
+import { toast } from '~/components/Toaster';
+import { useAuth } from '~/context/auth/useAuth';
+import { Message } from '~/hooks/useReleaseSocketWithStorage';
 import { Br, Description, Title } from './style';
 
 export const ScreenPerfarm = () => {
+  const [loading, setLoading] = useState(true);
+  const [featureFectched, setFeatureFectched] = useState(false);
+  const [feature, setFeature] = useState<Feature>();
+  const [disableBtnNext, setDisableBtnNext] = useState(true);
+  const { lastMessage = {} as Message } = useSocketEvent<Message>(SocketEvent.RELEASE_FEARURE);
+  const oldReleasevalue = usePreviousValue(lastMessage.feature?.SELECT_PRODUCTION_INPUT);
+
+  const { user } = useAuth();
   const { push } = useRouter();
 
-  const handleNext = useCallback(() => push('/schedule'), [push]);
+  const next = useCallback(() => {
+    if (!feature || !user) return;
 
-  const handleBack = useCallback(() => push('/register/production'), [push]);
+    if (feature.SELCET_MACHINE && !user.machine && !!user.productionInput) {
+      push('/perfarm/machine');
+      return;
+    }
+
+    if (feature.FINISH && !user.feature.FINISH && !!user.machine && !!user.productionInput) {
+      push('/perfarm/finish');
+      return;
+    }
+  }, [feature, user, push]);
+
+  const handleNext = useCallback(() => {
+    if (feature.SELECT_PRODUCTION_INPUT && !user.productionInput) {
+      push('/perfarm/product-input');
+      return;
+    }
+
+    next();
+  }, [feature, push, user, next]);
+
+  useEffect(next, [feature, push, user, next]);
+
+  useEffect(() => {
+    if (!feature || !user) {
+      setDisableBtnNext(true);
+      return;
+    }
+
+    if (feature.SELECT_PRODUCTION_INPUT) {
+      if (!!user.productionInput) {
+        if (feature.SELCET_MACHINE) {
+          if (!!user.machine) {
+            setDisableBtnNext(!feature.FINISH);
+          } else {
+            setDisableBtnNext(false);
+          }
+        } else {
+          setDisableBtnNext(true);
+        }
+      } else {
+        setDisableBtnNext(false);
+      }
+    } else {
+      setDisableBtnNext(true);
+    }
+  }, [feature, user]);
+
+  useEffect(() => {
+    if (
+      lastMessage.action === 'ENABLED' &&
+      lastMessage.feature.SELECT_PRODUCTION_INPUT &&
+      oldReleasevalue !== lastMessage.feature.SELECT_PRODUCTION_INPUT
+    ) {
+      setDisableBtnNext(false);
+    }
+    if (
+      lastMessage.action === 'DISABLED' &&
+      !lastMessage.feature.SELECT_PRODUCTION_INPUT &&
+      oldReleasevalue !== lastMessage.feature.SELECT_PRODUCTION_INPUT
+    ) {
+      setDisableBtnNext(true);
+    }
+  }, [lastMessage, oldReleasevalue]);
+
+  useDidMount(async () => {
+    try {
+      const resp = await fetchFeature();
+
+      setFeature(resp);
+    } catch (e) {
+      toast.error((e as RequestError).message);
+    } finally {
+      setLoading(false);
+      setFeatureFectched(true);
+    }
+  });
+
+  const nextBtnText = useMemo(() => (user?.productionInput ? 'CONTINUAR' : 'COMEÇAR'), [user]);
 
   return (
     <TemplatePerfarm
-      // step={3}
       handleNext={handleNext}
-      handleBack={handleBack}
+      isBtnNextDisabled={disableBtnNext || loading}
+      isBtnNextLoading={loading}
       btnNextDescription={
-        <>
-          COMEÇAR <IconRight color="white" size={24} />
-        </>
+        featureFectched && disableBtnNext ? (
+          <>{loading ? <Spinner /> : 'AGUARDANDO LIBERAÇÃO'}</>
+        ) : (
+          <>
+            {nextBtnText} <IconRight color="white" size={24} />
+          </>
+        )
       }
     >
       <ImgPerfarmRafiki />

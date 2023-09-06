@@ -3,7 +3,7 @@ import { ButtonBack, ButtonContent, ButtonNext, CardContainer, Title } from '~/c
 import { CaretLeft } from '~/components/Icons/CaretLeft';
 import { StepFlow } from '~/components/StepFlow';
 import { Typography } from '~/components/Typography';
-import { Root } from './style';
+import { Root, TwoColorsContainer } from './style';
 import { Props } from './types';
 
 export const TemplatePerfarm: FC<Props> = ({
@@ -17,31 +17,35 @@ export const TemplatePerfarm: FC<Props> = ({
   isBtnNextDisabled,
   btnNextDescription,
   isBtnNextLoading,
+  hideBackBtn = false,
+  stepOk = false,
 }) => (
-  <Root className={className}>
-    <CardContainer>
-      {step && <StepFlow step={step} />}
-      {title && (
-        <Title color="$pastureGreen" variant="$headline6">
-          {title}
-        </Title>
-      )}
-      {subtitle && (
-        <Typography color="$gray" variant="$body4">
-          {subtitle}
-        </Typography>
-      )}
-      {children}
-      <ButtonContent>
-        {step > 1 && (
-          <ButtonBack color="primary" variant="outlined" onClick={handleBack}>
-            <CaretLeft color="pastureGreen" size={24} />
-          </ButtonBack>
+  <TwoColorsContainer>
+    <Root className={className}>
+      <CardContainer>
+        {step && <StepFlow step={step} stepOk={stepOk} />}
+        {title && (
+          <Title color="$pastureGreen" variant="$headline6">
+            {title}
+          </Title>
         )}
-        <ButtonNext color="primary" onClick={handleNext} showLoader={isBtnNextLoading} disabled={isBtnNextDisabled}>
-          {btnNextDescription}
-        </ButtonNext>
-      </ButtonContent>
-    </CardContainer>
-  </Root>
+        {subtitle && (
+          <Typography color="$gray" variant="$body4">
+            {subtitle}
+          </Typography>
+        )}
+        {children}
+        <ButtonContent>
+          {step > 1 && !hideBackBtn && (
+            <ButtonBack color="primary" variant="outlined" onClick={handleBack}>
+              <CaretLeft color="pastureGreen" size={24} />
+            </ButtonBack>
+          )}
+          <ButtonNext color="primary" onClick={handleNext} showLoader={isBtnNextLoading} disabled={isBtnNextDisabled}>
+            {btnNextDescription}
+          </ButtonNext>
+        </ButtonContent>
+      </CardContainer>
+    </Root>
+  </TwoColorsContainer>
 );

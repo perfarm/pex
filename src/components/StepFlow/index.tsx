@@ -21,13 +21,15 @@ const listStepsOfOrder = [
   },
 ];
 
-const RootStepFlow: FC<Props> = ({ step }) => (
+const RootStepFlow: FC<Props> = ({ step, stepOk }) => (
   <Root>
     <List>
       {listStepsOfOrder.map(({ label, stepIndex }, index) => {
+        const active = stepIndex <= step;
+
         return (
-          <Item key={`step-flow-${index}`} active={stepIndex <= step}>
-            <MarkFlow>{label}</MarkFlow>
+          <Item key={`step-flow-${index}`} active={active}>
+            <MarkFlow>{active && stepOk ? <Check color="white" size={18} /> : label}</MarkFlow>
           </Item>
         );
       })}

@@ -10,4 +10,6 @@ export interface Props extends PropsWithChildren {
   isBtnNextDisabled?: boolean;
   isBtnNextLoading?: boolean;
   btnNextDescription: string | JSX.Element;
+  hideBackBtn?: boolean;
+  stepOk?: boolean;
 }

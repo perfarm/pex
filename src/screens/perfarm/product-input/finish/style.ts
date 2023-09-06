@@ -7,12 +7,13 @@ export const Title = styled(Typography, {
 
 export const Br = styled('br');
 
+export const Image = styled('img', {
+  maxWidth: '100%',
+  margin: '30px auto',
+});
+
 export const Description = styled(Typography, {
   textAlign: 'center',
   marginTop: '20px',
-});
-
-export const List = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
+  padding: '0 10px',
 });

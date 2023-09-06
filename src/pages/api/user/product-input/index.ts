@@ -8,7 +8,7 @@ import { findById } from '~/commons/firebase/production-inputs';
 import { saveProductionInput } from '~/commons/firebase/users';
 
 const save = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { productionInputId } = req.body;
+  const { productInputId } = req.body;
 
   try {
     const feature = await find();
@@ -18,11 +18,11 @@ const save = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     const user = await getUserByRequest(req);
-    const productionInput = await findById(productionInputId);
+    const productInput = await findById(productInputId);
 
-    await saveProductionInput(user.id, productionInput);
+    await saveProductionInput(user.id, productInput);
 
-    res.status(HttpStatusCode.Ok).json({ productionInput });
+    res.status(HttpStatusCode.Ok).json(productInput);
   } catch (e) {
     showReqErrorLog('SAVE PRODUCTION INPUT ERROR', e, req);
 
