@@ -23,7 +23,7 @@ const RootScheduleTimeline: FC<Props> = ({ status, children, zIndex, position, t
         <IconContent>{iconType}</IconContent>
         {position !== total - 1 && <LineDown status={status} />}
       </IconSpace>
-      <div style={{ paddingTop: 15, flex: 1 }}>{children}</div>
+      <div style={{ paddingTop: 15, flex: 1, width: 200 }}>{children}</div>
     </Root>
   );
 };

@@ -16,7 +16,7 @@ export const BottomTab: FC<Props> = () => {
   const scheduleTabIsActive = asPath.startsWith('/schedule') ? 'pastureGreen' : 'mediumGray';
   const perfarmTabIsActive = asPath.startsWith('/perfarm') ? 'pastureGreen' : 'mediumGray';
   const seedzFarmTabIsActive = asPath.startsWith('/seedz-farm') ? 'pastureGreen' : 'mediumGray';
-  const farmerInsightsTabIsActive = asPath.startsWith('/farmer-insights') ? 'pastureGreen' : 'mediumGray';
+  const farmerInsightsTabIsActive = asPath.startsWith('/farm-insights') ? 'pastureGreen' : 'mediumGray';
 
   useDidMount(() => console.log('BOTTOM TAB MOUNT'));
 
@@ -30,7 +30,7 @@ export const BottomTab: FC<Props> = () => {
             <IconContainer>
               <Schedule color={scheduleTabIsActive} />
             </IconContainer>
-            <Typography color={`$${scheduleTabIsActive}`}>Programação</Typography>
+            <Typography color={`$${scheduleTabIsActive}`}>Evento</Typography>
           </Link>
         </Tab>
         <Tab>
@@ -50,7 +50,7 @@ export const BottomTab: FC<Props> = () => {
           </Link>
         </Tab>
         <Tab>
-          <Link href="/farmer-insights">
+          <Link href="/farm-insights">
             <IconContainer>
               <Insights color={farmerInsightsTabIsActive} />
             </IconContainer>

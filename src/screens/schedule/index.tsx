@@ -54,6 +54,14 @@ const getAction = (id: string, push: (url: Url, as?: Url) => Promise<boolean>): 
       text: 'CONHECER SEEDZ FARM',
     };
   }
+
+  if (id === 'otJfSrds8444q7NGznuT') {
+    return {
+      action: () => push('/farm-insights'),
+      disable: () => false,
+      text: 'CONHECER FARM INSIGHTS',
+    };
+  }
 };
 
 export const ScreenSchedule: FC<Props> = ({ loading, user, sheduleList, refresh, refreshLoading }) => {
