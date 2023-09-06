@@ -117,7 +117,7 @@ export const Schedule: FC = () => {
             </Cell>
           </Column>
 
-          <Column width={300}>
+          <Column width={350}>
             <HeaderCell style={compactStyle}>
               <Typography color="$gray" variant="$body6" weight="$bold">
                 Status
