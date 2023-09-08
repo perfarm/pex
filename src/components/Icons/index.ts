@@ -4,6 +4,7 @@ export { ArrowClockwise } from './ArrowClockwise';
 export { ArrowDown } from './ArrowDown';
 export { ArrowSquareOut } from './ArrowSquareOut';
 export { ArrowUp } from './ArrowUp';
+export { CaretLeft } from './CaretLeft';
 export { CaretRight } from './CaretRight';
 export { Cattle } from './Cattle';
 export { ChatText } from './ChatText';

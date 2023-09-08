@@ -8,7 +8,7 @@ import { fetchFeature } from '~/commons/api/fetchFeature';
 import { Feature } from '~/commons/firebase/features/types';
 import { SocketEvent } from '~/commons/socket/events';
 import { IconRight } from '~/commons/variants/components';
-import { ImgPerfarmRafiki } from '~/components/ImgPerfarmExperience copy';
+import { ImgPerfarmRafiki } from '~/components/ImgPerfarmRafiki';
 import { Loader } from '~/components/Loader';
 import { Spinner } from '~/components/Spinner';
 import { TemplatePerfarm } from '~/components/TemplatePerfarm';
