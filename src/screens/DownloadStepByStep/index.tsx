@@ -1,22 +1,9 @@
 import { FC, useCallback } from 'react';
+import { Container, Strong } from '~/commons/variants/components';
+import { FooterRealizationPartners } from '~/components/FooterRealizationPartners';
 import { CaretLeft, CaretRight } from '~/components/Icons';
 import { ImgPerfarmExperienceLine } from '~/components/ImgPerfarmExperienceLine';
-import { ImgRealizationPartners } from '~/components/ImgRealizationPartners';
-import { Typography } from '~/components/Typography';
-import {
-  BodyContent,
-  Br,
-  ButtonBack,
-  ButtonContent,
-  ButtonNext,
-  Container,
-  Description,
-  FooterContent,
-  Img,
-  Root,
-  Strong,
-  Title,
-} from './style';
+import { BodyContent, ButtonBack, ButtonContent, ButtonNext, Description, Img, Root, Title } from './style';
 
 export const ScreenDownloadStepByStep: FC = () => {
   const handleBack = useCallback(() => {}, []);
@@ -53,15 +40,7 @@ export const ScreenDownloadStepByStep: FC = () => {
           </ButtonContent>
         </Container>
       </BodyContent>
-      <FooterContent>
-        <Container>
-          <Typography color="$white" variant="$body6" weight="$medium">
-            Realização
-          </Typography>
-          <Br />
-          <ImgRealizationPartners />
-        </Container>
-      </FooterContent>
+      <FooterRealizationPartners />
     </Root>
   );
 };

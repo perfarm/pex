@@ -44,3 +44,12 @@ export const ButtonNext = styled(Button, {
 export const IconRight = styled(CaretRight, {
   marginLeft: '10px',
 });
+
+export const Br = styled('br');
+
+export const Strong = styled('strong');
+
+export const Container = styled('div', {
+  maxWidth: '$minScreenWidth',
+  margin: 'auto',
+});

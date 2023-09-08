@@ -17,14 +17,6 @@ export const Img = styled('img', {
 export const BodyContent = styled('div', {
   padding: '30px',
 });
-export const FooterContent = styled('div', {
-  padding: '30px 30px 80px 30px',
-  backgroundColor: '$pastureGreen',
-});
-export const Container = styled('div', {
-  maxWidth: '$minScreenWidth',
-  margin: 'auto',
-});
 
 export const Title = styled(Typography, {
   textAlign: 'center',
@@ -39,8 +31,6 @@ export const Description = styled(Subtitle, {
   margin: '20px auto',
   maxWidth: '250px',
 });
-
-export const Br = styled('br');
 
 export const ButtonDownload = styled(Button, {
   display: 'flex',

@@ -1,20 +1,8 @@
 import { FC } from 'react';
+import { Container } from '~/commons/variants/components';
+import { FooterRealizationPartners } from '~/components/FooterRealizationPartners';
 import { ImgPerfarmExperienceLine } from '~/components/ImgPerfarmExperienceLine';
-import { ImgRealizationPartners } from '~/components/ImgRealizationPartners';
-import { Typography } from '~/components/Typography';
-import {
-  BodyContent,
-  Br,
-  ButtonDownload,
-  Container,
-  Description,
-  FooterContent,
-  IconDownload,
-  Img,
-  Root,
-  Subtitle,
-  Title,
-} from './style';
+import { BodyContent, ButtonDownload, Description, IconDownload, Img, Root, Subtitle, Title } from './style';
 
 export const ScreenDownload: FC = () => {
   return (
@@ -42,15 +30,7 @@ export const ScreenDownload: FC = () => {
           </ButtonDownload>
         </Container>
       </BodyContent>
-      <FooterContent>
-        <Container>
-          <Typography color="$white" variant="$body6" weight="$medium">
-            Realização
-          </Typography>
-          <Br />
-          <ImgRealizationPartners />
-        </Container>
-      </FooterContent>
+      <FooterRealizationPartners />
     </Root>
   );
 };
