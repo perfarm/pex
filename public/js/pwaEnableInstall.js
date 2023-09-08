@@ -1,6 +1,14 @@
 let deferredPrompt = null;
 
-window.addEventListener('beforeinstallprompt', (e) => (deferredPrompt = e));
+window.addEventListener('beforeinstallprompt', (e) => {
+  deferredPrompt = e;
+});
+
+window.addEventListener('appinstalled', (e) => {
+  if (e.open) {
+    e.open();
+  }
+});
 
 const showModalInstall = async () => {
   if (deferredPrompt !== null) {
