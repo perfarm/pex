@@ -17,6 +17,7 @@ export const TemplateFlowStep: FC<Props> = ({
   handleBack,
   btnNextDescription,
   isBtnNextLoading,
+  hideBackBtn = false,
 }) => (
   <Root className={className}>
     <ImgPerfarmExperience />
@@ -34,7 +35,7 @@ export const TemplateFlowStep: FC<Props> = ({
       )}
       {children}
       <ButtonContent>
-        {step > 1 && (
+        {step > 1 && !hideBackBtn && (
           <ButtonBack color="primary" variant="outlined" onClick={handleBack} disabled={isBtnNextLoading}>
             <CaretLeft color="pastureGreen" size={24} />
           </ButtonBack>

@@ -5,6 +5,15 @@ import { styled } from '~/theme';
 
 export const Root = styled('div', {});
 
+export const Img = styled('img', {
+  marginTop: 15,
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  display: 'block',
+  width: 250,
+  maxWidth: '100%',
+});
+
 export const BodyContent = styled('div', {
   padding: '30px',
 });

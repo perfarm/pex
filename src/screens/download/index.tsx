@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { ImgMobileScreenMachine } from '~/components/ImgMobileScreenMachine';
 import { ImgPerfarmExperienceLine } from '~/components/ImgPerfarmExperienceLine';
 import { ImgRealizationPartners } from '~/components/ImgRealizationPartners';
 import { Typography } from '~/components/Typography';
@@ -11,6 +10,7 @@ import {
   Description,
   FooterContent,
   IconDownload,
+  Img,
   Root,
   Subtitle,
   Title,
@@ -28,7 +28,8 @@ export const ScreenDownload: FC = () => {
           <Subtitle color="$pastureGreen" variant="$body6" weight="$medium">
             ESPAÇO RIBEIRÃO PRETO - SÃO PAULO
           </Subtitle>
-          <ImgMobileScreenMachine />
+          {/* <ImgMobileScreenMachine /> */}
+          <Img src="/static/imgs/download.png" alt="phone" />
           <Title color="$pastureGreen" variant="$body2" weight="$bold">
             EXPERIMENTE O FUTURO DA GESTÃO AGRÍCOLA EM APENAS ALGUNS PASSOS SIMPLES!
           </Title>

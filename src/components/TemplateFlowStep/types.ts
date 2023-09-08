@@ -5,6 +5,7 @@ export interface Props extends PropsWithChildren {
   subtitle?: string;
   title?: string;
   step: number;
+  hideBackBtn?: boolean;
   handleBack?: () => void;
   handleNext: () => void;
   isBtnNextLoading?: boolean;

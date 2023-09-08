@@ -15,6 +15,7 @@ export const ScreenRegisterCompleted = () => {
   return (
     <TemplateFlowStep
       step={3}
+      hideBackBtn
       handleNext={handleNext}
       handleBack={handleBack}
       btnNextDescription={
