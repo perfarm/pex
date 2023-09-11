@@ -15,7 +15,7 @@ export const ScreenDownloadStepFour: FC = () => (
           INSTALAÇÃO DO APP
         </Title>
 
-        <ImageResponsive src="/imgs/banners/iphone-step-4.png" alt="Landscape picture" width={601} height={702} />
+        <ImageResponsive src="/static/imgs/iphone-step-4.png" alt="Landscape picture" width={601} height={702} />
 
         <Title color="$pastureGreen" variant="$body2" weight="$bold">
           4º PASSO

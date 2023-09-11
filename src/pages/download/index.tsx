@@ -1,5 +1,5 @@
-import { ScreenDownload } from '~/screens/download';
-import { NextPageWithLayout } from '../_app';
+import { NextPageWithLayout } from '~/pages/_app';
+import { ScreenDownload } from '~/screens/Download';
 
 const Download: NextPageWithLayout = () => <ScreenDownload />;
 

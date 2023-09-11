@@ -16,8 +16,7 @@ export const ScreenDownload: FC = () => {
           <Subtitle color="$pastureGreen" variant="$body6" weight="$medium">
             ESPAÇO RIBEIRÃO PRETO - SÃO PAULO
           </Subtitle>
-          {/* <ImgMobileScreenMachine /> */}
-          <Img src="/static/imgs/download.png" alt="phone" />
+          <Img src="/static/imgs/download.png" alt="phone" width={574} height={662} />
           <Title color="$pastureGreen" variant="$body2" weight="$bold">
             EXPERIMENTE O FUTURO DA GESTÃO AGRÍCOLA EM APENAS ALGUNS PASSOS SIMPLES!
           </Title>
