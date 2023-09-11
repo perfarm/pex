@@ -39,6 +39,11 @@ export const ButtonDownload = styled(Button, {
   justifyContent: 'center',
   margin: '0 auto 20px auto',
 });
+
 export const IconDownload = styled(DownloadSimple, {
   marginLeft: '10px',
+});
+
+export const CancelButton = styled(Button, {
+  marginRight: 15,
 });

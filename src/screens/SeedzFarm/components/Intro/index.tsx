@@ -20,7 +20,7 @@ export const Intro: FC = () => (
           nosso social, além de muitos outros recursos disponíveis. Veja abaixo uma amostra que preparamos para você.
         </Typography>
       </div>
-      <a href="https://atomic-alternate.app.link" target="_blank" style={{ textDecoration: 'none' }}>
+      <a href={process.env.NEXT_PUBLIC_SEEDZ_FARM_URL} target="_blank" style={{ textDecoration: 'none' }}>
         <Button size="sm" color="primary" fullWidth>
           Baixar Agora
           <div style={{ display: 'inline-block', marginLeft: 10 }}>

@@ -5,9 +5,8 @@ window.addEventListener('beforeinstallprompt', (e) => {
 });
 
 window.addEventListener('appinstalled', (e) => {
-  if (e.open) {
-    e.open();
-  }
+  const event = new Event("pwainstalled");
+  window.dispatchEvent(event);
 });
 
 const showModalInstall = async () => {
