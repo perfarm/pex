@@ -16,10 +16,11 @@ export const globalStyles = globalCss({
     fontFamily: '$montserrat',
     margin: 0,
     maxWidth: '100%',
-    minHeight: '100%',
+    minHeight: '100vh',
     minWidth: '$minScreenWidth',
     wordBreak: 'normal',
     wordWrap: 'break-word',
+    position: 'relative',
   },
 
   'button, div,a': {
