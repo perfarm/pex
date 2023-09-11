@@ -30,7 +30,7 @@ export const ScreenDownloadStepOne: FC = () => {
             1º PASSO
           </Title>
           <Description variant="$body5" weight="$medium">
-            No seu navegador Safari, clique em <Strong>“Downloads”</Strong>, indicado pela seta.
+            No seu navegador <Strong>Safari</Strong>, clique em <Strong>“Downloads”</Strong>, indicado pela seta.
           </Description>
 
           <ButtonsFooter onClickNext={handleNext} hideBackBtn>
