@@ -1,6 +1,6 @@
 import { NextPageWithLayout } from '~/pages/_app';
-import { ScreenDownloadStepOne } from '~/screens/DownloadSteps/DownloadStepOne';
+import { ScreenDownloadStepTwo } from '~/screens/DownloadSteps/DownloadStepTwo';
 
-const StepByStepTwo: NextPageWithLayout = () => <ScreenDownloadStepOne />;
+const StepByStepTwo: NextPageWithLayout = () => <ScreenDownloadStepTwo />;
 
 export default StepByStepTwo;
