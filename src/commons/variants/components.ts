@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Button } from '~/components/Button';
 import { Card } from '~/components/Card';
 import { CaretRight } from '~/components/Icons';
@@ -52,4 +53,10 @@ export const Strong = styled('strong');
 export const Container = styled('div', {
   maxWidth: '$minScreenWidth',
   margin: 'auto',
+});
+
+export const ImageResponsive = styled(Image, {
+  width: '100%',
+  height: 'auto',
+  objectFit: 'contain',
 });
