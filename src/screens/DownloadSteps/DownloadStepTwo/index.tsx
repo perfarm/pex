@@ -7,11 +7,15 @@ import { CaretRight } from '~/components/Icons';
 import { ImgPerfarmExperienceLine } from '~/components/ImgPerfarmExperienceLine';
 import { BodyContent, Description, Root, Title } from './style';
 
-export const ScreenDownloadStepOne: FC = () => {
+export const ScreenDownloadStepTwo: FC = () => {
   const { push } = useRouter();
 
+  const handleBack = useCallback(() => {
+    push('/download/step-by-step/1');
+  }, [push]);
+
   const handleNext = useCallback(() => {
-    push('/download/step-by-step/2');
+    push('/download/step-by-step/3');
   }, [push]);
 
   return (
@@ -24,16 +28,16 @@ export const ScreenDownloadStepOne: FC = () => {
             INSTALAÇÃO DO APP
           </Title>
 
-          <ImageResponsive src="/static/imgs/iphone-step-1.png" alt="Landscape picture" width={601} height={702} />
+          <ImageResponsive src="/static/imgs/iphone-step-2.png" alt="Landscape picture" width={601} height={702} />
 
           <Title color="$pastureGreen" variant="$body2" weight="$bold">
-            1º PASSO
+            2º PASSO
           </Title>
           <Description variant="$body5" weight="$medium">
-            No seu navegador <Strong>Safari</Strong>, clique em <Strong>“Downloads”</Strong>, indicado pela seta.
+            Clique em <Strong>“Adicionar à Tela de Início”</Strong>, indicado pela seta.
           </Description>
 
-          <ButtonsFooter onClickNext={handleNext} hideBackBtn>
+          <ButtonsFooter onClickNext={handleNext} onClickBack={handleBack}>
             AVANÇAR
             <CaretRight color="pastureGreen" size={24} />
           </ButtonsFooter>
