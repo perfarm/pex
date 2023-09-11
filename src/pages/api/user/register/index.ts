@@ -1,5 +1,6 @@
 import { HttpStatusCode } from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { showReqErrorLog } from '~/commons/backend/showReqErrorLog';
 import { create, findByCPF } from '~/commons/firebase/users';
 import { generate } from '~/commons/jwt';
 
@@ -10,7 +11,7 @@ type Body = {
   phone: string;
 };
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+async function register(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     res.status(HttpStatusCode.MethodNotAllowed).json({ message: 'Método não disponível' });
     return;
@@ -31,5 +32,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     resp.message = 'Já existe um usuário com este CPF';
   }
 
-  res.status(HttpStatusCode.Ok).json(resp);
+  return resp;
+}
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method !== 'POST') {
+    res.status(HttpStatusCode.MethodNotAllowed).json({ message: 'Método não disponível' });
+    return;
+  }
+
+  try {
+    const resp = await register(req, res);
+    res.status(HttpStatusCode.Ok).json(resp);
+  } catch (e) {
+    showReqErrorLog('REGISTER ERROR', e, req);
+    res.status(HttpStatusCode.InternalServerError).json({ message: 'Erro ao salvar seus dados, chame um admin para lhe ajudar' });
+  }
 }
