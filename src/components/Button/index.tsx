@@ -1,8 +1,8 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import { Spinner } from "../Spinner";
-import { Button as ButtonStyled } from "./style";
-import { Props } from "./types";
+import { Spinner } from '../Spinner';
+import { Button as ButtonStyled } from './style';
+import { Props } from './types';
 
 export const Button: FC<Props> = ({
   children,

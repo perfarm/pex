@@ -1,9 +1,9 @@
-import { FC, useState } from 'react';
+import { FC, Fragment, useState } from 'react';
 
 import { Modal } from 'antd';
 
 import useDidMount from 'beautiful-react-hooks/useDidMount';
-import { Container } from '~/commons/variants/components';
+import { Container, LinkNavigation } from '~/commons/variants/components';
 import { Button } from '~/components/Button';
 import { FooterRealizationPartners } from '~/components/FooterRealizationPartners';
 import { ImgPerfarmExperienceLine } from '~/components/ImgPerfarmExperienceLine';
@@ -11,6 +11,7 @@ import { Typography } from '~/components/Typography';
 import {
   BodyContent,
   ButtonDownload,
+  ButtonGoUrl,
   CancelButton,
   Description,
   IconDownload,
@@ -19,8 +20,9 @@ import {
   Subtitle,
   Title,
 } from './style';
+import { Props } from './types';
 
-export const ScreenDownload: FC = () => {
+export const ScreenDownload: FC<Props> = ({ isDownloadable }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -49,16 +51,16 @@ export const ScreenDownload: FC = () => {
         title="App instalado com sucesso"
         open={isModalOpen}
         footer={(_, { OkBtn, CancelBtn }) => (
-          <>
+          <Fragment>
             <CancelButton color="gray" size="xsm" variant="outlined" onClick={handleCancel}>
               Fechar
             </CancelButton>
-            <a href={`${process.env.NEXT_PUBLIC_URL}/register/profile`} target="_blank">
+            <LinkNavigation href={`${process.env.NEXT_PUBLIC_URL}/register/profile`} target="_blank">
               <Button color="primary" size="xsm">
                 Abrir app
               </Button>
-            </a>
-          </>
+            </LinkNavigation>
+          </Fragment>
         )}
       >
         <Typography>
@@ -83,10 +85,18 @@ export const ScreenDownload: FC = () => {
           <Description variant="$body6" weight="$medium">
             Baixe este aplicativo exclusivo do evento, que oferece uma degustação da poderosa experiência Perfarm.
           </Description>
-          <ButtonDownload id="pwaAppInstallBtn" color="primary" showLoader={loading} disabled={loading}>
-            BAIXE AGORA O APP
-            <IconDownload color="white" size={24} />
-          </ButtonDownload>
+          {isDownloadable ? (
+            <ButtonDownload id="pwaAppInstallBtn" color="primary" showLoader={loading} disabled={loading}>
+              BAIXE AGORA O APP
+              <IconDownload color="white" size={24} />
+            </ButtonDownload>
+          ) : (
+            <LinkNavigation href={`${process.env.NEXT_PUBLIC_URL}/register/profile`} target="_blank">
+              <ButtonGoUrl color="primary" variant="contained">
+                Abrir APP
+              </ButtonGoUrl>
+            </LinkNavigation>
+          )}
         </Container>
       </BodyContent>
       <FooterRealizationPartners />

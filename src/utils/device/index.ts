@@ -16,3 +16,21 @@ export const identifyDevice = () => {
 
   return 'other';
 };
+
+export const identifyBrowser = () => {
+  if (typeof window === undefined) {
+    return;
+  }
+
+  const userAgent = window.navigator.userAgent.toLowerCase();
+
+  if (userAgent.includes('safari') && !userAgent.includes('chrome')) {
+    return 'safari';
+  }
+
+  if (userAgent.includes('chrome')) {
+    return 'chrome';
+  }
+
+  return 'other';
+};

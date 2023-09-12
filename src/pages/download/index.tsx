@@ -1,18 +1,33 @@
+import useDidMount from 'beautiful-react-hooks/useDidMount';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import { NextPageWithLayout } from '~/pages/_app';
 import { ScreenDownload } from '~/screens/Download';
-import { identifyDevice } from '~/utils/device';
+import { identifyBrowser, identifyDevice } from '~/utils/device';
 
 const Download: NextPageWithLayout = () => {
+  const [isDownloadable, setIsDownloadable] = useState(false);
+
   const { push } = useRouter();
 
-  const deviceType = identifyDevice();
+  useDidMount(() => {
+    const deviceType = identifyDevice();
+    const browserType = identifyBrowser();
 
-  if (deviceType === 'ios') {
-    push('/download/step-by-step/1');
-  }
+    if (deviceType === 'ios' || browserType === 'safari') {
+      push('/download/step-by-step/1');
+      return;
+    }
 
-  return <ScreenDownload />;
+    if (browserType === 'chrome') {
+      setIsDownloadable(true);
+      return;
+    }
+
+    setIsDownloadable(false);
+  });
+
+  return <ScreenDownload isDownloadable={isDownloadable} />;
 };
 
 export default Download;

@@ -32,13 +32,17 @@ export const Description = styled(Subtitle, {
   maxWidth: '250px',
 });
 
-export const ButtonDownload = styled(Button, {
+const ButtonCustom = styled(Button, {
   display: 'flex',
   alignItems: 'center',
   flex: 1,
   justifyContent: 'center',
-  margin: '0 auto 20px auto',
+  margin: '30px auto 20px auto',
+  width: '100%',
 });
+
+export const ButtonDownload = styled(ButtonCustom);
+export const ButtonGoUrl = styled(ButtonCustom);
 
 export const IconDownload = styled(DownloadSimple, {
   marginLeft: '10px',
