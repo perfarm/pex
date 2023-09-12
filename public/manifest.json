@@ -9,7 +9,7 @@
   "scope": "/",
   "icons": [
     {
-      "src": "/static/favicon/72xx72.png",
+      "src": "/static/favicon/72x72.png",
       "sizes": "72xx72",
       "type": "image/png",
       "purpose": "any"

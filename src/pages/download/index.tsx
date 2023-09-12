@@ -6,13 +6,11 @@ import { identifyDevice } from '~/utils/device';
 const Download: NextPageWithLayout = () => {
   const { push } = useRouter();
 
-  // useDidMount(() => {
   const deviceType = identifyDevice();
 
   if (deviceType === 'ios') {
     push('/download/step-by-step/1');
   }
-  // });
 
   return <ScreenDownload />;
 };

@@ -34,7 +34,7 @@ export default function Document() {
         <meta content="https://www.perfarm.com/static/favicon/favicon-256.png" property="og:image" />
 
         <link color="#43b874" href="/static/favicon/favicon-mask.svg" rel="mask-icon" />
-        <link href="/static/favicon/72xx72.png" rel="icon" sizes="72x72" type="image/png" />
+        <link href="/static/favicon/72x72.png" rel="icon" sizes="72x72" type="image/png" />
         <link href="/static/favicon/96x96.png" rel="icon" sizes="96x96" type="image/png" />
         <link href="/static/favicon/120x120.png" rel="icon" sizes="120x120" type="image/png" />
         <link href="/static/favicon/128x128.png" rel="icon" sizes="128x128" type="image/png" />
