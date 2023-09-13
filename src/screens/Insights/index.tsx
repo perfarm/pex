@@ -22,8 +22,8 @@ export const Insights: FC = () => {
   return (
     <Page>
       <TwoColorsContainer>
-        <Card style={{ padding: 15, marginBottom: 15 }} onClick={() => setShow(!show)}>
-          <Row>
+        <Card style={{ marginBottom: 15, overflow: 'hidden' }} onClick={() => setShow(!show)}>
+          <Row style={{ padding: 15 }}>
             <Col style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
               <Typography color="$pastureGreen" variant="$body5" weight="$bold">
                 QUEM É A SEEDZ
@@ -37,16 +37,19 @@ export const Insights: FC = () => {
             </Col>
           </Row>
 
-          <CollapseDecription isActive={show}>
-            <CollapseText color="$gray" variant="$body5">
-              A Seedz é uma empresa nascida da união de pessoas inspiradas pelo Agronegócio e que acredita em inovação.
-              <br />
-              <br />
-              Fidelidade é uma expressão que também define o nosso negócio. Empresas, Produtores Rurais e Famílias:
-              todos juntos, semeando um futuro transformador. Somos uma organização que através do programa de coalizão,
-              valoriza o produtor rural e permite ao participante optar por uma ampla variedade de recompensas, tanto de
-              produtos, quanto de serviços.
-            </CollapseText>
+          <CollapseDecription isActive={show} style={{ borderTop: '1px solid #EEE' }}>
+            <div style={{ padding: 15 }}>
+              <CollapseText color="$gray" variant="$body5">
+                A Seedz é uma empresa nascida da união de pessoas inspiradas pelo Agronegócio e que acredita em
+                inovação.
+                <br />
+                <br />
+                Fidelidade é uma expressão que também define o nosso negócio. Empresas, Produtores Rurais e Famílias:
+                todos juntos, semeando um futuro transformador. Somos uma organização que através do programa de
+                coalizão, valoriza o produtor rural e permite ao participante optar por uma ampla variedade de
+                recompensas, tanto de produtos, quanto de serviços.
+              </CollapseText>
+            </div>
           </CollapseDecription>
         </Card>
 

@@ -89,7 +89,7 @@ export const ProductInput = () => {
       <Title color="$pastureGreen" variant="$headline6">
         INSUMOS
       </Title>
-      <Description color="$gray" variant="$body4">
+      <Description color="$gray" variant="$body5">
         Agora que você está no controle total da sua produção, é hora de escolher sabiamente. Selecione o kit de insumo
         com as respectivas características da sua escolha:
       </Description>

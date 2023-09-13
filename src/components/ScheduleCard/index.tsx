@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { FC, useMemo } from 'react';
+import { FC, Fragment, useMemo } from 'react';
 
 import { Card } from '~/components/Card';
 import { Row } from '~/components/Grid';
@@ -24,7 +24,7 @@ export const ScheduleCard: FC<Props> = ({ actionText, onAction, schedule, disabl
     if (schedule.status === 'FINALIZED') return '$mediumGray';
     if (schedule.status === 'IN_PROGRESS') return '$pastureGreen';
 
-    return '$resourceYellow';
+    return '$perfarmYellow';
   }, [schedule.status]);
 
   const buttonColor = useMemo<ButtonColor>(() => {
@@ -42,55 +42,66 @@ export const ScheduleCard: FC<Props> = ({ actionText, onAction, schedule, disabl
   }, [schedule.time]);
 
   return (
-    <Card style={{ padding: 15 }} id={`schedule-${schedule.id}`}>
-      <Row>
-        <TimeCol>
-          <Typography color={timeColor} variant="$body4" weight="$bold">
-            {time}
-          </Typography>
-        </TimeCol>
-        <StatusCol>
-          <Typography color={timeColor} variant="$body4" weight="$bold">
-            {translate(schedule.status)}
-          </Typography>
-        </StatusCol>
-      </Row>
-
-      <div style={{ marginTop: 5 }}>
-        <Typography color={titleColor} variant="$body4" weight="$bold">
-          {schedule.title}
-        </Typography>
-      </div>
-
-      {schedule.description && (
-        <div style={{ marginTop: 5 }}>
-          <Typography color={titleColor} variant="$body6">
-            {schedule.description}
+    <Fragment>
+      {schedule.section && (
+        <div style={{ marginTop: 10, marginBottom: 15 }}>
+          <Typography color="$gray" variant="$body4" weight="$bold">
+            {schedule.section}
           </Typography>
         </div>
       )}
 
-      {schedule.hasAction && (
-        <div style={{ marginTop: 5 }}>
-          <ActionButton onClick={onAction} color={buttonColor} variant="outlined" size="sm" disabled={disableAction}>
-            <span style={{ marginRight: 5 }}>{actionText}</span>
-            <CaretRight color={timeColor.replace('$', '') as any} />
-          </ActionButton>
-        </div>
-      )}
-
-      {schedule.speaker && (
-        <Row style={{ marginTop: 5 }}>
-          <SpeakerIconCol>
-            <User color={timeColor.replace('$', '') as any} />
-          </SpeakerIconCol>
-          <SpeakerCol>
-            <Typography color={titleColor} variant="$body6">
-              {schedule.speaker}
+      <Card style={{ padding: 15 }} id={`schedule-${schedule.id}`}>
+        <Row>
+          <TimeCol>
+            <Typography color={timeColor} variant="$body4" weight="$bold">
+              {time}
             </Typography>
-          </SpeakerCol>
+          </TimeCol>
+
+          <StatusCol>
+            <Typography color={timeColor} variant="$body4" weight="$bold">
+              {translate(schedule.status)}
+            </Typography>
+          </StatusCol>
         </Row>
-      )}
-    </Card>
+
+        <div style={{ marginTop: 5 }}>
+          <Typography color={titleColor} variant="$body4" weight="$bold">
+            {schedule.title}
+          </Typography>
+        </div>
+
+        {schedule.description && (
+          <div style={{ marginTop: 5 }}>
+            <Typography color={titleColor} variant="$body6">
+              {schedule.description}
+            </Typography>
+          </div>
+        )}
+
+        {schedule.hasAction && (
+          <div style={{ marginTop: 5 }}>
+            <ActionButton onClick={onAction} color={buttonColor} variant="outlined" size="sm" disabled={disableAction}>
+              <span style={{ marginRight: 5 }}>{actionText}</span>
+              <CaretRight color={timeColor.replace('$', '') as any} />
+            </ActionButton>
+          </div>
+        )}
+
+        {schedule.speaker && (
+          <Row style={{ marginTop: 5 }}>
+            <SpeakerIconCol>
+              <User color={timeColor.replace('$', '') as any} size={20} />
+            </SpeakerIconCol>
+            <SpeakerCol>
+              <Typography color={titleColor} variant="$body6">
+                {schedule.speaker}
+              </Typography>
+            </SpeakerCol>
+          </Row>
+        )}
+      </Card>
+    </Fragment>
   );
 };

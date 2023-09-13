@@ -11,12 +11,7 @@ export const Quotation: FC = () => (
   <Card style={{ padding: 15, width: '100%' }}>
     <Row>
       <ImageCol>
-        <Image
-          alt="Soja"
-          src="https://atomic-public.s3-sa-east-1.amazonaws.com/auth/cultivation/soybean.png"
-          height={40}
-          width={40}
-        />
+        <Image alt="Soja" src="/static/imgs/icons/soja.png" height={40} width={40} />
       </ImageCol>
       <CenterCol>
         <div>
@@ -40,7 +35,7 @@ export const Quotation: FC = () => (
         </div>
       </CenterCol>
       <DirCol>
-        <div>
+        <div style={{ textAlign: 'right' }}>
           <Typography color="$gray" variant="$body7" weight="$bold">
             16/01/23
           </Typography>
@@ -48,7 +43,7 @@ export const Quotation: FC = () => (
             às 16:21
           </Typography>
         </div>
-        <div style={{ marginTop: 10 }}>
+        <div style={{ marginTop: 10, textAlign: 'right' }}>
           <Typography color="$gray" variant="$body7">
             Fonte
           </Typography>

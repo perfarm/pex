@@ -2,21 +2,24 @@ import { Typography } from '~/components/Typography';
 import { styled } from '~/theme';
 
 export const Description = styled(Typography, {
-  color: '$mediumGray !important',
+  color: '$gray',
   transition: '$easeInOut02',
   textAlign: 'center',
 });
 
 export const Title = styled(Typography, {
-  color: '$gray !important',
+  color: '$pastureGreen',
   transition: '$easeInOut02',
   textAlign: 'center',
+  marginTop: 10,
+  marginBottom: 5,
 });
 
 export const Img = styled('img', {
   display: 'block',
   maxWidth: '100%',
   filter: 'grayscale(1)',
+  opacity: 0.5,
 });
 
 export const ImgContent = styled('div', {
@@ -53,18 +56,27 @@ export const Root = styled('div', {
 
         [`${Img}`]: {
           filter: 'grayscale(0)',
+          opacity: 1,
         },
         [`${Title}`]: {
           color: '$pastureGreen !important',
         },
         [`${Description}`]: {
-          color: '$gray !important',
+          color: '$gray',
         },
 
         '&:active': {
           transition: 'unset',
           transform: 'unset',
           boxShadow: '0px 1px 11px -1px rgba(73, 73, 73, 0.06), 0px 4px 24px -3px rgba(0, 0, 0, 0.12)',
+        },
+      },
+      false: {
+        [`${Title}`]: {
+          color: '$mediumGray !important',
+        },
+        [`${Description}`]: {
+          color: '$mediumGray',
         },
       },
     },

@@ -17,7 +17,7 @@ const line = {
   variants: {
     status: {
       PENDING: {
-        backgroundColor: '$resourceYellow',
+        backgroundColor: '$perfarmYellow',
       },
       FINALIZED: {
         backgroundColor: '$mediumGray',
@@ -57,8 +57,6 @@ export const IconSpace = styled('div', {
 export const Root = styled('li', {
   display: 'flex',
   justifyContent: 'center',
-  // padding: '15px 0',
-  marginBottom: '2px',
   zIndex: 3,
   position: 'relative',
 
@@ -72,9 +70,9 @@ export const Root = styled('li', {
     status: {
       PENDING: {
         [`${IconContent}`]: {
-          backgroundColor: '$resourceYellow',
+          backgroundColor: '$perfarmYellow',
           '&:before': {
-            backgroundColor: '$resourceYellow',
+            backgroundColor: '$perfarmYellow',
           },
         },
       },

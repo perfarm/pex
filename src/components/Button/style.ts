@@ -50,7 +50,7 @@ export const Button = styled('button', {
         color: '$white',
       },
       secondary: {
-        backgroundColor: '$resourceYellow',
+        backgroundColor: '$perfarmYellow',
         borderColor: 'transparent',
         color: '$white',
       },
@@ -175,15 +175,15 @@ export const Button = styled('button', {
     {
       color: 'secondary',
       css: {
-        textColor: '$resourceYellow',
+        textColor: '$perfarmYellow',
       },
       variant: 'text',
     },
     {
       color: 'secondary',
       css: {
-        textColor: '$resourceYellow',
-        outlineColor: '$resourceYellow',
+        textColor: '$perfarmYellow',
+        outlineColor: '$perfarmYellow',
       },
       variant: 'outlined',
     },

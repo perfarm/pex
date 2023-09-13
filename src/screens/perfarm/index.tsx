@@ -114,7 +114,7 @@ export const ScreenPerfarm = () => {
     }
   });
 
-  const nextBtnText = useMemo(() => (user?.productionInput ? 'CONTINUAR' : 'COMEÇAR'), [user]);
+  const nextBtnText = useMemo(() => (user?.productionInput ? 'CONTINUAR' : 'AVANÇAR'), [user]);
 
   if (!featureFectched || !user) {
     return <Loader position="fixed">Buscando dados...</Loader>;
@@ -139,7 +139,7 @@ export const ScreenPerfarm = () => {
       <Title color="$pastureGreen" variant="$headline6">
         SIMULADOR AGRO GESTÃO PRO
       </Title>
-      <Description color="$gray" variant="$body4">
+      <Description color="$gray" variant="$body5">
         Parabéns por entrar na jornada de gestão agrícola avançada, explorando os benefícios da gestão tecnológica e
         organizada.
         <Br />

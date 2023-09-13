@@ -21,7 +21,8 @@ export const TemplateFlowStep: FC<Props> = ({
 }) => (
   <Root className={className}>
     <ImgPerfarmExperience />
-    <CardContainer>
+
+    <CardContainer style={{ marginTop: 15 }}>
       <StepFlow step={step} />
       {title && (
         <Title color="$pastureGreen" variant="$headline6">

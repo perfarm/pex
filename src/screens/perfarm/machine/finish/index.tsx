@@ -17,18 +17,18 @@ export const Finish: FC = () => {
       hideBackBtn
       btnNextDescription={
         <>
-          IR PARA PROGRAMAÇÃO <IconRight color="white" size={24} />
+          PROGRAMAÇÃO <IconRight color="white" size={24} />
         </>
       }
       stepOk
     >
-      <Image src="/static/imgs/insumo.png" alt="insumo" />
+      <Image src="/static/imgs/machine.png" alt="insumo" />
 
       <Title color="$pastureGreen" variant="$headline6">
-        MAQUINÁRIO CASTRADO COM SUCESSO!
+        MAQUINÁRIO CADASTRADO COM SUCESSO!
       </Title>
 
-      <Description color="$gray" variant="$body4">
+      <Description color="$gray" variant="$body5">
         Esteja atento à programação do evento, pois durante o <b>intervalo do café, às 16h</b>, ocorrerá a entrega da
         personalização e do relatório administrativo (degustação).
       </Description>

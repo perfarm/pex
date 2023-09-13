@@ -11,7 +11,7 @@ export const Finish: FC = () => (
       SEU RELATÓRIO ESTÁ DISPONÍVEL!
     </Title>
 
-    <Description color="$gray" variant="$body4">
+    <Description color="$gray" variant="$body5">
       Esperamos que a experiência tenha sido proveitosa. Ao conferir o material, você poderá entender por que uma gestão
       tecnológica e organizada <b>é crucial para a saúde financeira do seu negócio.</b>
       <br />

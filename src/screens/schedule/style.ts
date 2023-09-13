@@ -34,11 +34,19 @@ export const Container = styled('div', {
 
 export const Br = styled('br');
 
-export const Title = styled(Typography, zIndexGreaterThanTimeline, {
+export const PageTitle = styled(Typography, zIndexGreaterThanTimeline);
+
+export const PageSubtitle = styled(Typography, zIndexGreaterThanTimeline, {
+  marginTop: 5,
 });
 
-export const Subtitle = styled(Typography, zIndexGreaterThanTimeline, {
+export const Title = styled(PageTitle, {
+  textAlign: 'center',
+});
+
+export const Subtitle = styled(PageSubtitle, {
   marginTop: 5,
+  textAlign: 'center',
 });
 
 export const HeaderCardProduct = styled(CardProduct);

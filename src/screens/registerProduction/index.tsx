@@ -11,6 +11,7 @@ import { Error } from '~/components/InputRoot/style';
 import { Loader } from '~/components/Loader';
 import { TemplateFlowStep } from '~/components/TemplateFlowStep';
 import { toast } from '~/components/Toaster';
+import { useAuth } from '~/context/auth/useAuth';
 import { List } from './style';
 
 export const ScreenRegisterProduction = () => {
@@ -20,6 +21,7 @@ export const ScreenRegisterProduction = () => {
   const [fetchLoading, setFetchLoading] = useState(true);
   const [formIsSubmitted, setFormIsSubmitted] = useState(false);
 
+  const { fetchCurrentUser } = useAuth();
   const { push } = useRouter();
 
   const handleSelectProduct = useCallback((value: string) => {
@@ -37,6 +39,7 @@ export const ScreenRegisterProduction = () => {
 
     try {
       await postRegisterProduct(selected);
+      await fetchCurrentUser();
 
       push('/register/completed');
     } catch (e) {
@@ -44,7 +47,7 @@ export const ScreenRegisterProduction = () => {
     } finally {
       setBtnLoading(false);
     }
-  }, [push, selected]);
+  }, [fetchCurrentUser, push, selected]);
 
   useDidMount(async () => {
     try {

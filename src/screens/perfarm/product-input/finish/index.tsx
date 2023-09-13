@@ -17,7 +17,7 @@ export const Finish: FC = () => {
       hideBackBtn
       btnNextDescription={
         <>
-          IR PARA PROGRAMAÇÃO <IconRight color="white" size={24} />
+          PROGRAMAÇÃO <IconRight color="white" size={24} />
         </>
       }
       stepOk
@@ -28,7 +28,7 @@ export const Finish: FC = () => {
         INSUMOS CADASTRADO COM SUCESSO!
       </Title>
 
-      <Description color="$gray" variant="$body4">
+      <Description color="$gray" variant="$body5">
         Esteja atento à programação do evento, pois durante o <b>intervalo do almoço, às 12h</b>, você seguirá com a
         experiência do simulador e fará suas escolhas de máquinas e outras despesas. Prepare-se para uma experiência
         envolvente e interativa!

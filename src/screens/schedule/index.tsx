@@ -14,6 +14,8 @@ import {
   Container,
   HeaderCardProduct,
   HeaderContent,
+  PageSubtitle,
+  PageTitle,
   RefreshButton,
   Root,
   Row,
@@ -33,7 +35,7 @@ interface Action {
 const getAction = (id: string, push: (url: Url, as?: Url) => Promise<boolean>): Action => {
   if (id === 'nPy9j3JVRikJJoHJi9NL') {
     return {
-      action: (user: User) => push(!!user.productionInput ? '/perfarm' : '/perfarm/production-input'),
+      action: (user: User) => push(!!user.productionInput ? '/perfarm' : '/perfarm/product-input'),
       disable: (schedule: Schedule) => schedule.status === 'PENDING',
       text: 'IR PARA EXPERIÊNCIA',
     };
@@ -88,12 +90,12 @@ export const ScreenSchedule: FC<Props> = ({ loading, user, sheduleList, refresh,
         <Container>
           <Row>
             <Col>
-              <Title color="$white" variant="$headline6" weight="$bold">
+              <PageTitle color="$white" variant="$headline6" weight="$bold">
                 Bem-vindo, {userFirstName}!
-              </Title>
-              <Subtitle color="$white" variant="$body4" weight="$medium">
+              </PageTitle>
+              <PageSubtitle color="$white" variant="$body4" weight="$medium">
                 Sua produção escolhida foi:
-              </Subtitle>
+              </PageSubtitle>
             </Col>
 
             <Col style={{ alignItems: 'center', display: 'flex', flex: 0 }}>
@@ -128,6 +130,8 @@ export const ScreenSchedule: FC<Props> = ({ loading, user, sheduleList, refresh,
                   return (
                     <ScheduleTimeline
                       key={`shedule-item-${index}`}
+                      lineDownStatus={sheduleList[index + 1]?.status}
+                      lineUpStatus={schedule.status}
                       status={schedule.status}
                       zIndex={sheduleList.length - index}
                       position={index}

@@ -33,4 +33,5 @@ export const ActionButton = styled(Button, {
   width: '100%',
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
+  marginTop: 15,
 });

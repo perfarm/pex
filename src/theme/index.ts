@@ -43,6 +43,7 @@ export const {
 
       perfarmBackground,
       perfarmLighterBlue: "#F0F8FF",
+      perfarmYellow: "#EFB700",
 
       darkGray: "#494949",
       gray: "#898989",
@@ -201,11 +202,11 @@ export const {
       let hex = (
         (color as any).startsWith("$")
           ? config.theme.colors[
-              (color as any).replace(
-                "$",
-                ""
-              ) as unknown as keyof typeof config.theme.colors
-            ]
+          (color as any).replace(
+            "$",
+            ""
+          ) as unknown as keyof typeof config.theme.colors
+          ]
           : color
       ) as string;
 

@@ -121,11 +121,11 @@ export const Content = styled(TooltipContent, {
 
       secondary: {
         backgroundColor: '$resourceYellowLighter',
-        borderColor: '$resourceYellow',
+        borderColor: '$perfarmYellow',
         color: '$resourceYellowDark',
 
         [`& ${Arrow}`]: {
-          fill: '$resourceYellow',
+          fill: '$perfarmYellow',
         },
       },
     },

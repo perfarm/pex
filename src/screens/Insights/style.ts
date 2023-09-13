@@ -80,6 +80,4 @@ export const CollapseDecription = styled('div', {
   },
 });
 
-export const CollapseText = styled(Typography, {
-  paddingTop: 30,
-});
+export const CollapseText = styled(Typography);
