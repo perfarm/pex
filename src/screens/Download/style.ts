@@ -37,12 +37,11 @@ const ButtonCustom = styled(Button, {
   alignItems: 'center',
   flex: 1,
   justifyContent: 'center',
-  margin: '30px auto 20px auto',
-  width: '100%',
+  margin: '30px auto 40px auto',
 });
 
 export const ButtonDownload = styled(ButtonCustom);
-export const ButtonGoUrl = styled(ButtonCustom);
+export const ButtonLink = styled(ButtonCustom);
 
 export const IconDownload = styled(DownloadSimple, {
   marginLeft: '10px',

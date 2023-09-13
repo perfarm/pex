@@ -3,7 +3,7 @@ import { FC, Fragment, useState } from 'react';
 import { Modal } from 'antd';
 
 import useDidMount from 'beautiful-react-hooks/useDidMount';
-import { Container, LinkNavigation } from '~/commons/variants/components';
+import { Container, LinkNavigation, Strong } from '~/commons/variants/components';
 import { Button } from '~/components/Button';
 import { FooterRealizationPartners } from '~/components/FooterRealizationPartners';
 import { ImgPerfarmExperienceLine } from '~/components/ImgPerfarmExperienceLine';
@@ -11,7 +11,7 @@ import { Typography } from '~/components/Typography';
 import {
   BodyContent,
   ButtonDownload,
-  ButtonGoUrl,
+  ButtonLink,
   CancelButton,
   Description,
   IconDownload,
@@ -82,20 +82,27 @@ export const ScreenDownload: FC<Props> = ({ isDownloadable }) => {
           <Title color="$pastureGreen" variant="$body2" weight="$bold">
             EXPERIMENTE O FUTURO DA GESTÃO AGRÍCOLA EM APENAS ALGUNS PASSOS SIMPLES!
           </Title>
-          <Description variant="$body6" weight="$medium">
-            Baixe este aplicativo exclusivo do evento, que oferece uma degustação da poderosa experiência Perfarm.
-          </Description>
           {isDownloadable ? (
-            <ButtonDownload id="pwaAppInstallBtn" color="primary" showLoader={loading} disabled={loading}>
-              BAIXE AGORA O APP
-              <IconDownload color="white" size={24} />
-            </ButtonDownload>
+            <Fragment>
+              <Description variant="$body6" weight="$medium">
+                Baixe este aplicativo exclusivo do evento, que oferece uma degustação da poderosa experiência Perfarm.
+              </Description>
+              <ButtonDownload id="pwaAppInstallBtn" color="primary" showLoader={loading} disabled={loading}>
+                BAIXE AGORA O APP
+                <IconDownload color="white" size={24} />
+              </ButtonDownload>
+            </Fragment>
           ) : (
-            <LinkNavigation href={`${process.env.NEXT_PUBLIC_URL}/register/profile`} target="_blank">
-              <ButtonGoUrl color="primary" variant="contained">
-                Abrir APP
-              </ButtonGoUrl>
-            </LinkNavigation>
+            <Fragment>
+              <Description variant="$body6" weight="$medium">
+                Caso queira uma experiência melhor, abra o link no
+                <Strong> Safari e instale o app, </Strong>
+                mas se preferir, siga sua experiência com a<Strong> versão web através do Chrome.</Strong>
+              </Description>
+              <LinkNavigation href={`${process.env.NEXT_PUBLIC_URL}/register/profile`} target="_blank">
+                <ButtonLink color="primary">SEGUIR PARA VERSÃO WEB</ButtonLink>
+              </LinkNavigation>
+            </Fragment>
           )}
         </Container>
       </BodyContent>
