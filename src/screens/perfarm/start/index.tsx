@@ -7,8 +7,7 @@ import { RequestError } from '~/commons/api/RequestError';
 import { fetchFeature } from '~/commons/api/fetchFeature';
 import { Feature } from '~/commons/firebase/features/types';
 import { SocketEvent } from '~/commons/socket/events';
-import { IconRight } from '~/commons/variants/components';
-import { ImgPerfarmRafiki } from '~/components/ImgPerfarmRafiki';
+import { CardContainer, IconRight, ImageResponsive } from '~/commons/variants/components';
 import { Loader } from '~/components/Loader';
 import { Spinner } from '~/components/Spinner';
 import { TemplatePerfarm } from '~/components/TemplatePerfarm';
@@ -17,7 +16,7 @@ import { useAuth } from '~/context/auth/useAuth';
 import { Message } from '~/hooks/useReleaseSocketWithStorage';
 import { Br, Description, Title } from './style';
 
-export const ScreenPerfarm = () => {
+export const ScreenPerfarmStart = () => {
   const [loading, setLoading] = useState(true);
   const [featureFectched, setFeatureFectched] = useState(false);
   const [feature, setFeature] = useState<Feature>();
@@ -47,7 +46,7 @@ export const ScreenPerfarm = () => {
       if (!user) return;
 
       if (feature.SELECT_PRODUCTION_INPUT && !user.productionInput) {
-        push('/perfarm/start');
+        push('/perfarm/product-input');
         return;
       }
 
@@ -114,7 +113,7 @@ export const ScreenPerfarm = () => {
     }
   });
 
-  const nextBtnText = useMemo(() => (user?.productionInput ? 'CONTINUAR' : 'AVANÇAR'), [user]);
+  const nextBtnText = useMemo(() => (user?.productionInput ? 'CONTINUAR' : 'COMEÇAR'), [user]);
 
   if (!featureFectched || !user) {
     return <Loader position="fixed">Buscando dados...</Loader>;
@@ -135,20 +134,21 @@ export const ScreenPerfarm = () => {
         )
       }
     >
-      <ImgPerfarmRafiki />
+      <CardContainer>
+        <ImageResponsive src="/static/imgs/screen-forest-1.png" alt="Tópicos informativos" width={526} height={328} />
+      </CardContainer>
       <Title color="$pastureGreen" variant="$headline6">
-        SIMULADOR AGRO GESTÃO PRO
+        CONHECENDO MAIS A PERFARM
       </Title>
-      <Description color="$gray" variant="$body5">
-        Parabéns por entrar na jornada de gestão agrícola avançada, explorando os benefícios da gestão tecnológica e
-        organizada.
+      <Description color="$gray" variant="$body4">
+        Esta breve simulação representa apenas uma introdução ao uso da Perfarm, uma pequena amostra das suas vastas
+        capacidades de gestão. É apenas uma prévia do que esta ferramenta é capaz de proporcionar.
         <Br />
         <Br />
-        Durante o evento, você interagirá diretamente com o simulador, tornando a experiência envolvente e prática.
+        Prepare-se para vivenciar o poder das decisões estratégicas e conte com nosso apoio a cada passo.
         <Br />
         <Br />
-        Ao final, você receberá um relatório contemplando toda a hierarquia de alocação de custo real da produção, todo
-        o fluxo de informações de ponta a ponta e suas respectivas rotinas de gestão.
+        Vamos começar!
       </Description>
     </TemplatePerfarm>
   );
