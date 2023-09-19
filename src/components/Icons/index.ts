@@ -15,6 +15,7 @@ export { DownloadSimple } from './DownloadSimple';
 export { HourglassMedium } from './HourglassMedium';
 export { Info } from './Info';
 export { PdfFile } from './PdfFile';
+export { Stack } from './Stack';
 export { Table } from './Table';
 export { TableInfo } from './TableInfo';
 export { ThumbsDown } from './ThumbsDown';
