@@ -22,6 +22,7 @@ export const DirCol = styled(OriginalCol, {
   flexDirection: 'column',
   display: 'flex',
   justifyContent: 'space-between',
+  minWidth: '100px',
 });
 
 export const CenterCol = styled(OriginalCol, {
