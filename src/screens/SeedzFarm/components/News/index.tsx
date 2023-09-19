@@ -1,16 +1,15 @@
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 
-import NewsMock from '~/commons/mock/news';
-
 import { Card } from '~/components/Card';
 import { Row } from '~/components/Grid';
 import { CaretRight } from '~/components/Icons';
 import { Typography } from '~/components/Typography';
 import { Col } from '~/screens/admin/release/Manage/style';
 import { DirCol, LeftCol, ReadMoreCol } from './style';
+import { Props } from './types';
 
-export const News: FC = () => {
+export const News: FC<Props> = ({ date, image, title }) => {
   const { push } = useRouter();
 
   return (
@@ -18,13 +17,13 @@ export const News: FC = () => {
       <Row>
         <LeftCol>
           <Typography color="$pastureGreen" variant="$body5" weight="$bold">
-            {NewsMock.title}
+            {title}
           </Typography>
 
           <Row style={{ justifyContent: 'space-between', marginTop: 10 }}>
             <Col>
               <Typography color="$gray" variant="$body7" tag="span">
-                Ontem
+                {date}
               </Typography>
             </Col>
 
@@ -40,7 +39,7 @@ export const News: FC = () => {
         <DirCol>
           <div
             style={{
-              backgroundImage: `url(${NewsMock.image})`,
+              backgroundImage: `url(${image})`,
               backgroundSize: 'cover',
               height: '100%',
               width: 95,

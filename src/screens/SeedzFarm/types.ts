@@ -1,21 +1,7 @@
-export interface Quotation {
-  name: string;
-  city: string;
-  value: string;
-  valueMeasure: string;
-  id: string;
-  date: string;
-  hours: string;
-  source: string;
-}
-
-export interface News {
-  title: string;
-  id: string;
-  date: string;
-}
+import { News } from './components/News/types';
+import { Quotation } from './components/Quotation/types';
 
 export interface Props {
   quotation: Quotation;
-  news?: News;
+  news: News;
 }
