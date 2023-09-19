@@ -1,13 +1,8 @@
-import {
-  Toaster as ReactHotToast,
-  Toast as ReactToast,
-  ToastBar,
-  toast as reactHotToast,
-} from "react-hot-toast";
+import { Toaster as ReactHotToast, Toast as ReactToast, ToastBar, toast as reactHotToast } from 'react-hot-toast';
 
-import { Close } from "../Icons/Close";
-import { Stack } from "../Icons/Stack";
+import { Check, Close, Info } from '../Icons';
 
+import { theme } from '~/theme';
 import {
   baseToast,
   closeButton,
@@ -17,7 +12,7 @@ import {
   sideToastContainer,
   successStyle,
   toastContainer,
-} from "./style";
+} from './style';
 
 export const toast = reactHotToast;
 
@@ -31,22 +26,22 @@ export const Toaster = () => (
       success: {
         style: successStyle,
         ariaProps: {
-          closeIconColor: "#00946A",
-          divisorColor: "#00B380",
+          closeIconColor: theme.colors.pastureGreenDark.value,
+          divisorColor: theme.colors.pastureGreenHover.value,
         } as any,
       },
       error: {
         style: errorStyle,
         ariaProps: {
-          closeIconColor: "#B63A3A",
-          divisorColor: "#DB4646",
+          closeIconColor: theme.colors.warningRedDark.value,
+          divisorColor: theme.colors.warningRedHover.value,
         } as any,
       },
       custom: {
         style: customStyle,
         ariaProps: {
-          closeIconColor: "#494949",
-          divisorColor: "#494949",
+          closeIconColor: '#494949',
+          divisorColor: '#494949',
         } as any,
       },
     }}
@@ -60,23 +55,23 @@ export const Toast = ({ toast }: { toast: ReactToast }) => (
     toast={toast}
     style={{
       ...toast.style,
-      animation: toast.visible ? "custom-enter 1s ease" : "custom-exit 1s ease",
+      animation: toast.visible ? 'custom-enter 1s ease' : 'custom-exit 1s ease',
     }}
   >
     {({ icon, message }) => {
-      const { closeIconColor, divisorColor } = (toast as any)[toast.type]
-        .ariaProps;
+      const { closeIconColor, divisorColor } = (toast as any)[toast.type].ariaProps;
       const onClose = () => reactHotToast.remove(toast.id);
 
       return (
         <div style={toastContainer}>
           <div style={sideToastContainer}>
-            <Stack size={18} />
+            {toast.type === 'success' && <Check size={18} color="white" />}
+            {toast.type === 'error' && <Info size={18} color="white" />}
           </div>
 
           <div style={messageContainer}>{message}</div>
 
-          {toast.type !== "loading" && (
+          {toast.type !== 'loading' && (
             <div
               style={{
                 ...sideToastContainer,

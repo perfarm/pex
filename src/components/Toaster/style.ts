@@ -1,4 +1,5 @@
-import { CSSProperties } from "react";
+import { CSSProperties } from 'react';
+import { theme } from '~/theme';
 
 export const baseToast = {
   background: '#363636',
@@ -9,7 +10,7 @@ export const baseToast = {
 };
 
 export const successStyle = {
-  background: '#00C68E',
+  background: theme.colors.pastureGreen.value,
 };
 
 export const customStyle = {
@@ -17,7 +18,7 @@ export const customStyle = {
 };
 
 export const errorStyle = {
-  background: '#F34E4E',
+  background: theme.colors.warningRedAlert.value,
 };
 
 export const toastContainer: CSSProperties = {
