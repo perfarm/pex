@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import { FC } from 'react';
-
 import { Card } from '~/components/Card';
 import { Row } from '~/components/Grid';
 import { CaretRight } from '~/components/Icons';
@@ -41,6 +40,7 @@ export const News: FC<Props> = ({ date, image, title }) => {
             style={{
               backgroundImage: `url(${image})`,
               backgroundSize: 'cover',
+              backgroundPosition: 'center',
               height: '100%',
               width: 95,
             }}

@@ -24,6 +24,7 @@ export const ImageContainer = styled('div', {
 export const ImageContent = styled('div', {
   borderRadius: '$5',
   backgroundSize: 'cover',
+  backgroundPosition: 'center',
   height: '100%',
 });
 

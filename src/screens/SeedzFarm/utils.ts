@@ -1,4 +1,4 @@
-import NewsMock from '~/commons/mock/news';
+import { coffee, corn, ox, soybean } from '~/commons/mock/news';
 import { News } from './components/News/types';
 import { Quotation } from './components/Quotation/types';
 
@@ -47,35 +47,19 @@ export const quotationList: Quotation[] = [
 
 export const newsList: News[] = [
   {
-    title: `Soja - ${NewsMock.title}`,
     id: 'NLu8GbkHTwL8jWzIVsGk',
-    date: 'Ontem',
-    image: NewsMock.image,
-    description: NewsMock.content,
-    source: NewsMock.source,
+    ...soybean,
   },
   {
-    title: `Cana - ${NewsMock.title}`,
     id: 'Q6M2RfEWW2bZpD3er8Vr',
-    date: 'Ontem',
-    image: NewsMock.image,
-    description: NewsMock.content,
-    source: NewsMock.source,
+    ...corn,
   },
   {
-    title: `Gado - ${NewsMock.title}`,
     id: 'fpVcV41YiBh2ZlGQ2HWA',
-    date: 'Ontem',
-    image: NewsMock.image,
-    description: NewsMock.content,
-    source: NewsMock.source,
+    ...ox,
   },
   {
-    title: `Café - ${NewsMock.title}`,
     id: 'xfeRzDp5dN9459o7zXF4',
-    date: 'Ontem',
-    image: NewsMock.image,
-    description: NewsMock.content,
-    source: NewsMock.source,
+    ...coffee,
   },
 ];
