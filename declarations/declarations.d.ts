@@ -16,3 +16,5 @@ declare namespace NodeJS {
     NEXT_PUBLIC_URL: string;
   }
 }
+
+declare var deferredPrompt: Event;

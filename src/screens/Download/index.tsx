@@ -99,7 +99,7 @@ export const ScreenDownload: FC<Props> = ({ isDownloadable }) => {
                 <Strong> Safari e instale o app, </Strong>
                 mas se preferir, siga sua experiência com a<Strong> versão web através do Chrome.</Strong>
               </Description>
-              <LinkNavigation href={`${process.env.NEXT_PUBLIC_URL}/register/profile`} target="_blank">
+              <LinkNavigation href="/register/profile">
                 <ButtonLink color="primary">SEGUIR PARA VERSÃO WEB</ButtonLink>
               </LinkNavigation>
             </Fragment>

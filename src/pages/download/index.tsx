@@ -14,17 +14,12 @@ const Download: NextPageWithLayout = () => {
     const deviceType = identifyDevice();
     const browserType = identifyBrowser();
 
-    if (deviceType === 'ios' || browserType === 'safari') {
+    if (browserType === 'safari') {
       push('/download/step-by-step/1');
       return;
     }
 
-    if (browserType === 'chrome') {
-      setIsDownloadable(true);
-      return;
-    }
-
-    setIsDownloadable(false);
+    setIsDownloadable(browserType === 'chrome' && deviceType === 'android' && !!deferredPrompt);
   });
 
   return <ScreenDownload isDownloadable={isDownloadable} />;
