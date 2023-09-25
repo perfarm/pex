@@ -1,5 +1,6 @@
 import { FC, useState } from 'react';
 
+import Link from 'next/link';
 import { ButtonNext, IconRight } from '~/commons/variants/components';
 import { Card } from '~/components/Card';
 import { Col, Row } from '~/components/Grid';
@@ -73,7 +74,21 @@ export const Insights: FC = () => {
           </Card>
 
           <ButtonNext color="primary" onClick={() => undefined} fullWidth css={{ marginTop: 15 }}>
-            INICIAR PESQUISA <IconRight color="white" size={24} />
+            <Link
+              href="https://pt.surveymonkey.com/r/perfilrevendamaq"
+              style={{
+                alignItems: 'center',
+                display: 'flex',
+                flex: 1,
+                height: 48,
+                justifyContent: 'center',
+                textDecoration: 'none',
+                color: 'inherit',
+              }}
+              target="_blank"
+            >
+              INICIAR PESQUISA <IconRight color="white" size={24} />
+            </Link>
           </ButtonNext>
         </Card>
       </TwoColorsContainer>
