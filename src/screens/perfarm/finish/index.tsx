@@ -8,15 +8,18 @@ export const Finish: FC = () => (
     <Image src="/static/imgs/report.png" alt="report" />
 
     <Title color="$pastureGreen" variant="$headline6">
-      SEU RELATÓRIO ESTÁ DISPONÍVEL!
+      DISPONÍVEL!
     </Title>
 
     <Description color="$gray" variant="$body5">
-      Esperamos que a experiência tenha sido proveitosa. Ao conferir o material, você poderá entender por que uma gestão
-      tecnológica e organizada <b>é crucial para a saúde financeira do seu negócio.</b>
+      Desfrute dos resultados da sua simulação. Compare-os a estratégias de mercado. E planeje os próximos passos da
+      gestão do seu negócio.
       <br />
       <br />
-      Estamos ansiosos para ouvir seus feedbacks!
+      <b>Fica nosso convite</b> para continuarmos fornecendo conhecimento e informatizando o seu negócio rural.
+      <br />
+      <br />
+      Acesse o relatório e siga o link do Diagnóstico da Gestão para novas interações.
     </Description>
   </TemplatePerfarm>
 );

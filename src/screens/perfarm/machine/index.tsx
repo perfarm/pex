@@ -90,7 +90,8 @@ export const Machine: FC = () => {
         MAQUINÁRIOS
       </Title>
       <Description color="$gray" variant="$body4">
-        Agora é a hora de decidir com que máquinas realizará suas operações:
+        Chegou a hora de decidir sobre ter operações terceirizadas ou próprias, com menores ou maiores custos
+        administrativos, respectivamente:
       </Description>
       {fetchLoading || loadingUser ? (
         <div style={{ marginTop: 30 }}>

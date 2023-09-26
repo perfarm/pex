@@ -25,13 +25,12 @@ export const Finish: FC = () => {
       <Image src="/static/imgs/insumo.png" alt="insumo" />
 
       <Title color="$pastureGreen" variant="$headline6">
-        INSUMOS CADASTRADO COM SUCESSO!
+        COMPRA DE INSUMOS PLANEJADA COM SUCESSO!
       </Title>
 
       <Description color="$gray" variant="$body5">
-        Esteja atento à programação do evento, pois durante o <b>intervalo do almoço, às 12h</b>, você seguirá com a
-        experiência do simulador e fará suas escolhas de máquinas e outras despesas. Prepare-se para uma experiência
-        envolvente e interativa!
+        Atenção à programação do evento. Durante o <b>intervalo do almoço, às 12h</b>, você poderá tomar uma nova
+        decisão no seu negócio rural. Prepare-se para continuar agregando lucros a sua produção a partir da gestão.
       </Description>
     </TemplatePerfarm>
   );

@@ -26,14 +26,13 @@ export const ScreenRegisterCompleted = () => {
     >
       <ImgFarmerGif />
       <Title color="$pastureGreen" variant="$headline6">
-        SEJA BEM-VINDO À EXPERIÊNCIA PERFARM
+        BOAS-VINDAS À EXPERIÊNCIA PERFARM
       </Title>
       <Description color="$gray" variant="$body4">
-        Em alguns passos essenciais, apresentaremos de forma simplificada como é possível realizar a gestão de sua
-        fazenda, neste aplicativo exclusivo para o evento.
+        Você está a poucos passos de viver uma experiência digital focada na gestão de resultados do negócio rural.
         <Br />
         <Br />
-        Aproveite ao máximo!
+        Aproveite ao máximo esse aplicativo, desenvolvido exclusivamente para o evento!
       </Description>
     </TemplateFlowStep>
   );

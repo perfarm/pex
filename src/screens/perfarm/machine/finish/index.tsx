@@ -25,12 +25,12 @@ export const Finish: FC = () => {
       <Image src="/static/imgs/machine.png" alt="insumo" />
 
       <Title color="$pastureGreen" variant="$headline6">
-        MAQUINÁRIO CADASTRADO COM SUCESSO!
+        MAQUINÁRIO PLANEJADO COM SUCESSO!
       </Title>
 
       <Description color="$gray" variant="$body5">
-        Esteja atento à programação do evento, pois durante o <b>intervalo do café, às 16h</b>, ocorrerá a entrega da
-        personalização e do relatório administrativo (degustação).
+        Atenção: durante o próximo intervalo será enviado para o seu e-mail de cadastro o Relatório da Administração com
+        o planejamento da sua produção. Acompanhe os debates para maiores esclarecimentos.
       </Description>
     </TemplatePerfarm>
   );
