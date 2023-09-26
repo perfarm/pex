@@ -41,14 +41,14 @@ export const Insights: FC = () => {
           <CollapseDecription isActive={show} style={{ borderTop: '1px solid #EEE' }}>
             <div style={{ padding: 15 }}>
               <CollapseText color="$gray" variant="$body5">
-                A Seedz é uma empresa nascida da união de pessoas inspiradas pelo Agronegócio e que acredita em
-                inovação.
+                Nascida da união de pessoas inspiradas pelo agronegócio e inovação, a Seedz é uma empresa referência em
+                soluções tecnológicas que conectam toda a cadeia de valor do agronegócio, gerando dados para aproximar
+                produtores rurais de grandes oportunidades.
                 <br />
                 <br />
-                Fidelidade é uma expressão que também define o nosso negócio. Empresas, Produtores Rurais e Famílias:
-                todos juntos, semeando um futuro transformador. Somos uma organização que através do programa de
-                coalizão, valoriza o produtor rural e permite ao participante optar por uma ampla variedade de
-                recompensas, tanto de produtos, quanto de serviços.
+                Através dos Programas de Fidelidade para os produtores rurais, valorizamos e potencializamos a produção
+                no campo e semeamos um futuro transformador, além de contar com outras soluções como plataformas para
+                gestão e performance da fazenda e serviços financeiros.
               </CollapseText>
             </div>
           </CollapseDecription>
@@ -69,7 +69,7 @@ export const Insights: FC = () => {
               Responda agora e resgate:
             </Typography>
             <RewardValue color="$pastureGreen" variant="$description1">
-              <b>800</b> SDZ
+              <b>1000</b> SDZ
             </RewardValue>
           </Card>
 

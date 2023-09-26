@@ -33,7 +33,7 @@ interface Action {
 }
 
 const getAction = (id: string, push: (url: Url, as?: Url) => Promise<boolean>): Action => {
-  if (id === 'nPy9j3JVRikJJoHJi9NL') {
+  if (id === '08SYKgyev7eKgMfvlBcz') {
     return {
       action: (user: User) => push(!!user.productionInput ? '/perfarm' : '/perfarm/product-input'),
       disable: (schedule: Schedule) => schedule.status === 'PENDING',
@@ -49,7 +49,7 @@ const getAction = (id: string, push: (url: Url, as?: Url) => Promise<boolean>): 
     };
   }
 
-  if (id === 'N26HcAUGJgOU0ZSGtYve') {
+  if (id === 'AWB7dqQDJhlv0EJ4Xfds') {
     return {
       action: () => push('/seedz-farm'),
       disable: () => false,
@@ -57,7 +57,7 @@ const getAction = (id: string, push: (url: Url, as?: Url) => Promise<boolean>): 
     };
   }
 
-  if (id === 'otJfSrds8444q7NGznuT') {
+  if (id === '0WbSwe6ZHO11sh6SN55B') {
     return {
       action: () => push('/farm-insights'),
       disable: () => false,

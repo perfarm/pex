@@ -14,7 +14,7 @@ export const SeedzFarm: FC<Props> = ({ quotation, news }) => (
     {quotation && (
       <Container>
         <Title color="$gray" variant="$body3" weight="$bold">
-          Sua cotação
+          Cotação
         </Title>
         <Quotation {...quotation} />
       </Container>
