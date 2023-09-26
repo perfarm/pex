@@ -25,10 +25,10 @@ export const UserWebSocket: FC<Props> = ({ children }) => {
 
       toast.custom((t) => {
         t.message = (
-          <Typography color="$white" variant="$body5">
+          <Typography color="$pastureGreen" variant="$body5">
             Nova funcionalidade liberada:
             <br />
-            <Typography color="$white" tag="span" weight="$bold">
+            <Typography color="$pastureGreen" tag="span" weight="$bold">
               {name}
             </Typography>
           </Typography>
@@ -48,10 +48,10 @@ export const UserWebSocket: FC<Props> = ({ children }) => {
     ) {
       toast.custom((t) => {
         t.message = (
-          <Typography color="$white" variant="$body5">
+          <Typography color="$pastureGreen" variant="$body5">
             Cronograma atualizado, próximo evento:
             <br />
-            <Typography color="$white" tag="span" weight="$bold">
+            <Typography color="$pastureGreen" tag="span" weight="$bold">
               {scheduleLastMessage?.nextEvent?.title}
             </Typography>
           </Typography>

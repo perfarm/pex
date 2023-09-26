@@ -14,7 +14,7 @@ export const successStyle = {
 };
 
 export const customStyle = {
-  background: '#5593D1',
+  background: '#F6FBF7',
 };
 
 export const errorStyle = {

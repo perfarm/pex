@@ -40,8 +40,8 @@ export const Toaster = () => (
       custom: {
         style: customStyle,
         ariaProps: {
-          closeIconColor: '#494949',
-          divisorColor: '#494949',
+          closeIconColor: theme.colors.pastureGreen.value,
+          divisorColor: theme.colors.pastureGreen.value,
         } as any,
       },
     }}
@@ -66,6 +66,7 @@ export const Toast = ({ toast }: { toast: ReactToast }) => (
         <div style={toastContainer}>
           <div style={sideToastContainer}>
             {toast.type === 'success' && <Check size={18} color="white" />}
+            {toast.type === 'custom' && <Info size={18} color="pastureGreen" />}
             {toast.type === 'error' && <Info size={18} color="white" />}
           </div>
 
