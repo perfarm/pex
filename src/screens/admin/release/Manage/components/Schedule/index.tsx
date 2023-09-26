@@ -56,11 +56,18 @@ export const Schedule: FC = () => {
     try {
       await updateScheduleStatus(id, status);
       await fetchData();
+
       toast.success('Cronograma atualizado');
     } catch (e) {
       toast.error((e as RequestError).data.data);
     } finally {
       setLoading(false);
+
+      const schedule = schedules.find((s) => s.id === id);
+
+      if (schedule && schedule.alert && status === 'IN_PROGRESS') {
+        alert(schedule.alert);
+      }
     }
   };
 
@@ -87,7 +94,7 @@ export const Schedule: FC = () => {
             return 'in-progress-row';
           }}
         >
-          <Column fixed width={170}>
+          <Column fixed width={190}>
             <HeaderCell style={compactStyle}>
               <Typography color="$gray" variant="$body6" weight="$bold">
                 Aviso

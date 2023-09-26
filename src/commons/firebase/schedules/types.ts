@@ -1,6 +1,7 @@
 export type Status = 'IN_PROGRESS' | 'FINALIZED' | 'PENDING';
 
 export type Schedule = {
+  alert?: string;
   id?: string;
   hasAction?: boolean;
   description?: string;
