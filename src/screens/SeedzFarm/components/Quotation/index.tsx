@@ -8,11 +8,11 @@ import { Row } from '~/components/Grid';
 import { CenterCol, DirCol, ImageCol } from './style';
 import { Props } from './types';
 
-export const Quotation: FC<Props> = ({ city, date, hours, name, source, value, valueMeasure }) => (
+export const Quotation: FC<Props> = ({ city, image, date, hours, name, source, value, valueMeasure }) => (
   <Card style={{ padding: 15, width: '100%' }}>
     <Row>
       <ImageCol>
-        <Image alt="Soja" src="/static/imgs/icons/soja.png" height={40} width={40} />
+        <Image alt={name} src={image} height={40} width={40} />
       </ImageCol>
       <CenterCol>
         <div>

@@ -10,17 +10,12 @@ import { NextPageWithLayout } from '../_app';
 const SeedzFarm: NextPageWithLayout = () => {
   const { user } = useAuth();
 
-  const quoatation = useMemo(() => {
-    const [selected] = quotationList.filter((quotationItem) => quotationItem.id === user?.production.id);
+  const quoatation = useMemo(
+    () => quotationList.find((quotationItem) => quotationItem.id === user?.production.id),
+    [user]
+  );
 
-    return selected;
-  }, [user]);
-
-  const news = useMemo(() => {
-    const [selected] = newsList.filter((newsItem) => newsItem.id === user?.production.id);
-
-    return selected;
-  }, [user]);
+  const news = useMemo(() => newsList.find((newsItem) => newsItem.id === user?.production.id), [user]);
 
   return (
     <PrivateRoute>

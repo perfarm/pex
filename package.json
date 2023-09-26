@@ -33,6 +33,7 @@
     "eslint-config-next": "13.4.19",
     "firebase": "10.3.0",
     "firebase-admin": "11.10.1",
+    "js-file-download": "0.4.12",
     "jsonwebtoken": "9.0.1",
     "lodash": "4.17.21",
     "moment": "2.29.4",

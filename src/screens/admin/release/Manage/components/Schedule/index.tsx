@@ -87,12 +87,29 @@ export const Schedule: FC = () => {
             return 'in-progress-row';
           }}
         >
+          <Column fixed width={170}>
+            <HeaderCell style={compactStyle}>
+              <Typography color="$gray" variant="$body6" weight="$bold">
+                Aviso
+              </Typography>
+            </HeaderCell>
+
+            <Cell style={compactStyle}>
+              {(rowData, rowIndex) => (
+                <Typography color="$gray" variant="$body6">
+                  {rowData.alert}
+                </Typography>
+              )}
+            </Cell>
+          </Column>
+
           <Column fixed width={90}>
             <HeaderCell style={compactStyle}>
               <Typography color="$gray" variant="$body6" weight="$bold">
                 Horário
               </Typography>
             </HeaderCell>
+
             <Cell style={compactStyle}>
               {(rowData, rowIndex) => (
                 <Typography color="$gray" variant="$body6">
@@ -105,7 +122,7 @@ export const Schedule: FC = () => {
           <Column width={200}>
             <HeaderCell style={compactStyle}>
               <Typography color="$gray" variant="$body6" weight="$bold">
-                Title
+                Título
               </Typography>
             </HeaderCell>
             <Cell style={compactStyle}>

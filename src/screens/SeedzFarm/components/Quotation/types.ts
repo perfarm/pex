@@ -1,4 +1,5 @@
 export interface Quotation {
+  image: string;
   name: string;
   city: string;
   value: string;
@@ -9,4 +10,4 @@ export interface Quotation {
   source: string;
 }
 
-export interface Props extends Quotation {}
+export interface Props extends Quotation { }

@@ -14,16 +14,19 @@ export const Manage: FC = () => {
         <Typography variant="$headline1">Painel ADMIN</Typography>
       </TitleContainer>
 
-      <Row style={{ flexDirection: 'column' }}>
+      <Row style={{ flexDirection: 'column', maxWidth: 1100, width: '100%' }}>
         <Row>
-          <Col style={{ maxWidth: 400 }}>
-            <Feature />
-          </Col>
-
-          <Col style={{ width: 600 }}>
+          <Col>
             <Schedule />
           </Col>
         </Row>
+
+        <Row style={{ paddingTop: 20 }}>
+          <Col>
+            <Feature />
+          </Col>
+        </Row>
+
         <Row style={{ paddingBottom: 20, paddingTop: 20 }}>
           <Users />
         </Row>

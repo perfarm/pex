@@ -29,7 +29,7 @@ const fetchUsers = async (req: NextApiRequest, res: ResponseWithSocket) => {
     res.status(HttpStatusCode.Ok).json(users);
   } catch (e) {
     showReqErrorLog('FETCH USERS ERROR', e, req);
-    res.status(HttpStatusCode.BadRequest).json({ message: 'Erro ao liberar funcionalidade, chame um adiminstrador para te ajudar' });
+    res.status(HttpStatusCode.BadRequest).json({ message: 'Erro ao buscar usuários, chame um adiminstrador para te ajudar' });
   }
 }
 

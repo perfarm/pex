@@ -1,9 +1,11 @@
 import useDidMount from 'beautiful-react-hooks/useDidMount';
 import { cpf } from 'cpf-cnpj-validator';
+import jsFileDownload from 'js-file-download';
 import { FC, useEffect, useState } from 'react';
 import { Pagination, Table } from 'rsuite';
 
 import { RequestError } from '~/commons/api/RequestError';
+import { downloadCSV } from '~/commons/api/downloadCSV';
 import { fetchUsers } from '~/commons/api/fetchUsers';
 import { User } from '~/commons/firebase/users/types';
 
@@ -15,11 +17,12 @@ import 'rsuite/dist/rsuite.min.css';
 
 import { CSSProperties } from '@stitches/react';
 import slugify from 'slugify';
+import { Download as DownloadIcon } from '~/components/Icons/Download';
 import { Select } from '~/components/Select';
 import { Option } from '~/components/Select/type';
 import { TextField } from '~/components/TextField';
 import { Col } from '../../style';
-import { Header, IconLoading, RefreshButton, TitleContainer } from './style';
+import { DownloadButton, Header, IconLoading, RefreshButton, TitleContainer } from './style';
 
 import CollaspedOutlineIcon from '@rsuite/icons/CollaspedOutline';
 import ExpandOutlineIcon from '@rsuite/icons/ExpandOutline';
@@ -167,6 +170,19 @@ export const Users: FC = () => {
     }
   };
 
+  const exportCSV = async () => {
+    setLoading(true);
+
+    try {
+      const data = await downloadCSV();
+      jsFileDownload(data, 'users.csv', 'text/csv;charset=utf-8;');
+    } catch (e) {
+      toast.error((e as RequestError).data.data);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useDidMount(fetch);
 
   useEffect(() => {
@@ -190,6 +206,10 @@ export const Users: FC = () => {
         <RefreshButton color="white" onClick={fetch}>
           <IconLoading loading={loading} />
         </RefreshButton>
+
+        <DownloadButton color="white" onClick={exportCSV}>
+          <DownloadIcon color="gray" />
+        </DownloadButton>
       </Header>
 
       <Row>

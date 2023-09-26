@@ -24,7 +24,19 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'atomic-public.s3.sa-east-1.amazonaws.com',
+        port: '',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
         hostname: 's3-sa-east-1.amazonaws.com',
+        port: '',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 's3.sa-east-1.amazonaws.com',
         port: '',
         pathname: '**',
       },

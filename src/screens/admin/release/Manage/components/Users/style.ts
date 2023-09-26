@@ -16,6 +16,8 @@ export const TitleContainer = styled(OriginalTitleContainer, {
 
 export const RefreshButton = styled(Button);
 
+export const DownloadButton = styled(Button);
+
 const animateLoading = keyframes({
   from: {
     transform: 'rotate(0)',

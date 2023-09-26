@@ -4,6 +4,7 @@ import { Quotation } from './components/Quotation/types';
 
 export const quotationList: Quotation[] = [
   {
+    image: 'https://atomic-public.s3.sa-east-1.amazonaws.com/pex/quotation-icon/soybean.png',
     name: 'Soja',
     city: 'Orlândia (SP)',
     value: '130,00',
@@ -14,6 +15,7 @@ export const quotationList: Quotation[] = [
     source: 'AGROLINK',
   },
   {
+    image: 'https://atomic-public.s3.sa-east-1.amazonaws.com/pex/quotation-icon/cana.png',
     name: 'Cana',
     city: 'São Paulo',
     value: '145,00',
@@ -24,6 +26,7 @@ export const quotationList: Quotation[] = [
     source: 'CONSECANA SP',
   },
   {
+    image: 'https://atomic-public.s3.sa-east-1.amazonaws.com/pex/quotation-icon/ox.png',
     name: 'Gado',
     city: 'Barretos (SP)',
     value: '220,00',
@@ -34,6 +37,7 @@ export const quotationList: Quotation[] = [
     source: 'AGROLINK',
   },
   {
+    image: 'https://atomic-public.s3.sa-east-1.amazonaws.com/pex/quotation-icon/coffee.png',
     name: 'Café',
     city: 'Espírito Santo do Pinhal (SP)',
     value: '800,00',
