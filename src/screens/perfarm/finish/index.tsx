@@ -12,7 +12,7 @@ export const Finish: FC = () => (
     </Title>
 
     <Description color="$gray" variant="$body5">
-      Desfrute dos resultados da sua simulação. Compare-os a estratégias de mercado. E planeje os próximos passos da
+      Desfrute dos resultados da sua simulação. Compare-os com as estratégias de mercado e planeje os próximos passos da
       gestão do seu negócio.
       <br />
       <br />
