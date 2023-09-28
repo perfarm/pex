@@ -36,6 +36,9 @@ export const AuthProvider: FC<Props> = ({ children }) => {
       setUser(userData);
     } catch (e) {
       toast.error((e as RequestError).data.message);
+
+      localStorage.clear();
+
       push('/register/profile');
     } finally {
       setLoading(false);
