@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build && mkdir build/cache/images && echo 'save' >> build/cache/images/save.txt",
+    "build": "next build && mkdir build/cache/images && echo 'save' >> build/cache/images/save.txt && chmod -R 777 build/cache/images",
     "deploy": "yarn build && yarn gcp-predeploy && gcloud app deploy",
     "gcp-predeploy": "find ./build -name '\\[...*' -exec bash -c 'mv \"$1\" \"${1/.../@@@}\"' -- {} \\;",
     "gcp-build": "find ./build -name '\\[@@@*' -exec bash -c 'mv \"$1\" \"${1/@@@/...}\"' -- {} \\;",

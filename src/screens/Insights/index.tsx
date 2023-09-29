@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 
 import Link from 'next/link';
 import { ButtonNext, IconRight } from '~/commons/variants/components';
@@ -6,6 +6,7 @@ import { Card } from '~/components/Card';
 import { Col, Row } from '~/components/Grid';
 import { CaretRight } from '~/components/Icons';
 import { Typography } from '~/components/Typography';
+import { useAuth } from '~/context/auth/useAuth';
 import {
   CaretParent,
   CollapseDecription,
@@ -19,6 +20,12 @@ import {
 
 export const Insights: FC = () => {
   const [show, setShow] = useState(false);
+  const { user } = useAuth();
+  const link = useMemo(
+    () =>
+      `https://pt.surveymonkey.com/r/LYVYD2J?phone=${user?.phone}&name=${user?.name}&email=${user?.email}&cpf=${user?.cpf}`,
+    [user]
+  );
 
   return (
     <Page>
@@ -75,7 +82,7 @@ export const Insights: FC = () => {
 
           <ButtonNext color="primary" onClick={() => undefined} fullWidth css={{ marginTop: 15 }}>
             <Link
-              href="https://pt.surveymonkey.com/r/perfilrevendamaq"
+              href={link}
               style={{
                 alignItems: 'center',
                 display: 'flex',
