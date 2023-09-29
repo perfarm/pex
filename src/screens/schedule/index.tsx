@@ -106,7 +106,7 @@ export const ScreenSchedule: FC<Props> = ({ loading, user, sheduleList, refresh,
           </Row>
 
           <HeaderContent>
-            <HeaderCardProduct image={user?.production.image} name={user?.production.name} isActive />
+            <HeaderCardProduct image={user?.production?.image} name={user?.production?.name} isActive />
           </HeaderContent>
         </Container>
 

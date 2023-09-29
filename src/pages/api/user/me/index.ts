@@ -13,6 +13,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   try {
     const user = await getUserByRequest(req);
+    if (Object.keys(user).length === 1) {
+      res.status(HttpStatusCode.Unauthorized).json({ message: 'Usuário não encontrado' });
+    }
     res.status(HttpStatusCode.Ok).json(user);
   } catch (e) {
     showReqErrorLog('USER ME ERROR', e, req);

@@ -21,13 +21,19 @@ const Register: FC = () => {
   });
 
   useEffect(() => {
+    const token = getAccessToken();
+
+    if (!token) {
+      return;
+    }
+
     if (oldUserFetched !== userFetched && userFetched) {
-      if (!user.feature.REGISTER) {
+      if (!user?.feature?.REGISTER) {
         push('/register/profile');
         return;
       }
 
-      if (!user.feature.SELECT_PRODUCTION) {
+      if (!user?.feature?.SELECT_PRODUCTION) {
         push('/register/production');
         return;
       }

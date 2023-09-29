@@ -39,7 +39,9 @@ export const AuthProvider: FC<Props> = ({ children }) => {
 
       localStorage.clear();
 
-      push('/register/profile');
+      setTimeout(() => {
+        push('/register/profile');
+      }, 100);
     } finally {
       setLoading(false);
       setUserFetched(true);
