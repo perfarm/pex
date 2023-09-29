@@ -18,6 +18,10 @@ export const ScreenDownloadStepThree: FC = () => {
     push('/download/step-by-step/4');
   }, [push]);
 
+  const goToRegister = useCallback(() => {
+    push('/register/profile');
+  }, [push]);
+
   return (
     <Root>
       <BodyContent>
@@ -39,6 +43,15 @@ export const ScreenDownloadStepThree: FC = () => {
 
           <ButtonsFooter onClickNext={handleNext} onClickBack={handleBack}>
             AVANÇAR
+            <CaretRight color="pastureGreen" size={24} />
+          </ButtonsFooter>
+          <div style={{ marginTop: 30 }}>
+            <Description color="$mediumGray" variant="$body5" weight="$medium">
+              ou
+            </Description>
+          </div>
+          <ButtonsFooter onClickNext={goToRegister} hideBackBtn>
+            SEGUIR EXPERIÊNCIA WEB
             <CaretRight color="pastureGreen" size={24} />
           </ButtonsFooter>
         </Container>
