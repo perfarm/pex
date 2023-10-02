@@ -7,10 +7,10 @@ service: perfarm-experience
 runtime_config:
   runtime_version: 16.20.0
 
-instance_class: B4_1G
+instance_class: B2
 
 manual_scaling:
-  instances: 3
+  instances: 1
 
 resources:
   cpu: 3
